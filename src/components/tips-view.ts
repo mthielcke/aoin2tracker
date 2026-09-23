@@ -1,11 +1,16 @@
 import { LitElement, css, html, nothing } from 'lit';
 import { SOURCES } from '../data/sources';
-import { TIP_TOPICS } from '../data/tips';
-import type { ChecklistItem } from '../data/types';
+import type { ChecklistItem, TipTopic } from '../data/types';
 import { StoreController, store } from '../store';
 import { detailBlockStyles, renderDetailBlock } from './detail-blocks';
 
 export class TipsView extends LitElement {
+  static properties = {
+    topics: { attribute: false },
+    heading: {},
+    stand: {},
+  };
+
   static styles = [
     detailBlockStyles,
     css`
@@ -98,9 +103,16 @@ export class TipsView extends LitElement {
     `,
   ];
 
+  declare topics: TipTopic[];
+  declare heading: string;
+  declare stand: string;
+
   constructor() {
     super();
     new StoreController(this);
+    this.topics = [];
+    this.heading = '';
+    this.stand = '';
   }
 
   private renderTip(tip: ChecklistItem) {
@@ -138,14 +150,14 @@ export class TipsView extends LitElement {
   render() {
     return html`
       <div class="head">
-        <h2>Tipps & Hinweise</h2>
-        <span class="stand">Quellen: YouTube-Guides vom 19.08.–22.09.2026</span>
+        <h2>${this.heading}</h2>
+        ${this.stand ? html`<span class="stand">${this.stand}</span>` : nothing}
       </div>
       <sl-tab-group>
-        ${TIP_TOPICS.map(
+        ${this.topics.map(
           (t) => html`<sl-tab slot="nav" panel=${t.id}><sl-icon name=${t.icon}></sl-icon>${t.title}</sl-tab>`,
         )}
-        ${TIP_TOPICS.map(
+        ${this.topics.map(
           (t) => html`<sl-tab-panel name=${t.id}>
             <p class="intro">${t.intro}</p>
             ${(t.blocks ?? []).map((b) => html`<div class="block">${renderDetailBlock(b)}</div>`)}

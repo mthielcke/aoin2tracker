@@ -1,4 +1,6 @@
 import { LitElement, css, html } from 'lit';
+import { CRAFTING_TOPICS } from '../data/crafting';
+import { TIP_TOPICS } from '../data/tips';
 import { StoreController, store } from '../store';
 import './build-detail';
 import './character-panel';
@@ -47,6 +49,10 @@ export class AppRoot extends LitElement {
     .actions {
       display: flex;
       gap: var(--sl-spacing-x-small);
+    }
+    .wip {
+      display: block;
+      margin-bottom: var(--sl-spacing-x-large);
     }
     sl-divider {
       --spacing: var(--sl-spacing-2x-large);
@@ -138,12 +144,31 @@ export class AppRoot extends LitElement {
         <sl-tab slot="nav" panel="todos">
           Todos & Tipps${openTodos ? html`<sl-badge pill variant="primary">${openTodos}</sl-badge>` : ''}
         </sl-tab>
+        <sl-tab slot="nav" panel="crafting">Crafting</sl-tab>
         <sl-tab slot="nav" panel="sources">Quellen</sl-tab>
         <sl-tab-panel name="chars"><character-panel></character-panel></sl-tab-panel>
         <sl-tab-panel name="todos">
           <todo-list></todo-list>
           <sl-divider></sl-divider>
-          <tips-view></tips-view>
+          <tips-view
+            .topics=${TIP_TOPICS}
+            heading="Tipps & Hinweise"
+            stand="Quellen: YouTube-Guides vom 19.08.–22.09.2026"
+          ></tips-view>
+        </sl-tab-panel>
+        <sl-tab-panel name="crafting">
+          <sl-alert class="wip" variant="warning" open>
+            <sl-icon slot="icon" name="cone-striped"></sl-icon>
+            <strong>Work in Progress</strong><br />
+            Dieser Bereich ist noch im Aufbau. Einige Video-Guides konnten bisher nur über ihre Beschreibung
+            ausgewertet werden – Details wie Proc-Chancen, Berufslevel und Gathering-Perks folgen. Punkte mit „prüfen“
+            sind noch unsicher.
+          </sl-alert>
+          <tips-view
+            .topics=${CRAFTING_TOPICS}
+            heading="Crafting & Gathering"
+            stand="Quellen: Guides vom 10.09.–22.09.2026, Stand Global-Client"
+          ></tips-view>
         </sl-tab-panel>
         <sl-tab-panel name="sources"><sources-view></sources-view></sl-tab-panel>
       </sl-tab-group>
