@@ -1,11 +1,12 @@
 import type { BuildVariant, ClassDef } from '../types';
+import { assassin } from './assassin';
 import { chanter } from './chanter';
 import { cleric } from './cleric';
 import { gladiator } from './gladiator';
 import { ranger } from './ranger';
 
 // Neue Klasse: Datei anlegen und hier eintragen.
-export const CLASSES: ClassDef[] = [gladiator, chanter, cleric, ranger];
+export const CLASSES: ClassDef[] = [gladiator, assassin, chanter, cleric, ranger];
 
 export function getClass(id: string): ClassDef | undefined {
   return CLASSES.find((c) => c.id === id);
