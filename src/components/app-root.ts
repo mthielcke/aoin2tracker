@@ -3,6 +3,7 @@ import { StoreController, store } from '../store';
 import './build-detail';
 import './character-panel';
 import './todo-list';
+import './tips-view';
 import './sources-view';
 
 const buildIdFromHash = () => /^#\/build\/([\w-]+)$/.exec(location.hash)?.[1];
@@ -46,6 +47,9 @@ export class AppRoot extends LitElement {
     .actions {
       display: flex;
       gap: var(--sl-spacing-x-small);
+    }
+    sl-divider {
+      --spacing: var(--sl-spacing-2x-large);
     }
     sl-tab-group[hidden] {
       display: none;
@@ -132,11 +136,15 @@ export class AppRoot extends LitElement {
       <sl-tab-group ?hidden=${!!this.detailBuildId}>
         <sl-tab slot="nav" panel="chars">Charaktere</sl-tab>
         <sl-tab slot="nav" panel="todos">
-          Todos${openTodos ? html`<sl-badge pill variant="primary">${openTodos}</sl-badge>` : ''}
+          Todos & Tipps${openTodos ? html`<sl-badge pill variant="primary">${openTodos}</sl-badge>` : ''}
         </sl-tab>
         <sl-tab slot="nav" panel="sources">Quellen</sl-tab>
         <sl-tab-panel name="chars"><character-panel></character-panel></sl-tab-panel>
-        <sl-tab-panel name="todos"><todo-list></todo-list></sl-tab-panel>
+        <sl-tab-panel name="todos">
+          <todo-list></todo-list>
+          <sl-divider></sl-divider>
+          <tips-view></tips-view>
+        </sl-tab-panel>
         <sl-tab-panel name="sources"><sources-view></sources-view></sl-tab-panel>
       </sl-tab-group>
     `;

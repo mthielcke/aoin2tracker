@@ -1,4 +1,5 @@
 import { rangerPveDpsDetails } from '../details/ranger-pve-dps';
+import { rangerPveEndgameDetails } from '../details/ranger-pve-endgame';
 import type { ClassDef } from '../types';
 
 export const ranger: ClassDef = {
@@ -10,7 +11,7 @@ export const ranger: ClassDef = {
   builds: [
     {
       id: 'ranger-pve-dps',
-      name: 'DPS (Bogen)',
+      name: 'Einsteiger-DPS (frisch 45)',
       mode: 'pve',
       summary:
         'Frisch 45: Mana über Snipe und Tab-Target-Modus managen, Combat Speed und Multi-Hit stapeln, mobil bleiben. Endgame: Precision-Fenster über Marking Shot für Deadshot.',
@@ -285,6 +286,210 @@ export const ranger: ClassDef = {
                   id: 'gear-order',
                   text: 'Reihenfolge: Bogen → Offensiv-Teile → Accessoires → Abyss → Arcana/Daevanion → Seal',
                   sources: ['gege-ranger'],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'ranger-pve-endgame',
+      name: 'Endgame-DPS (Allyria)',
+      mode: 'pve',
+      summary:
+        'Drei feste Buff-Stigmas (Vaizel’s Authority, Bow of Blessing, Supporting Fire), Tempest Shot / Gale Arrow / Deadshot / Drill Dart als Hauptschaden, Deadshot Stufe 3 per Makro.',
+      details: rangerPveEndgameDetails,
+      phases: [
+        {
+          id: 'early',
+          title: 'Frisch 45 / Early Endgame',
+          sections: [
+            {
+              id: 'stigmas',
+              kind: 'stigmas',
+              title: 'Stigmas',
+              items: [
+                {
+                  id: 'core-three',
+                  text: 'Vaizel’s Authority, Bow of Blessing, Supporting Fire ausrüsten',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'flex',
+                  text: '4. Slot (ab 45) nach Inhalt: Arrow Rain, Griffon Arrow, Mother Nature oder Kick',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'abyss-points',
+                  text: 'Stigma-Punkte im Abyss farmen (25.000 AP pro Punkt)',
+                  sources: ['allyria-ranger'],
+                },
+              ],
+            },
+            {
+              id: 'skills',
+              kind: 'skills',
+              title: 'Skills & Spezialisierungen',
+              items: [
+                {
+                  id: 'tier1',
+                  text: 'Tier 1 zuerst: Gale Arrow > Deadshot > Drill Dart > Tempest Shot > Burst Arrow',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'hp-traits',
+                  text: 'Bei HP-Problemen früh HP-Regeneration statt Multi-Hit (Snipe, Drill Dart, Burst Arrow)',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'passives-s',
+                  text: 'Passives: Focused Eye > Hunter’s Resolve, dann Hunter’s Soul',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'marking-manual',
+                  text: 'Marking Shot nur manuell für Buff-Uptime – nicht ins Makro',
+                  sources: ['allyria-ranger'],
+                },
+              ],
+            },
+            {
+              id: 'macro',
+              kind: 'rotation',
+              title: 'Makro',
+              items: [
+                {
+                  id: 'ingame',
+                  text: 'In-Game-Makro mit den Skill-Ketten auf eine Taste legen (z. B. Rechtsklick)',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'deadshot-3',
+                  text: 'Deadshot Stufe 3 sicherstellen: Makro-Software (halten = läuft) oder manuell aufladen',
+                  sources: ['allyria-ranger', 'yt-ranger-macro-showcase'],
+                },
+                {
+                  id: 'stagger-save',
+                  text: 'Stagger-Skills für Stagger-Phasen aufheben (Arrow Storm 50, Explosive/Griffon Arrow 20)',
+                  sources: ['allyria-ranger'],
+                },
+              ],
+            },
+            {
+              id: 'systems',
+              kind: 'daevanion',
+              title: 'Daevanion & Pets',
+              items: [
+                {
+                  id: 'daevanion-rarity',
+                  text: 'Daevanion: orange > blau > grün > weiß, Skill-Meilensteine (8/12/16/20) mitnehmen',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'gear-before-pets',
+                  text: 'Zum Launch Gear vor Pets – Pets nebenbei (Cogni > Fera > Natura > Varian)',
+                  sources: ['allyria-ranger'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'mid',
+          title: 'Mittleres Endgame',
+          sections: [
+            {
+              id: 'skills',
+              kind: 'skills',
+              title: 'Skills',
+              items: [
+                {
+                  id: 'gale-16',
+                  text: 'Gale Arrow ab Level 16: auf −10 s Cooldown + Combat Speed umstellen',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'tier2',
+                  text: 'Snipe und Marking Shot auf +16, Snare Shot / Explosion Trap / Scattershot auf +12',
+                  sources: ['allyria-ranger'],
+                },
+              ],
+            },
+            {
+              id: 'genus',
+              kind: 'systems',
+              title: 'Genus Insight',
+              items: [
+                {
+                  id: 'slots-4-7',
+                  text: 'Genus: zuerst Slot 4, dann Slot 7 rollen (je Pet-Typ laut Tabelle)',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'no-lock',
+                  text: 'Bis Level 10 nichts locken – außer Slot 4/7 mit ca. 80 %+ Wurf',
+                  sources: ['allyria-ranger'],
+                },
+              ],
+            },
+            {
+              id: 'arcana',
+              kind: 'arcana',
+              title: 'Arcana & Pantheon',
+              items: [
+                {
+                  id: 'arcana-5',
+                  text: '5 Arcana-Slots mit den richtigen Sets belegen; Karten nur auf +1/+2 testen',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'artworks',
+                  text: 'Pantheon-Artworks mit Illusion + Wisdom sammeln',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'statues',
+                  text: 'Statuen mit Freedom/Death/Space – früh Freedom + Space',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'colossus',
+                  text: 'Colossus Season 1: Zikel / Kromede',
+                  sources: ['allyria-ranger'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'late',
+          title: 'Spätes Endgame',
+          sections: [
+            {
+              id: 'gear',
+              kind: 'gear',
+              title: 'Gear',
+              items: [
+                {
+                  id: 'crafted-weapon',
+                  text: 'Crafting-Waffe und -Guard (Rüstung aus Dungeons ist für F2P völlig okay)',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'soulbinds',
+                  text: 'Soul Binds pro Teil nach Tabelle rollen (Waffe: Weapon Damage Boost, Combat Speed, Might …)',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'manastones',
+                  text: 'Endgear: zwei goldene Mana/Soulstone-Zeilen pro Teil (+100 Weapon/Front/Back-Attack)',
+                  sources: ['allyria-ranger'],
+                },
+                {
+                  id: 'tier1-20',
+                  text: 'Tempest Shot, Gale Arrow, Deadshot, Drill Dart auf +20',
+                  sources: ['allyria-ranger'],
                 },
               ],
             },

@@ -87,6 +87,20 @@ export interface DetailSection {
   blocks: DetailBlock[];
 }
 
+export interface TipGroup {
+  title: string;
+  tips: ChecklistItem[];
+}
+
+export interface TipTopic {
+  id: string;
+  title: string;
+  icon: string;
+  intro: string;
+  blocks?: DetailBlock[];
+  groups: TipGroup[];
+}
+
 export interface BuildDetails {
   intro: string;
   sources: string[];
