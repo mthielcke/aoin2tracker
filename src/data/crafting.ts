@@ -6,24 +6,24 @@ export const CRAFTING_TOPICS: TipTopic[] = [
     title: 'Überblick & Start',
     icon: 'hammer',
     intro:
-      'Crafting-Gear ist das beste PvE-Gear. Zum Global-Launch gibt es in Conquest-Dungeons und Sanctuary-Raids keine Heroic-Drops – wer Berufe versteht, bestimmt die Wirtschaft. Trotzdem gilt für Season 1: nicht hetzen, Berufe nebenbei leveln und Materialien sparen. F2P-Spieler kommen mit Dungeon-Rüstung gut zurecht.',
+      'Crafting-Gear ist das beste PvE-Gear: mehr Soul-Bind-Zeilen und bis zu ca. 18 % PvE-Schaden über Waffe, Guard und Accessoires. Zum Global-Launch gibt es in Conquest-Dungeons und Sanctuary-Raids keine Heroic-Drops. Trotzdem gilt für Season 1: nicht hetzen, Berufe nebenbei leveln und Materialien sparen. F2P-Spieler kommen mit Dungeon-Rüstung gut zurecht.',
     blocks: [
       {
         type: 'table',
         columns: ['Beruf', 'Stellt her', 'Wichtig für'],
         rows: [
-          ['Blacksmithing', 'Nahkampfwaffen (Greatsword, Schwert, Dolche, Streitkolben) und Guards/Schilde', 'Nahkämpfer – und später alle Klassen wegen des Guards'],
-          ['Armorsmithing', 'Rüstungsteile (Brust, Handschuhe, Stiefel …)', 'Alle Klassen, größter Kundenkreis'],
-          ['Handicrafting', 'Bögen, Stäbe, Ringe, Ohrringe, Ketten', 'Ranger, Chanter, Accessoires für alle'],
-          ['Alchemy', 'Magie-Waffen (Zauberbücher, Orbs), Tränke, Scrolls, Mana-Stone-Scrolls', 'Caster, Kinah durch Verbrauchsgüter'],
-          ['Cooking', 'Essen und Getränke mit Buffs', 'Alle – Buff-Food vor Dungeons'],
+          ['Blacksmithing', 'Greatsword, Langschwert, Dolche, Streitkolben, Schilde und Guards', 'Templar, Gladiator, Assassin, Cleric – und alle Klassen wegen des Guards'],
+          ['Armorsmithing', 'Rüstungsteile inkl. Helm und Umhang', 'Alle Klassen'],
+          ['Handicrafting', 'Bögen, Stäbe, Ringe, Ohrringe, Ketten', 'Ranger, Chanter – Accessoires für alle'],
+          ['Alchemy', 'Zauberbücher, Orbs, Mana Stones, Scrolls, Tränke', 'Sorcerer, Spiritmaster – Verbrauchsgüter für alle'],
+          ['Cooking', 'Essen und Getränke mit 5-Minuten-Buffs', 'Alle – Buff-Food vor Dungeons'],
         ],
       },
       {
         type: 'callout',
         variant: 'warning',
         title: 'Die „Novice 50“-Wand',
-        text: 'Dein Kampflevel endet bei 45, Gathering und Crafting bei Novice 50. Dort friert die Life-Skill-EP ein – kein Bug. Eine Rang-Aufstiegsquest hebt die Grenze auf.',
+        text: 'Kampflevel endet bei 45, Gathering und Crafting bei Novice 50 – dort friert die EP ein. Die Rang-Aufstiegsquest (u. a. „Upgrade Essence Extraction Specialty Skill“ bei NPC Alzir in Verteron bzw. Altgard) hebt die Grenze auf 100 und schaltet weitere Perks frei. Auch jeder Crafting-Beruf hat bei 50 eine eigene Regionalquest für die nächste Rangstufe.',
       },
     ],
     groups: [
@@ -32,35 +32,48 @@ export const CRAFTING_TOPICS: TipTopic[] = [
         tips: [
           {
             id: 'pick-profession',
-            text: 'Beruf passend zu deiner Waffe wählen – je nach Gear brauchst du zwei',
-            detail: 'Alle fünf Berufe sind auf einem Charakter möglich.',
+            text: 'Berufe passend zu deiner Ausrüstung wählen – meist brauchst du zwei auf 50',
+            detail: 'Beispiel Ranger: Handicrafting für Bogen und Accessoires plus Blacksmithing für den Guard. Alle fünf Berufe sind auf einem Charakter möglich.',
             sources: ['yt-craft-mr4k', 'yt-craft-crusherx'],
           },
           {
             id: 'unlock-quests',
-            text: 'Freischalt-Quests für Gathering und die Crafting-Stationen erledigen',
+            text: 'Freischalt-Quests im Crafting-Viertel der Hauptstadt erledigen',
             sources: ['yt-craft-crusherx'],
           },
           {
-            id: 'level-1-to-50',
-            text: 'Mit den Level-1-Rezepten starten und Richtung 50 leveln',
+            id: 'merchant-materials',
+            text: 'Basis-Materialien und Katalysatoren beim Händler des jeweiligen Berufs kaufen – die lassen sich nicht farmen',
+            detail: 'Beispiel: 2 Orichalcum Ore + Katalysator → Orichalcum Ingot. Gecraftet wird übers Menü, du musst nicht am Tisch stehen.',
+            sources: ['yt-craft-zyaso', 'fextralife-crafting'],
+          },
+          {
+            id: 'level-cheap',
+            text: 'Berufe günstig auf 50 leveln: billige Level-1-Rezepte per Max-Craft laufen lassen (z. B. über Nacht)',
             sources: ['yt-craft-mr4k'],
           },
           {
             id: 'rank-up',
-            text: 'Bei Novice 50 die Rang-Aufstiegsquest machen (u. a. „Upgrade Essence Extraction Specialty Skill“)',
-            sources: ['yt-craft-crusherx', 'yt-gather-mr4k'],
+            text: 'Bei Novice 50 die Rang-Aufstiegsquests machen (Gathering und jeder Crafting-Beruf)',
+            sources: ['yt-craft-crusherx', 'yt-gather-mr4k', 'yt-craft-zyaso'],
           },
           {
             id: 'daily-supply',
-            text: 'Tägliche Crafting-Supply-Requests mitnehmen',
-            detail: 'Abyss-Punkte aus Crafting-Supply-Requests sind saisonal und zählen nicht zum normalen Wochenlimit.',
+            text: 'Täglich die Supply Requests abgeben – Crafting-EP, Katalysatoren und Kinah zurück',
+            detail: 'Die Abgaben erstatten einen großen Teil der Produktionskosten. Abyss-Punkte aus Crafting-Supply-Requests sind saisonal und zählen nicht zum Wochenlimit.',
             sources: ['yt-craft-crusherx', 'yt-kinah-aselon'],
           },
           {
+            id: 'one-first',
+            text: 'Erst einen Hauptberuf ausbauen, dann die anderen',
+            detail: 'Alternative laut Ynoki: mit Alchemy und Cooking beginnen – Verbrauchsgüter bringen sofort Nutzen und verkaufen sich immer.',
+            sources: ['yt-craft-crusherx', 'yt-craft-ynoki'],
+          },
+          {
             id: 'no-rush',
-            text: 'Season 1 nicht hetzen: Berufe langsam leveln, wichtige Materialien aufheben',
-            sources: ['yt-craft-mr4k'],
+            text: 'Season 1 nicht hetzen: nur Engpass-Teile craften, Materialien sparen',
+            detail: 'Ein komplettes Set am ersten Tag zu craften ruiniert dein Kinah – dann fehlt es für Verstärken und Teleports.',
+            sources: ['yt-craft-mr4k', 'yt-craft-ynoki'],
           },
         ],
       },
@@ -71,21 +84,35 @@ export const CRAFTING_TOPICS: TipTopic[] = [
     title: 'Gear craften',
     icon: 'shield-shaded',
     intro:
-      'Crafting-Gear hat gegenüber Dungeon-Gear derselben Stufe einen eingebauten PvE-Bonus (ca. 5 %) und flexiblere Stats. Der Weg dorthin läuft über eine Proc-Kette und kostet viel Material – deshalb schrittweise statt alles auf einmal.',
+      'Crafting-Waffen und -Accessoires haben mehr Soul-Bind-Zeilen (Waffe 5 statt 3–4) und einen eingebauten PvE-Bonus. Der Weg läuft über die Proc-Kette bis zum ersten Dragon-Lord-Teil – danach übernimmt das Transfer-Crafting, und du verlierst nichts mehr.',
     blocks: [
       {
-        type: 'steps',
-        title: 'So funktioniert die Proc-Kette',
-        items: [
-          'Jeder Craft hat ca. 25 % Chance, eine bessere Version zu „proccen“.',
-          'Nur mit dem geprocten Item kannst du die nächste Stufe craften (weiß → grün → blau → …).',
-          'Die „Splendid“-Version einer Waffe entspricht laut Koodoki etwa einem 2★-Dungeon, die nächste Stufe einem 3★-Dungeon.',
-          'Alternativ garantiertes Craften (100 %) – kostet deutlich mehr Material.',
+        type: 'table',
+        columns: ['Teil', 'PvE-Schaden durch Crafting'],
+        rows: [
+          ['Waffe', '5 %'],
+          ['Guard', '5 %'],
+          ['Kette', '2,5 %'],
+          ['Ohrringe', '2,5 %'],
+          ['Gesamt mit weiteren Accessoires', 'bis ca. 18 %'],
         ],
       },
       {
-        type: 'text',
-        text: 'Gear-Namen im Global-Client laut AION2 Hub u. a.: Wise Dragon Lord, Ebony Dragon Lord, White Dragon Lord, Splendent Wise Dragon Lord. Der Crafting-Rechner dort zeigt Rezepte und kompletten Materialbedarf.',
+        type: 'steps',
+        title: 'Der Weg zur Endgame-Waffe',
+        items: [
+          'Normales Crafting: Jeder Craft hat 25 % Chance, eine bessere Version zu „proccen“ (weiß → grün → blau → gelb). Das geprocte Teil ist Zutat für die nächste Stufe.',
+          'Teile ohne Proc nicht wegwerfen: Sie sind Zutaten oder gehen in Supply Requests.',
+          'Das erste Dragon-Lord-Teil (z. B. Level-70-Waffe) ist die einzige riskante Stufe.',
+          'Danach Transfer-Crafting: garantiert erfolgreich. Mit Proc springst du eine Stufe höher, ohne Proc zahlst du Kinah für das Upgrade (in KR z. B. 1 Mio., dann 5 Mio., 10 Mio. … bis 100 Mio. für die höchste Stufe).',
+          'Enhance, Amplify und Soul Binds wandern mit; bei 6-Zeilen-Teilen folgen 5 Zeilen, eine wird neu gerollt. Das Ergebnis ist an den Charakter gebunden.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'primary',
+        title: 'Garantiert statt Glück: Core + Magical Breath',
+        text: 'Global startet mit garantiertem Crafting über einen Core. Dafür brauchst du Magical Breath aus Season Shop → Materials – nur 5 pro Server und Season, nicht übertragbar. Priorität: Waffe, Guard, Kette, Ohrringe.',
       },
     ],
     groups: [
@@ -95,57 +122,79 @@ export const CRAFTING_TOPICS: TipTopic[] = [
           {
             id: 'order',
             text: 'Reihenfolge: Waffe → Guard → Kette → Ohrringe, Rüstung zuletzt',
-            detail: 'FRESHY: Waffe → Guard → Accessoires → Rüstung. Accessoires brauchen weniger Material – ein Fehlschlag tut weniger weh.',
-            sources: ['yt-craft-mr4k', 'yt-gear-freshy'],
+            detail: 'TheWhelps empfiehlt als allererstes Teil Ringe (Skill-Schwellen 12/16/20, extra Soul Bind).',
+            sources: ['yt-craft-mr4k', 'yt-craft-crusherx', 'yt-gear-freshy', 'yt-prog-whelps'],
           },
           {
             id: 'gamble-vs-guaranteed',
-            text: '25-%-Gamble oder 100 % garantiert bewusst wählen – für das eine Endgame-Teil lieber garantiert',
+            text: '25-%-Gamble nie ohne Reserve – für das eine Endgame-Teil lieber garantiert',
             sources: ['yt-craft-mr4k', 'yt-craft-crusherx'],
           },
           {
             id: 'magical-breath',
-            text: 'Magical Breath (Core) aus Season Shop → Materials: nur 5 pro Server – vorher genau prüfen, was du craftest',
-            sources: ['yt-craft-mr4k'],
+            text: 'Magical Breath (nur 5 pro Server) erst einsetzen, wenn klar ist, welches Teil du craftest',
+            sources: ['yt-craft-mr4k', 'yt-craft-crusherx', 'yt-craft-lucky'],
           },
           {
             id: 'wrong-core',
-            text: 'Falschen Core gecraftet? Im Substance Morph prüfen, ob er sich zurückholen lässt',
+            text: 'Falschen Core gecraftet? Beim NPC bzw. im Substance Morph in den richtigen tauschen',
+            detail: 'Es gibt getrennte Cores für Waffe, Accessoires und Rüstung.',
             sources: ['yt-craft-mr4k'],
           },
           {
             id: 'crafts-can-fail',
-            text: 'Hohe Stufen können fehlschlagen – bei teuren Crafts ggf. lieber das Material verkaufen',
-            sources: ['yt-gear-koodoki', 'yt-kinah-aselon'],
+            text: 'Beim Rezept steht, ob der Craft fehlschlagen kann – dann sind bei Fehlschlag alle Materialien weg',
+            sources: ['yt-craft-zyaso', 'yt-gear-koodoki'],
+          },
+          {
+            id: 'level-vs-tier',
+            text: 'Nur Rezepte auf oder unter deinem Berufslevel craften – darüber drohen Abzüge',
+            detail: 'Größere Mengen am Stück craften glättet das 25-%-Glück – einzeln kannst du auch 10-mal in Folge scheitern.',
+            sources: ['yt-craft-ynoki'],
+          },
+          {
+            id: 'ranger-bow',
+            text: 'Klassen-Hinweis Ranger: den Horned-Dragon-Bogen anpeilen (6 Zeilen) – die Ludra-Waffe hat nur 4',
+            sources: ['yt-craft-lucky'],
           },
           {
             id: 'ludra',
-            text: 'Kein Crafting-Weg? Die Ludra-Heroic-Waffe ist eine Alternative',
-            sources: ['yt-craft-mr4k'],
-            uncertain: true,
+            text: 'Kein Crafting-Weg? Die Ludra-Heroic-Waffe aus dem Sanctuary ist eine Alternative',
+            detail: 'Sie hat weniger Zeilen – je nach Klasse fehlen wichtige Stats.',
+            sources: ['yt-craft-mr4k', 'yt-craft-lucky'],
           },
         ],
       },
       {
-        title: 'Transfer & Potential',
+        title: 'Transfer, Potential & Verkauf',
         tips: [
           {
             id: 'transfer',
-            text: 'Transfer nutzen: Enhance, Upgrade-Stufe und Soul Binds wandern aufs nächste Crafting-Teil',
+            text: 'Transfer-Crafting nutzen: garantiert, Enhance und Soul Binds wandern mit',
             detail: 'Deshalb lohnt sich Kinah in Crafting-Gear mehr als in Dungeon-Gear.',
-            sources: ['yt-gear-freshy', 'yt-mistakes-lucky', 'yt-craft-crusherx'],
+            sources: ['yt-craft-lucky', 'yt-craft-ynoki', 'yt-gear-freshy'],
           },
           {
             id: 'potential',
-            text: 'Potential (PvE-Boni) über Potential-Steine hinzufügen – wird beim Transfer nicht übernommen',
-            detail: 'Auf Global hat Crafting-Gear die PvE-Werte nicht von Haus aus. Potential-Steine entstehen u. a. aus Dungeon-Gear per Substance Morph.',
-            sources: ['yt-gear-sog', 'yt-gear-koodoki', 'yt-gear-freshy'],
+            text: 'Auf offenes Potential achten – ausgegraute Potential-Slots bedeuten ein statisches Teil ohne Zukunft',
+            detail: 'Potential (PvE-Boni) kommt über Potential-Steine und wird beim Transfer nicht übernommen.',
+            sources: ['yt-craft-ynoki', 'yt-gear-freshy', 'yt-gear-koodoki'],
+          },
+          {
+            id: 'sellable',
+            text: 'Handelbar erkennst du am Marktplatz-Symbol – bis zum Anlegen; danach ist das Teil gebunden',
+            sources: ['yt-craft-ynoki'],
           },
           {
             id: 'sell-proc',
-            text: 'In der Launch-Woche ist der Markt überhitzt – ein unerwarteter Proc bringt verkauft evtl. mehr als getragen',
-            sources: ['yt-craft-crusherx'],
-            uncertain: true,
+            text: 'Einen unerwarteten gelben/lila Proc in der Launch-Woche verkaufen – die Preise fallen nach dem ersten Monat stark',
+            detail: 'Umgekehrt: als Käufer am Anfang nicht überzahlen.',
+            sources: ['yt-craft-crusherx', 'yt-craft-mr4k'],
+          },
+          {
+            id: 'old-heroic',
+            text: 'Alte Teile nicht blind zerlegen: prüfen, ob sie Transfer- oder Morph-Material sind',
+            sources: ['yt-craft-ynoki'],
           },
         ],
       },
@@ -156,7 +205,25 @@ export const CRAFTING_TOPICS: TipTopic[] = [
     title: 'Gathering & Materialien',
     icon: 'basket',
     intro:
-      'Gathering läuft in Aion 2 über ein einziges System, die Essence Extraction. Knoten erlauben mehrere Versuche mit Erfolgs- und Fehlschlag-Balken – auch Fehlschläge geben Erfahrung. Endgame-Crafting braucht sehr viel Material; selbst sammeln spart auf Dauer viel Kinah.',
+      'Gathering läuft über ein einziges System, die Essence Extraction: Erz, Pflanzen, Holz und Odyl leveln alle denselben Skill. Knoten gibt es in den Qualitäten common, fine und pure. Auch Fehlschläge geben Erfahrung.',
+    blocks: [
+      {
+        type: 'table',
+        columns: ['Perk', 'Wirkung'],
+        rows: [
+          ['Proficient Handling', 'Höhere Erfolgsrate'],
+          ['Delicate Touch', 'Fehlschlag-Balken füllt sich langsamer'],
+          ['Lady Luck', 'Chance auf kritische Extra-Ausbeute'],
+          ['Seeker (Spezial)', 'Zeigt Knoten auf der Minimap'],
+          ['Plentiful Harvest (Spezial)', 'Doppelte Ausbeute'],
+          ['Appraiser (Spezial)', 'Mehr fine- und pure-Materialien'],
+        ],
+      },
+      {
+        type: 'text',
+        text: 'Punkte lassen sich für 50.000 Kinah zurücksetzen. MR4KTV empfiehlt die allgemeinen Perks auf 10/10/5, dazu Odyl und den Knotentyp, den du wirklich farmst (z. B. Holz für Handicrafting), auf Maximum.',
+      },
+    ],
     groups: [
       {
         title: 'Gathering',
@@ -164,18 +231,35 @@ export const CRAFTING_TOPICS: TipTopic[] = [
           {
             id: 'gather-everything',
             text: 'Unterwegs jeden Knoten mitnehmen – Gathering levelt nebenbei',
-            sources: ['yt-gather-mr4k'],
+            detail: 'Separate Sammel-Sessions lohnen sich nur für gezieltes Farmen.',
+            sources: ['yt-gather-mr4k', 'yt-craft-ynoki'],
+          },
+          {
+            id: 'odyl',
+            text: 'Odyl immer mitnehmen – fliegt als grüne Ressource über den Städten, am Dungeon-Ende gibt es 3 Knoten pro Person',
+            detail: 'Odyl wird für fast jedes Rezept gebraucht.',
+            sources: ['yt-gather-mr4k', 'yt-craft-crusherx', 'yt-craft-zyaso'],
+          },
+          {
+            id: 'perks',
+            text: 'Perks setzen: allgemeine 10/10/5, dazu Odyl und deinen Haupt-Knotentyp maxen',
+            sources: ['yt-gather-mr4k', 'yt-craft-zyaso'],
+          },
+          {
+            id: 'rank-up-gathering',
+            text: 'Gathering auf 50 → Aufstiegsquest in der Hauptstadt (u. a. seltene Rubine sammeln) → Rang Professional',
+            sources: ['yt-gather-mr4k', 'yt-craft-crusherx'],
+            uncertain: true,
+          },
+          {
+            id: 'caps',
+            text: 'Tägliche Extraktions-Limits beachten',
+            sources: ['yt-craft-crusherx'],
           },
           {
             id: 'artisan-ultimate',
             text: 'Erfolg „Artisan’s Ultimate“: 1.000 Extraktionen – früh nebenbei anfangen',
             sources: ['yt-gather-mr4k'],
-          },
-          {
-            id: 'perks',
-            text: 'Essence-Extraction-Punkte in sinnvolle Perks stecken (Knoten-Stufen beachten)',
-            sources: ['yt-craft-crusherx'],
-            uncertain: true,
           },
         ],
       },
@@ -184,34 +268,35 @@ export const CRAFTING_TOPICS: TipTopic[] = [
         tips: [
           {
             id: 'sources',
-            text: 'Quellen: Season Shop, Gathering, Crafting-Händler, Marktplatz, Dungeons, Shugo Festival',
-            detail: 'Das Shugo Festival ist besonders ergiebig für Crafting-Ressourcen.',
-            sources: ['yt-craft-mr4k'],
-          },
-          {
-            id: 'catalysts',
-            text: 'Katalysatoren beim Händler für Kinah kaufen (z. B. 2 Orichalcum Ore + Katalysator → Orichalcum Ingot)',
-            sources: ['fextralife-crafting'],
+            text: 'Quellen: Gathering, Dungeon-Bosse, Händler-Katalysatoren, Marktplatz, Season Shop, Trade Shop, Shugo Festival',
+            detail: 'Im Rezept zeigt der Button „Sources“, wo es welches Material gibt.',
+            sources: ['yt-craft-mr4k', 'yt-craft-crusherx', 'yt-craft-zyaso'],
           },
           {
             id: 'odial-morph',
-            text: 'Odial/Odyle am Dungeon-Ende einsammeln und per Substance Morph 1:1 in seltene Materialien tauschen',
-            sources: ['yt-craft-crusherx', 'yt-gear-sog'],
+            text: 'Odyl per Substance Morph 1:1 in seltene Erze, Holz oder Kräuter tauschen – 100 % Erfolg, kein Kinah',
+            detail: 'Die Seltenheit des Odyls muss zur gewünschten Materialstufe passen.',
+            sources: ['yt-craft-crusherx', 'yt-craft-zyaso'],
           },
           {
             id: 'dungeon-tiers',
             text: 'Jede Dungeon-Stufe liefert eigene Materialien – für höhere Crafts brauchst du 1★-, 2★- und 3★-Material',
-            sources: ['yt-gear-koodoki'],
+            sources: ['yt-gear-koodoki', 'yt-craft-crusherx'],
+          },
+          {
+            id: 'keep-materials',
+            text: 'Materialien nicht blind verkaufen – eigenes Lagerfach für Crafting-Zutaten anlegen',
+            sources: ['yt-craft-ynoki'],
           },
           {
             id: 'bound',
-            text: 'Gebundene und handelbare Materialien nicht verwechseln – falsch eingesetzt kostet das Gewinn',
-            detail: 'Für riskante Crafts lieber ungebundene Materialien nehmen, die du ohnehin nicht verkaufen kannst.',
+            text: 'Für eigenes Gear gebundene Materialien nutzen, handelbare für Verkaufs-Crafts',
+            detail: 'Wer handelbare Materialien für sein eigenes Gear verbraucht, verschenkt Gewinn.',
             sources: ['yt-craft-crusherx', 'yt-kinah-aselon'],
           },
           {
             id: 'alts',
-            text: 'Alts sammeln lassen und Material über den Server-Speicher an den Main geben',
+            text: 'Teure Materialien droppen in Dungeons – mit Twinks mitfarmen und über den Server-Speicher zum Main geben',
             sources: ['yt-craft-mr4k', 'yt-craft-crusherx'],
           },
           {
@@ -227,15 +312,16 @@ export const CRAFTING_TOPICS: TipTopic[] = [
     id: 'kinah',
     title: 'Kinah mit Crafting',
     icon: 'coin',
-    intro: 'Crafting kann viel Kinah bringen – oder unbemerkt kosten. Vor jedem Verkaufs-Craft Materialpreise, Marktgebühr und Steuer gegen den Verkaufspreis rechnen.',
+    intro:
+      'Crafting kann viel Kinah bringen – oder unbemerkt kosten. Vor jedem Verkaufs-Craft Materialpreise, Marktgebühr und Steuer gegen den Verkaufspreis rechnen. Zum Verkaufen brauchst du Marktplatz-Zugang (Abo, z. B. 30 Tage im Founder’s Pack).',
     groups: [
       {
         title: 'Lohnende Ideen',
         tips: [
           {
             id: 'consumables',
-            text: 'Verbrauchsgüter: Life Serum, Tränke, Mana-Stone-Scrolls (Alchemy), Accuracy-Food und Ausdauer-Getränke (Cooking)',
-            sources: ['yt-gear-sog', 'yt-kinah-aselon'],
+            text: 'Verbrauchsgüter laufen immer: Tränke, Scrolls, Mana Stones (Alchemy), Accuracy-Food und Ausdauer-Getränke (Cooking)',
+            sources: ['yt-craft-ynoki', 'yt-gear-sog', 'yt-kinah-aselon'],
           },
           {
             id: 'flight-potions',
@@ -254,9 +340,14 @@ export const CRAFTING_TOPICS: TipTopic[] = [
             sources: ['yt-kinah-aselon'],
           },
           {
+            id: 'expensive-materials',
+            text: 'Seltene Veredelungsmaterialien sind viel wert – z. B. kostete ein Artisan’s Ultimate Refining Stone über 2 Mio. Kinah',
+            sources: ['yt-craft-zyaso'],
+          },
+          {
             id: 'supply-sell',
             text: 'Nicht benötigte Craft-Varianten nicht zerlegen: für Supply Requests nutzen oder an Spieler verkaufen',
-            sources: ['yt-kinah-aselon'],
+            sources: ['yt-kinah-aselon', 'yt-craft-ynoki'],
           },
           {
             id: 'market-check',

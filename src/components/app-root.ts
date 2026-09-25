@@ -52,10 +52,6 @@ export class AppRoot extends LitElement {
       display: flex;
       gap: var(--sl-spacing-x-small);
     }
-    .wip {
-      display: block;
-      margin-bottom: var(--sl-spacing-x-large);
-    }
     sl-divider {
       --spacing: var(--sl-spacing-2x-large);
     }
@@ -163,17 +159,10 @@ export class AppRoot extends LitElement {
           ></tips-view>
         </sl-tab-panel>
         <sl-tab-panel name="crafting">
-          <sl-alert class="wip" variant="warning" open>
-            <sl-icon slot="icon" name="cone-striped"></sl-icon>
-            <strong>Work in Progress</strong><br />
-            Dieser Bereich ist noch im Aufbau. Einige Video-Guides konnten bisher nur über ihre Beschreibung
-            ausgewertet werden – Details wie Proc-Chancen, Berufslevel und Gathering-Perks folgen. Punkte mit „prüfen“
-            sind noch unsicher.
-          </sl-alert>
           <tips-view
             .topics=${CRAFTING_TOPICS}
             heading="Crafting & Gathering"
-            stand="Quellen: Guides vom 10.09.–22.09.2026, Stand Global-Client"
+            stand="Quellen: Guides vom 03.08.–22.09.2026, Stand Global-Client"
           ></tips-view>
         </sl-tab-panel>
         <sl-tab-panel name="sources"><sources-view></sources-view></sl-tab-panel>
