@@ -24,7 +24,7 @@ export function phaseKeys({ scope, phase }: ScopedPhase): string[] {
   return phase.sections.flatMap((s) => s.items.map((i) => itemKey(scope, phase.id, s.id, i.id)));
 }
 
-export function progress(character: Character, keys: string[]) {
-  const done = keys.filter((k) => character.done[k]).length;
+export function progress(doneMap: Record<string, true>, keys: string[]) {
+  const done = keys.filter((k) => doneMap[k]).length;
   return { done, total: keys.length, percent: keys.length ? Math.round((done / keys.length) * 100) : 0 };
 }

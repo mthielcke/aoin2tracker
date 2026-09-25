@@ -211,6 +211,27 @@ const list: Source[] = [
     note: '04.09.2026 · Daily Dungeon',
   },
   {
+    id: 'yt-prog-whelps',
+    title: 'How To Prog After 45 (TheWhelps)',
+    url: 'https://www.youtube.com/watch?v=sU3heVsRb5o',
+    kind: 'youtube',
+    note: '24.09.2026 · Leveling, GS-Rechnung, Global-GS-Stufen 1.400/2.100/2.800',
+  },
+  {
+    id: 'yt-start-sywo',
+    title: 'Do THIS From Day 1, Thank Me Later (SywoGG)',
+    url: 'https://www.youtube.com/watch?v=b61MpbEiRYo',
+    kind: 'youtube',
+    note: '25.09.2026 · Abyss, Fraktion, Kinah, Roster, Minispiele',
+  },
+  {
+    id: 'aion2kina-checklist',
+    title: 'AION2 Kina – Daily & Weekly Checklist',
+    url: 'https://www.aion2kina.com/en/tools/daily-checklist/',
+    kind: 'web',
+    note: 'Einträge pro Tag und Reset-Zeiten (KR/TW: täglich 05:00, wöchentlich Mi 05:00)',
+  },
+  {
     id: 'yt-craft-mr4k',
     title: 'AION 2 Crafting – Why You Need to Start Early (MR4KTV)',
     url: 'https://www.youtube.com/watch?v=alJ1CWVWL1E',

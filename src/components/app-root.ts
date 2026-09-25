@@ -4,6 +4,8 @@ import { TIP_TOPICS } from '../data/tips';
 import { StoreController, store } from '../store';
 import './build-detail';
 import './character-panel';
+import './plan-view';
+import './weekly-view';
 import './todo-list';
 import './tips-view';
 import './sources-view';
@@ -141,12 +143,16 @@ export class AppRoot extends LitElement {
       ${this.detailBuildId ? html`<build-detail .buildId=${this.detailBuildId}></build-detail>` : ''}
       <sl-tab-group ?hidden=${!!this.detailBuildId}>
         <sl-tab slot="nav" panel="chars">Charaktere</sl-tab>
+        <sl-tab slot="nav" panel="plan">Startplan</sl-tab>
+        <sl-tab slot="nav" panel="weekly">Woche</sl-tab>
         <sl-tab slot="nav" panel="todos">
           Todos & Tipps${openTodos ? html`<sl-badge pill variant="primary">${openTodos}</sl-badge>` : ''}
         </sl-tab>
         <sl-tab slot="nav" panel="crafting">Crafting</sl-tab>
         <sl-tab slot="nav" panel="sources">Quellen</sl-tab>
         <sl-tab-panel name="chars"><character-panel></character-panel></sl-tab-panel>
+        <sl-tab-panel name="plan"><plan-view></plan-view></sl-tab-panel>
+        <sl-tab-panel name="weekly"><weekly-view></weekly-view></sl-tab-panel>
         <sl-tab-panel name="todos">
           <todo-list></todo-list>
           <sl-divider></sl-divider>

@@ -1,30 +1,18 @@
 import { LitElement, css, html, nothing } from 'lit';
-import type SlCheckbox from '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
 import type SlDialog from '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import type SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
 import type SlSelect from '@shoelace-style/shoelace/dist/components/select/select.js';
 import type SlSwitch from '@shoelace-style/shoelace/dist/components/switch/switch.js';
 import type SlTextarea from '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import { buildDetailsHref, getBuild, getClass } from '../data/classes';
-import { SOURCES } from '../data/sources';
-import type { ChecklistItem, SectionKind } from '../data/types';
-import { itemKey, phaseKeys, phasesFor, progress, type ScopedPhase } from '../progress';
+import { phaseKeys, phasesFor, progress } from '../progress';
 import { store, type Character } from '../store';
-
-const SECTION_ICON: Record<SectionKind, string> = {
-  quests: 'signpost-2',
-  skills: 'lightning-charge',
-  passives: 'shield-check',
-  stigmas: 'stars',
-  daevanion: 'diagram-3',
-  gear: 'hammer',
-  stats: 'bar-chart',
-  arcana: 'collection',
-  rotation: 'arrow-repeat',
-  systems: 'gear',
-};
+import { checklistStyles, firstOpenPhaseKey, renderChecklistPhase } from './checklist';
 
 const MODE_LABEL = { pve: 'PvE', pvp: 'PvP' } as const;
+
+const clampInt = (value: string, min: number, max: number) =>
+  Math.min(max, Math.max(min, Math.round(Number(value)) || min));
 
 export class CharacterView extends LitElement {
   static properties = {
@@ -32,151 +20,71 @@ export class CharacterView extends LitElement {
     onlyOpen: { state: true },
   };
 
-  static styles = css`
-    :host {
-      display: flex;
-      flex-direction: column;
-      gap: var(--sl-spacing-large);
-    }
-    .head {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: var(--sl-spacing-small);
-    }
-    h2 {
-      margin: 0;
-      font-size: var(--sl-font-size-2x-large);
-    }
-    .sub {
-      color: var(--sl-color-neutral-600);
-    }
-    .controls {
-      display: grid;
-      grid-template-columns: 1fr 120px;
-      gap: var(--sl-spacing-medium);
-      align-items: end;
-    }
-    @media (max-width: 560px) {
-      .controls {
-        grid-template-columns: 1fr;
+  static styles = [
+    checklistStyles,
+    css`
+      :host {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sl-spacing-large);
       }
-    }
-    .build-info {
-      display: flex;
-      align-items: center;
-      gap: var(--sl-spacing-medium);
-      flex-wrap: wrap;
-    }
-    .summary {
-      flex: 1 1 320px;
-      margin: 0;
-      color: var(--sl-color-neutral-700);
-      font-size: var(--sl-font-size-small);
-    }
-    .overall {
-      display: flex;
-      align-items: center;
-      gap: var(--sl-spacing-medium);
-    }
-    .overall sl-progress-bar {
-      flex: 1;
-      --height: 10px;
-    }
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: var(--sl-spacing-small);
-      flex-wrap: wrap;
-    }
-    .phases {
-      display: flex;
-      flex-direction: column;
-      gap: var(--sl-spacing-small);
-    }
-    .phase-summary {
-      display: flex;
-      align-items: center;
-      gap: var(--sl-spacing-small);
-      width: 100%;
-      padding-right: var(--sl-spacing-small);
-    }
-    .phase-title {
-      flex: 1;
-      font-weight: var(--sl-font-weight-semibold);
-    }
-    .phase-desc {
-      margin: 0 0 var(--sl-spacing-medium);
-      color: var(--sl-color-neutral-600);
-      font-size: var(--sl-font-size-small);
-    }
-    section + section {
-      margin-top: var(--sl-spacing-large);
-    }
-    h3 {
-      display: flex;
-      align-items: center;
-      gap: var(--sl-spacing-x-small);
-      margin: 0 0 var(--sl-spacing-x-small);
-      font-size: var(--sl-font-size-small);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--sl-color-primary-600);
-    }
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    li {
-      padding: var(--sl-spacing-x-small) 0;
-      border-bottom: 1px solid var(--sl-color-neutral-100);
-    }
-    li:last-child {
-      border-bottom: none;
-    }
-    .item-row {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--sl-spacing-x-small);
-    }
-    .item-row sl-checkbox {
-      flex: 1;
-    }
-    li.done sl-checkbox::part(label) {
-      color: var(--sl-color-neutral-500);
-      text-decoration: line-through;
-    }
-    .meta {
-      margin: var(--sl-spacing-3x-small) 0 0 calc(var(--sl-toggle-size-medium) + var(--sl-spacing-x-small));
-      font-size: var(--sl-font-size-small);
-      color: var(--sl-color-neutral-600);
-    }
-    .meta p {
-      margin: 0 0 var(--sl-spacing-3x-small);
-    }
-    .sources {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--sl-spacing-x-small);
-    }
-    .sources a {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--sl-spacing-3x-small);
-      color: var(--sl-color-neutral-500);
-      text-decoration: none;
-      font-size: var(--sl-font-size-x-small);
-    }
-    .sources a:hover {
-      color: var(--sl-color-primary-600);
-    }
-    .all-done {
-      color: var(--sl-color-success-600);
-      font-size: var(--sl-font-size-small);
-    }
-  `;
+      .head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--sl-spacing-small);
+      }
+      h2 {
+        margin: 0;
+        font-size: var(--sl-font-size-2x-large);
+      }
+      .sub {
+        color: var(--sl-color-neutral-600);
+      }
+      .controls {
+        display: grid;
+        grid-template-columns: 1fr 110px 120px;
+        gap: var(--sl-spacing-medium);
+        align-items: end;
+      }
+      @media (max-width: 560px) {
+        .controls {
+          grid-template-columns: 1fr 1fr;
+        }
+        .controls sl-select {
+          grid-column: 1 / -1;
+        }
+      }
+      .build-info {
+        display: flex;
+        align-items: center;
+        gap: var(--sl-spacing-medium);
+        flex-wrap: wrap;
+      }
+      .summary {
+        flex: 1 1 320px;
+        margin: 0;
+        color: var(--sl-color-neutral-700);
+        font-size: var(--sl-font-size-small);
+      }
+      .overall {
+        display: flex;
+        align-items: center;
+        gap: var(--sl-spacing-medium);
+      }
+      .overall sl-progress-bar {
+        flex: 1;
+        --height: 10px;
+      }
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--sl-spacing-small);
+        flex-wrap: wrap;
+      }
+    `,
+  ];
 
   declare character: Character;
   declare onlyOpen: boolean;
@@ -202,89 +110,23 @@ export class CharacterView extends LitElement {
     store.deleteCharacter(this.character.id);
   }
 
-  private renderItem(item: ChecklistItem, key: string) {
-    const done = !!this.character.done[key];
-    if (this.onlyOpen && done) return nothing;
-    const sources = (item.sources ?? []).map((id) => SOURCES[id]).filter(Boolean);
-    return html`
-      <li class=${done ? 'done' : ''}>
-        <div class="item-row">
-          <sl-checkbox
-            .checked=${done}
-            @sl-change=${(e: Event) =>
-              store.setItemDone(this.character.id, key, (e.target as SlCheckbox).checked)}
-            >${item.text}</sl-checkbox
-          >
-          ${item.uncertain
-            ? html`<sl-tooltip content="Quellen widersprechen sich oder Name stammt aus einem Transkript – im Spiel prüfen.">
-                <sl-badge variant="warning" pill>prüfen</sl-badge>
-              </sl-tooltip>`
-            : nothing}
-        </div>
-        ${item.detail || sources.length
-          ? html`<div class="meta">
-              ${item.detail ? html`<p>${item.detail}</p>` : nothing}
-              <div class="sources">
-                ${sources.map(
-                  (s) => html`<a href=${s.url} target="_blank" rel="noopener noreferrer" title=${s.note ?? s.title}>
-                    <sl-icon name=${s.kind === 'youtube' ? 'youtube' : 'link-45deg'}></sl-icon>${s.title}
-                  </a>`,
-                )}
-              </div>
-            </div>`
-          : nothing}
-      </li>
-    `;
-  }
-
-  private renderPhase(sp: ScopedPhase, open: boolean) {
-    const { scope, phase } = sp;
-    const p = progress(this.character, phaseKeys(sp));
-    const sections = phase.sections
-      .map((section) => ({
-        section,
-        rows: section.items.map((item) => this.renderItem(item, itemKey(scope, phase.id, section.id, item.id))),
-      }))
-      .filter(({ rows }) => rows.some((r) => r !== nothing));
-    return html`
-      <sl-details ?open=${open}>
-        <div slot="summary" class="phase-summary">
-          <span class="phase-title">${phase.title}</span>
-          <sl-badge variant=${p.done === p.total ? 'success' : 'neutral'} pill>${p.done}/${p.total}</sl-badge>
-        </div>
-        ${phase.description ? html`<p class="phase-desc">${phase.description}</p>` : nothing}
-        ${sections.length
-          ? sections.map(
-              ({ section, rows }) => html`
-                <section>
-                  <h3><sl-icon name=${SECTION_ICON[section.kind]}></sl-icon>${section.title}</h3>
-                  <ul>
-                    ${rows}
-                  </ul>
-                </section>
-              `,
-            )
-          : html`<div class="all-done">Alles erledigt.</div>`}
-      </sl-details>
-    `;
-  }
-
   render() {
     const c = this.character;
     const cls = getClass(c.classId);
     const build = getBuild(c.classId, c.buildId);
     const phases = phasesFor(c);
-    const overall = progress(c, phases.flatMap(phaseKeys));
+    const overall = progress(c.done, phases.flatMap(phaseKeys));
 
     const openStateKey = `${c.id}:${c.buildId}`;
     if (!this.initiallyOpen.has(openStateKey)) {
-      const firstOpen = phases.find((sp) => {
-        const p = progress(c, phaseKeys(sp));
-        return p.done < p.total;
-      });
-      this.initiallyOpen.set(openStateKey, firstOpen ? `${firstOpen.scope}.${firstOpen.phase.id}` : '');
+      this.initiallyOpen.set(openStateKey, firstOpenPhaseKey(phases, c.done));
     }
     const openKey = this.initiallyOpen.get(openStateKey);
+    const opts = {
+      done: c.done,
+      onlyOpen: this.onlyOpen,
+      onToggle: (key: string, done: boolean) => store.setItemDone(c.id, key, done),
+    };
 
     return html`
       <div class="head">
@@ -311,10 +153,15 @@ export class CharacterView extends LitElement {
           min="1"
           max="99"
           .value=${String(c.level)}
-          @sl-change=${(e: Event) => {
-            const level = Math.min(99, Math.max(1, Math.round(Number((e.target as SlInput).value)) || 1));
-            this.patch({ level });
-          }}
+          @sl-change=${(e: Event) => this.patch({ level: clampInt((e.target as SlInput).value, 1, 99) })}
+        ></sl-input>
+        <sl-input
+          label="Gear Score"
+          type="number"
+          min="0"
+          max="99999"
+          .value=${String(c.gearScore ?? 0)}
+          @sl-change=${(e: Event) => this.patch({ gearScore: clampInt((e.target as SlInput).value, 0, 99999) })}
         ></sl-input>
       </div>
       ${build
@@ -344,7 +191,7 @@ export class CharacterView extends LitElement {
       </div>
 
       <div class="phases">
-        ${phases.map((sp) => this.renderPhase(sp, `${sp.scope}.${sp.phase.id}` === openKey))}
+        ${phases.map((sp) => renderChecklistPhase(sp, `${sp.scope}.${sp.phase.id}` === openKey, opts))}
       </div>
 
       <sl-textarea

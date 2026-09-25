@@ -121,7 +121,7 @@ export class CharacterPanel extends LitElement {
   private renderCharButton(c: Character, active: boolean) {
     const cls = getClass(c.classId);
     const build = getBuild(c.classId, c.buildId);
-    const p = progress(c, phasesFor(c).flatMap(phaseKeys));
+    const p = progress(c.done, phasesFor(c).flatMap(phaseKeys));
     return html`
       <button class="char" aria-current=${active} @click=${() => store.selectCharacter(c.id)}>
         <div class="char-name">${c.name}</div>
