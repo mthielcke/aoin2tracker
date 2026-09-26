@@ -380,7 +380,7 @@ export const gladiator: ClassDef = {
       name: 'Leveling (ohne Ruinous Blow)',
       mode: 'pve',
       summary:
-        'Zum Hochleveln: Keen Strike, Rending Blow und Overhead Slam auf 8 für die ersten Spezialisierungen, Ruinous Blow bleibt auf 1. Mit 45 auf den DPS-Build wechseln.',
+        'Zum Hochleveln: Keen Strike, Rending Blow und Overhead Slam auf 8 für die ersten Spezialisierungen, danach Keen Strike 12 für −1 s Ruinous-Blow-Cooldown pro Treffer. Ruinous Blow bleibt auf 1. Mit 45 auf den DPS-Build wechseln.',
       details: gladiatorPveLevelingDetails,
       phases: [
         {
@@ -420,8 +420,8 @@ export const gladiator: ClassDef = {
                 },
                 {
                   id: 'ruinous-skip',
-                  text: 'Ruinous Blow nicht leveln – im TW-Stand keine Cooldown-Spezialisierung',
-                  detail: 'Die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) lohnen sich bei dem langen Cooldown kaum. Den Buff trotzdem vor Gruppen und Bossen nutzen.',
+                  text: 'Ruinous Blow nicht leveln – im TW-Stand keine eigene Cooldown-Spezialisierung',
+                  detail: 'Die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) lohnen sich bei dem langen Cooldown kaum. Den Buff trotzdem vor Gruppen und Bossen nutzen – den Cooldown senkt ab Level 21 Keen Strike 12.',
                 },
               ],
             },
@@ -482,6 +482,12 @@ export const gladiator: ClassDef = {
               title: 'Skills',
               items: [
                 {
+                  id: 'keen-12',
+                  text: 'Direkt nach Level 20: Keen Strike auf 12 – Spez. 4 „−1 s Cooldown auf Ruinous Blow bei Treffer“',
+                  detail: 'Da Keen Strike ständig zwischen Rending Blows eingewebt wird, ist der Buff „Prepare for Battle“ deutlich öfter oben.',
+                  sources: ['yt-glad-montu'],
+                },
+                {
                   id: 'core-12',
                   text: 'Rending Blow und Overhead Slam auf 12',
                   detail: 'Spez. 4: Overhead Slam garantierter Crit, Rending Blow mehr Single-Target-Schaden.',
@@ -492,12 +498,6 @@ export const gladiator: ClassDef = {
                   text: 'Danach beide auf 16 – Overhead Slam ohne Cooldown, Rending Blow MP bei Crit',
                   detail: 'Rending Blow Spez. 5 löst das Mana-Problem; danach kann Keen Strike aus der Rotation.',
                   sources: ['yt-glad-montu'],
-                },
-                {
-                  id: 'keen-mana',
-                  text: 'Keen Strike nur Richtung 12 steigern, wenn das Mana knapp wird',
-                  sources: ['yt-glad-montu'],
-                  uncertain: true,
                 },
               ],
             },

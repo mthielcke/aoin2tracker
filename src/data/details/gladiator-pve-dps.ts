@@ -112,7 +112,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
                 { slot: 4, text: 'Extra-Schaden bei Treffer (ab Lv. 12)' },
                 { slot: 5, text: 'Ignoriert Block/Evasion und wird Multi-Hit (ab Lv. 16)', pick: true },
               ],
-              note: 'Spezialisierungen laut aktuellem TW-Client. Montu wählte früher Spez. 4 „Längere Buff-Dauer“ – die gibt es dort so nicht mehr. Keine Spezialisierung senkt den Cooldown.',
+              note: 'Spezialisierungen laut aktuellem TW-Client. Montu wählte früher Spez. 4 „Längere Buff-Dauer“ – die gibt es dort so nicht mehr. Keine eigene Spezialisierung senkt den Cooldown – das übernimmt Keen Strike Spez. 4 (−1 s pro Treffer).',
             },
             {
               name: 'Keen Strike',
@@ -123,7 +123,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
                 { slot: 1, text: 'Mehr Mana-Wiederherstellung' },
                 { slot: 2, text: '1 % HP-Absorb' },
                 { slot: 3, text: '50 % Multi-Hit bei Treffer', pick: true },
-                { slot: 4, text: 'Ruinous Blow −1 s Cooldown (längere Buff-Uptime)', pick: true },
+                { slot: 4, text: 'Ruinous Blow −1 s Cooldown bei Treffer (ab Skill-Lv. 12, längere Buff-Uptime)', pick: true },
                 { slot: 5, text: 'Zusätzlicher Chain-Skill', pick: true },
               ],
             },

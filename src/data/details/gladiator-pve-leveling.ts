@@ -1,8 +1,34 @@
-import type { BuildDetails } from '../types';
+import type { BuildDetails, DetailSection } from '../types';
+import { gladiatorPveDpsDetails } from './gladiator-pve-dps';
+
+/** Abschnitte aus dem DPS-Guide, die beim Leveln helfen – ohne Hinweise, die Ruinous Blow priorisieren. */
+const FROM_DPS = ['core', 'mana', 'active', 'passives', 'stigmas', 'rotation', 'daevanion'];
+const SKIP_BLOCKS = ['Top-Priorität beim Leveln', 'Faustregel'];
+
+const dpsSections: DetailSection[] = gladiatorPveDpsDetails.sections
+  .filter((s) => FROM_DPS.includes(s.id))
+  .map((s, i) => ({
+    ...s,
+    id: `dps-${s.id}`,
+    title: `${s.title} (DPS-Guide)`,
+    blocks: [
+      ...(i === 0
+        ? [
+            {
+              type: 'callout' as const,
+              variant: 'primary' as const,
+              title: 'Aus dem DPS-Guide übernommen',
+              text: 'Die folgenden Abschnitte gelten für den Gladiator allgemein und beziehen sich teils aufs Endgame. Beim Leveln haben die Skillverteilung und die Spielweise oben Vorrang – insbesondere bleibt Ruinous Blow auf Level 1.',
+            },
+          ]
+        : []),
+      ...s.blocks.filter((b) => !('title' in b && b.title && SKIP_BLOCKS.includes(b.title))),
+    ],
+  }));
 
 export const gladiatorPveLevelingDetails: BuildDetails = {
   intro:
-    'Leveling-Variante auf Basis der DPS-Guides, mit einer bewussten Abweichung: Ruinous Blow wird beim Leveln nicht gesteigert. Im aktuellen TW-Stand gibt es keine Spezialisierung, die seinen Cooldown senkt – die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) bringen bei dem langen Cooldown wenig. Die Punkte fließen stattdessen in die Skills, die du ständig drückst.',
+    'Leveling-Variante auf Basis der DPS-Guides, mit einer bewussten Abweichung: Ruinous Blow wird beim Leveln nicht gesteigert. Im aktuellen TW-Stand hat er keine eigene Spezialisierung, die seinen Cooldown senkt – die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) bringen bei dem langen Cooldown wenig. Die Punkte fließen stattdessen in die Skills, die du ständig drückst. Den Cooldown übernimmt Keen Strike: Ab Skill-Level 12 senkt jeder Treffer den Cooldown von Ruinous Blow um 1 s.',
   sources: ['yt-glad-montu', 'yt-glad-endgame', 'gege-glad', 'yt-leveling'],
   sections: [
     {
@@ -24,7 +50,8 @@ export const gladiatorPveLevelingDetails: BuildDetails = {
             ['Overhead Slam', '8+', 'Spez. Chain-Skill – Hauptschaden bei jedem Proc'],
             ['Crushing Wave', '5', 'AoE für Mob-Gruppen'],
             ['Rush Strike', '5+', 'Gap-Closer, bleibt am Ziel'],
-            ['Ruinous Blow', '1', 'Nicht leveln – kein Cooldown-Knoten, lange Abklingzeit'],
+            ['Keen Strike (direkt nach 20)', '12', 'Spez. 4: −1 s Cooldown auf Ruinous Blow pro Treffer – der Buff kommt öfter'],
+            ['Ruinous Blow', '1', 'Nicht leveln – kein eigener Cooldown-Knoten, lange Abklingzeit'],
             ['Blood Absorption (passiv)', '5', 'Lebensraub – weniger Pausen zwischen Pulls'],
             ['Attack Preparation (passiv)', '4', 'Damage Boost, Defense, Accuracy'],
             ['Impact Hit (passiv)', '3', 'Impact-Chance und Double Hit'],
@@ -43,9 +70,9 @@ export const gladiatorPveLevelingDetails: BuildDetails = {
         {
           type: 'steps',
           items: [
+            'Direkt nach Level 20: Keen Strike auf 12 und Spez. 4 wählen – jeder Treffer senkt den Cooldown von Ruinous Blow um 1 s.',
             'Rending Blow und Overhead Slam auf 12: Overhead Slam garantierter Crit, Rending Blow mehr Single-Target-Schaden.',
             'Danach beide auf 16: Overhead Slam ohne Cooldown, Rending Blow MP bei Crit – das löst das Mana-Problem.',
-            'Keen Strike bleibt auf 8, solange das Mana reicht. Wird es knapp, Richtung 12 (Montu).',
             'Ab Level 22 pro Level ein Stigma Shard: Rage Burst und Lifestealing Blade zuerst.',
             'Daevanion beim Leveln: die Ecken der Boards zuerst, die Mitte mit 45 auffüllen.',
             'Mit 45 im Tracker auf „DPS (Greatsword)“ wechseln und Ruinous Blow neu bewerten – der Endgame-Guide hält Level 20 im PvE für lohnend.',
@@ -62,17 +89,18 @@ export const gladiatorPveLevelingDetails: BuildDetails = {
           items: [
             'Gruppen pullen: Rush Strike rein, Crushing Wave für die AoE.',
             'Rending Blow im Laufen spammen, Overhead Slam bei jedem Proc – der Chain-Skill hängt direkt dran.',
-            'Keen Strike zwischen Rending Blows einweben (Links-, Rechtsklick), solange Mana fehlt.',
-            'Ruinous Blow trotzdem vor großen Gruppen und Quest-Bossen nutzen – der Buff „Prepare for Battle“ bleibt.',
+            'Keen Strike zwischen Rending Blows einweben (Links-, Rechtsklick) – bringt Mana und ab Level 12 auch Cooldown für Ruinous Blow.',
+            'Ruinous Blow auf Cooldown vor großen Gruppen und Quest-Bossen nutzen – der Buff „Prepare for Battle“ bleibt, und dank Keen Strike ist er schneller wieder da.',
           ],
         },
         {
           type: 'callout',
           variant: 'warning',
           title: 'Stand prüfen',
-          text: 'Die Ruinous-Blow-Spezialisierungen stammen aus dem aktuellen TW-Client (Screenshot vom Skill). Kommt im Global-Client eine Cooldown-Spezialisierung dazu, lohnt sich Ruinous Blow wieder früher.',
+          text: 'Die Spezialisierungen stammen aus dem aktuellen TW-Client (Screenshots der Skills). Im Global-Client prüfen, ob Keen Strike Spez. 4 dort gleich funktioniert und ob Ruinous Blow eine eigene Cooldown-Spezialisierung bekommt.',
         },
       ],
     },
+    ...dpsSections,
   ],
 };
