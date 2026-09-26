@@ -1,4 +1,5 @@
 import { gladiatorPveDpsDetails } from '../details/gladiator-pve-dps';
+import { gladiatorPveLevelingDetails } from '../details/gladiator-pve-leveling';
 import type { ClassDef } from '../types';
 
 export const gladiator: ClassDef = {
@@ -366,6 +367,167 @@ export const gladiator: ClassDef = {
                 {
                   id: 'arcana-multi',
                   text: 'Mehrere Arcana-Sets für verschiedene Inhalte aufbauen',
+                  sources: ['yt-glad-endgame'],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'gladiator-pve-leveling',
+      name: 'Leveling (ohne Ruinous Blow)',
+      mode: 'pve',
+      summary:
+        'Zum Hochleveln: Keen Strike, Rending Blow und Overhead Slam auf 8 für die ersten Spezialisierungen, Ruinous Blow bleibt auf 1. Mit 45 auf den DPS-Build wechseln.',
+      details: gladiatorPveLevelingDetails,
+      phases: [
+        {
+          id: 'to-20',
+          title: 'Level 1–20 – Skillverteilung',
+          sections: [
+            {
+              id: 'skills',
+              kind: 'skills',
+              title: 'Aktive Skills',
+              items: [
+                {
+                  id: 'keen-8',
+                  text: 'Keen Strike auf 8 – Spezialisierung Multi-Hit',
+                  detail: 'Linksklick-Filler zwischen Rending Blows, stellt Mana wieder her.',
+                  sources: ['yt-glad-montu'],
+                },
+                {
+                  id: 'rending-8',
+                  text: 'Rending Blow auf 8+ – Spezialisierung „Bewegen während des Skills“',
+                  sources: ['yt-glad-montu'],
+                },
+                {
+                  id: 'overhead-8',
+                  text: 'Overhead Slam auf 8+ – Spezialisierung Chain-Skill',
+                  sources: ['yt-glad-montu'],
+                },
+                {
+                  id: 'crushing-5',
+                  text: 'Crushing Wave auf 5 – AoE für Mob-Gruppen',
+                  sources: ['gege-glad'],
+                },
+                {
+                  id: 'rush-5',
+                  text: 'Rush Strike auf 5+ – Gap-Closer',
+                  sources: ['yt-glad-endgame'],
+                },
+                {
+                  id: 'ruinous-skip',
+                  text: 'Ruinous Blow nicht leveln – im TW-Stand keine Cooldown-Spezialisierung',
+                  detail: 'Die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) lohnen sich bei dem langen Cooldown kaum. Den Buff trotzdem vor Gruppen und Bossen nutzen.',
+                },
+              ],
+            },
+            {
+              id: 'passives',
+              kind: 'passives',
+              title: 'Passive Skills',
+              items: [
+                {
+                  id: 'blood-5',
+                  text: 'Blood Absorption auf 5 – Lebensraub, weniger Pausen',
+                  sources: ['yt-glad-endgame'],
+                },
+                {
+                  id: 'attack-prep-4',
+                  text: 'Attack Preparation auf 4 – Damage Boost, Defense, Accuracy',
+                  sources: ['yt-glad-montu'],
+                },
+                {
+                  id: 'impact-3',
+                  text: 'Impact Hit auf 3 – Impact-Chance und Double Hit',
+                  sources: ['yt-glad-montu'],
+                },
+              ],
+            },
+            {
+              id: 'play',
+              kind: 'rotation',
+              title: 'Spielweise',
+              items: [
+                {
+                  id: 'pull-groups',
+                  text: 'Gruppen pullen: Rush Strike rein, Crushing Wave, dann Rending Blow im Laufen spammen',
+                  sources: ['gege-glad'],
+                },
+                {
+                  id: 'weave-keen',
+                  text: 'Keen Strike zwischen Rending Blows einweben, solange Mana fehlt',
+                  detail: 'Links-, Rechtsklick – der Rechtsklick bricht die Animation ab.',
+                  sources: ['yt-glad-montu'],
+                },
+                {
+                  id: 'daevanion-corners',
+                  text: 'Daevanion-Punkte in die Ecken der Boards – die Mitte erst mit 45',
+                  sources: ['yt-leveling'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'to-45',
+          title: 'Level 21–45',
+          sections: [
+            {
+              id: 'skills',
+              kind: 'skills',
+              title: 'Skills',
+              items: [
+                {
+                  id: 'core-12',
+                  text: 'Rending Blow und Overhead Slam auf 12',
+                  detail: 'Spez. 4: Overhead Slam garantierter Crit, Rending Blow mehr Single-Target-Schaden.',
+                  sources: ['yt-glad-montu'],
+                },
+                {
+                  id: 'core-16',
+                  text: 'Danach beide auf 16 – Overhead Slam ohne Cooldown, Rending Blow MP bei Crit',
+                  detail: 'Rending Blow Spez. 5 löst das Mana-Problem; danach kann Keen Strike aus der Rotation.',
+                  sources: ['yt-glad-montu'],
+                },
+                {
+                  id: 'keen-mana',
+                  text: 'Keen Strike nur Richtung 12 steigern, wenn das Mana knapp wird',
+                  sources: ['yt-glad-montu'],
+                  uncertain: true,
+                },
+              ],
+            },
+            {
+              id: 'stigmas',
+              kind: 'stigmas',
+              title: 'Stigmas',
+              items: [
+                {
+                  id: 'stigma-shards',
+                  text: 'Ab Level 22 pro Level ein Stigma Shard – Stigmas sofort ausrüsten',
+                  sources: ['yt-lvl-krix', 'yt-gear-dankrng'],
+                },
+                {
+                  id: 'rage-lifesteal',
+                  text: 'Rage Burst und Lifestealing Blade zuerst',
+                  detail: 'Rage Burst: 10 s Overhead Slam ohne Proc. Lifestealing Blade: Schaden plus Lebensraub.',
+                  sources: ['yt-glad-montu', 'gege-glad'],
+                },
+              ],
+            },
+            {
+              id: 'switch',
+              kind: 'quests',
+              title: 'Mit 45',
+              items: [
+                {
+                  id: 'switch-build',
+                  text: 'Im Tracker auf „DPS (Greatsword)“ wechseln und Ruinous Blow neu bewerten',
+                  detail: 'Der Endgame-Guide hält Ruinous Blow Level 20 im PvE für lohnend – sobald genug Punkte da sind.',
                   sources: ['yt-glad-endgame'],
                 },
               ],
