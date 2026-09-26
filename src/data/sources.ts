@@ -225,6 +225,27 @@ const list: Source[] = [
     note: '25.09.2026 · Abyss, Fraktion, Kinah, Roster, Minispiele',
   },
   {
+    id: 'yt-odyle-mr4k',
+    title: 'AION 2 Odyle Energy Guide – How to Get It & Never Waste It (MR4KTV)',
+    url: 'https://www.youtube.com/watch?v=x5dHYQehW3w',
+    kind: 'youtube',
+    note: '11.09.2026 · Freischaltung über Kro Cave, Quellen, Abo',
+  },
+  {
+    id: 'kodex-odyle',
+    title: 'Aion 2 Kodex – Odyle Energy',
+    url: 'https://kodex.yavuz.app/en/systems/odyle-energy/',
+    kind: 'web',
+    note: 'Basis-/Reserve-Energie, Raten TW vs. EU-Playtest (Vorab-Werte)',
+  },
+  {
+    id: 'mmo-codex-dungeons',
+    title: 'MMO Codex – Aion 2 Dungeons: Expeditions, Conquest, Odyle Energy',
+    url: 'https://mmo-codex.com/articles/aion-2-dungeons-expeditions-guide/',
+    kind: 'web',
+    note: '15.09.2026 · Freischaltung mit der ersten Expedition um Level 22',
+  },
+  {
     id: 'yt-day1-sog',
     title: 'What To Do Day 1 – Complete First 24 Hours Guide (Society Of Gaming)',
     url: 'https://www.youtube.com/watch?v=QcrLBpbyA-s',

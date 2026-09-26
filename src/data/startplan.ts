@@ -95,9 +95,9 @@ export const START_PLAN: Phase[] = [
   },
   {
     id: 'main-21',
-    title: '2 · Main bis Level 21 – Energie starten',
+    title: '2 · Main bis Kro Cave (ca. Level 22) – Odyle-Energie starten',
     description:
-      'Ab etwa Level 21 regeneriert der Charakter Energie für Dungeons (DankRNG nennt 22), und der erste Dungeon wird freigeschaltet. Deshalb zuerst den Main dorthin bringen, dann die Twinks.',
+      'Die Odyle-Energie (für die Belohnungs-Cubes in Dungeons) startet erst, wenn du in der Main Story Quest um Level 22 den Boss von Kro Cave besiegst – Level 21 allein reicht nicht. Ab dann lädt sie sich auch offline auf. Deshalb zuerst den Main dorthin bringen, dann die Twinks.',
     sections: [
       {
         id: 'route',
@@ -123,7 +123,7 @@ export const START_PLAN: Phase[] = [
             id: 'weapon',
             text: 'Waffe nur bei Bedarf verbessern – wenn dir Schaden fehlt oder eine gute Waffe droppt',
             detail:
-              'Bis Level 21 kein Muss. Ab 21 kommt der erste Dungeon – spätestens dann lohnen sich +3 bis +5. Beim Extrahieren gibt es alle Enhance Stones zurück, das Kinah nicht.',
+              'Bis Level 21 kein Muss. Um Level 22 kommt der erste Dungeon – spätestens dann lohnen sich +3 bis +5. Beim Extrahieren gibt es alle Enhance Stones zurück, das Kinah nicht.',
             sources: ['yt-prog-whelps', 'yt-lvl-spid'],
           },
           {
@@ -154,15 +154,20 @@ export const START_PLAN: Phase[] = [
             text: 'Truhen der Story-Dungeons nicht öffnen – Energie sparen',
             sources: ['yt-mistakes-lucky'],
           },
-          { id: 'reached', text: 'Main hat Level 21 erreicht' },
+          {
+            id: 'reached',
+            text: 'Main hat Kro Cave in der Story abgeschlossen (ca. Level 22) – Odyle-Energie läuft',
+            detail: 'Kro Cave solo laufen, die Truhe aber nicht öffnen. Prüfen: Der Odyle-Energie-Wert steigt danach mit der Zeit an.',
+            sources: ['yt-odyle-mr4k', 'yt-gear-dankrng', 'mmo-codex-dungeons'],
+          },
         ],
       },
     ],
   },
   {
     id: 'alts-21',
-    title: '3 · Twinks auf Level 21',
-    description: 'Umloggen und so viele Twinks auf 21 bringen, wie du Lust hast – danach sammeln sie im Hintergrund Energie.',
+    title: '3 · Twinks bis Kro Cave (ca. Level 22)',
+    description: 'Umloggen und jeden Twink per Story bis zum Kro-Cave-Boss bringen – danach sammelt jeder Twink eigene Odyle-Energie im Hintergrund.',
     sections: [
       {
         id: 'alts',
@@ -173,11 +178,12 @@ export const START_PLAN: Phase[] = [
             id: 'create',
             text: 'Twinks im Tracker anlegen und Level pflegen – der Status erscheint oben in dieser Phase',
           },
-          { id: 'msq-only', text: 'Twinks nur per Main Story Quest auf 21 – keine Nebeninhalte' },
+          { id: 'msq-only', text: 'Twinks nur per Main Story Quest bis Kro Cave (ca. 22) – keine Nebeninhalte', sources: ['yt-odyle-mr4k'] },
           {
             id: 'park',
-            text: 'Twinks auf 21 parken: Die Energie läuft voll, ohne dass du spielst',
-            sources: ['yt-gear-dankrng'],
+            text: 'Twinks nach Kro Cave parken: Die Odyle-Energie läuft voll, ohne dass du spielst',
+            detail: 'Jeder Charakter hat seinen eigenen Energie-Pool. Nur die Basis-Energie lädt sich selbst auf und ist gedeckelt – regelmäßig einloggen und verbrauchen, damit nichts verfällt.',
+            sources: ['yt-gear-dankrng', 'yt-odyle-mr4k', 'kodex-odyle'],
           },
           {
             id: 'warehouse',
@@ -212,7 +218,7 @@ export const START_PLAN: Phase[] = [
           },
           {
             id: 'energy-gates',
-            text: 'Bei Level 22 und 33 verlangt die Story volle Energie – ein paar Quests bzw. Dungeon-Einträge reichen',
+            text: 'Bei Level 22 und 33 verlangt die Story einen vollen Fortschrittsbalken (nicht die Odyle-Energie) – ein paar Quests bzw. Dungeon-Einträge reichen',
             sources: ['yt-mistakes-lucky'],
             uncertain: true,
           },

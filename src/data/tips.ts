@@ -32,7 +32,7 @@ export const TIP_TOPICS: TipTopic[] = [
           },
           {
             id: 'energy-gates',
-            text: 'Bei Level 22 und 33 verlangt die Story volle Energie – ein paar Quests bzw. Dungeon-Einträge reichen',
+            text: 'Bei Level 22 und 33 verlangt die Story einen vollen Fortschrittsbalken (nicht die Odyle-Energie) – ein paar Quests bzw. Dungeon-Einträge reichen',
             sources: ['yt-mistakes-lucky'],
             uncertain: true,
           },
@@ -104,6 +104,14 @@ export const TIP_TOPICS: TipTopic[] = [
             text: 'Story-Dungeons (Kro Cave, Urugugu, Fire Temple, Draupnir) solo laufen – in der Gruppe wird der Boss stärker',
             detail: 'Einfach selbst einen Raum erstellen und reingehen, statt auf eine Gruppe zu warten. Die Kugeln der Bosse aufheben: rot = HP, blau = Mana, grün = Ausdauer.',
             sources: ['yt-dungeon-lucky'],
+          },
+          {
+            id: 'odyle-energy',
+            text: 'Odyle-Energie öffnet die Belohnungs-Cubes in Dungeons (ca. 40 pro Cube) – nicht für Inhalte verschwenden, aus denen du rausgewachsen bist',
+            detail:
+              'Nur die Basis-Energie lädt sich selbst auf. Die Angaben zur Rate gehen auseinander: TW ca. 15 alle 48 Min., EU-Playtest 15 alle 3 Std.; Obergrenze im EU-Playtest 560 bzw. 840 mit Abo. Extra-Energie gibt es über Substance Morph, Duty-Missionen und mit Abo beim Händler.',
+            sources: ['yt-odyle-mr4k', 'kodex-odyle', 'mmo-codex-dungeons'],
+            uncertain: true,
           },
           {
             id: 'fire-temple-once',
@@ -492,9 +500,9 @@ export const TIP_TOPICS: TipTopic[] = [
           },
           {
             id: 'alts-22',
-            text: 'Alts auf Level 22 bringen, damit sie Odile-Energie sammeln',
+            text: 'Alts per Story bis Kro Cave (ca. Level 22) bringen – erst der Boss schaltet die Odyle-Energie frei',
             detail: 'Kinah aus Dungeons sinkt nach ca. 84 Belohnungsöffnungen pro Woche und Server – etwa 4 Charaktere reichen.',
-            sources: ['yt-gear-dankrng', 'yt-kinah-aselon'],
+            sources: ['yt-gear-dankrng', 'yt-kinah-aselon', 'yt-odyle-mr4k'],
           },
         ],
       },

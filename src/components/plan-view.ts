@@ -8,7 +8,7 @@ import { phaseKeys, progress, type ScopedPhase } from '../progress';
 import { StoreController, store, type Character } from '../store';
 import { checklistStyles, firstOpenPhaseKey, renderChecklistPhase } from './checklist';
 
-const LEVEL_ALT_TARGET = 21;
+const LEVEL_ALT_TARGET = 22;
 
 export class PlanView extends LitElement {
   static properties = {
@@ -151,7 +151,7 @@ export class PlanView extends LitElement {
   private extraFor(phaseId: string) {
     switch (phaseId) {
       case 'main-21':
-        return this.levelStatus(this.main, 21);
+        return this.levelStatus(this.main, LEVEL_ALT_TARGET);
       case 'alts-21':
         return this.altsStatus();
       case 'main-45':
@@ -178,7 +178,7 @@ export class PlanView extends LitElement {
       <div>
         <h2>Startplan</h2>
         <p class="intro">
-          Setup → Main auf 21 (Energie läuft) → Twinks auf 21 → Main auf 45 mit Horizontals → Main-Fokus bis zum
+          Setup → Main bis Kro Cave, ca. Level 22 (Odyle-Energie läuft) → Twinks ebenso → Main auf 45 mit Horizontals → Main-Fokus bis zum
           Wochenziel → Twinks weiterspielen. Der Plan gilt für den ganzen Account.
         </p>
       </div>
