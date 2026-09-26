@@ -50,6 +50,7 @@ export const gladiatorPveLevelingDetails: BuildDetails = {
             ['Overhead Slam', '8+', 'Spez. Chain-Skill – Hauptschaden bei jedem Proc'],
             ['Crushing Wave', '5', 'AoE für Mob-Gruppen'],
             ['Rush Strike', '5+', 'Gap-Closer, bleibt am Ziel'],
+            ['Leaping Slam', '8', 'Spez. 3: Cooldown-Reset bei Kill – von Gruppe zu Gruppe springen. Reichen die Punkte nicht, direkt nach 20'],
             ['Keen Strike (direkt nach 20)', '12', 'Spez. 4: −1 s Cooldown auf Ruinous Blow pro Treffer – der Buff kommt öfter'],
             ['Ruinous Blow', '1', 'Nicht leveln – kein eigener Cooldown-Knoten, lange Abklingzeit'],
             ['Blood Absorption (passiv)', '5', 'Lebensraub – weniger Pausen zwischen Pulls'],
@@ -70,6 +71,7 @@ export const gladiatorPveLevelingDetails: BuildDetails = {
         {
           type: 'steps',
           items: [
+            'Falls bis 20 nicht geschafft: Leaping Slam auf 8 (Cooldown-Reset bei Kill).',
             'Direkt nach Level 20: Keen Strike auf 12 und Spez. 4 wählen – jeder Treffer senkt den Cooldown von Ruinous Blow um 1 s.',
             'Rending Blow und Overhead Slam auf 12: Overhead Slam garantierter Crit, Rending Blow mehr Single-Target-Schaden.',
             'Danach beide auf 16: Overhead Slam ohne Cooldown, Rending Blow MP bei Crit – das löst das Mana-Problem.',
@@ -87,7 +89,8 @@ export const gladiatorPveLevelingDetails: BuildDetails = {
         {
           type: 'list',
           items: [
-            'Gruppen pullen: Rush Strike rein, Crushing Wave für die AoE.',
+            'Gruppen pullen: Rush Strike oder Leaping Slam rein, Crushing Wave für die AoE. Stirbt ein Gegner, ist Leaping Slam sofort wieder bereit für die nächste Gruppe.',
+            'Für Endgame-Dungeons die Punkte aus Leaping Slam ggf. wieder herausnehmen bzw. auf Spez. 1 (Prepare for Battle bei Cast) umstellen.',
             'Rending Blow im Laufen spammen, Overhead Slam bei jedem Proc – der Chain-Skill hängt direkt dran.',
             'Keen Strike zwischen Rending Blows einweben (Links-, Rechtsklick) – bringt Mana und ab Level 12 auch Cooldown für Ruinous Blow.',
             'Ruinous Blow auf Cooldown vor großen Gruppen und Quest-Bossen nutzen – der Buff „Prepare for Battle“ bleibt, und dank Keen Strike ist er schneller wieder da.',

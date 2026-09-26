@@ -419,6 +419,12 @@ export const gladiator: ClassDef = {
                   sources: ['yt-glad-endgame'],
                 },
                 {
+                  id: 'leaping-8',
+                  text: 'Leaping Slam auf 8 – Spezialisierung Cooldown-Reset bei Kill (zum Leveln und Farmen)',
+                  detail: 'Wenn die Punkte bis 20 nicht reichen, direkt danach. Für Endgame-Dungeons später ggf. wieder herausnehmen oder auf Spez. 1 (Prepare for Battle bei Cast) umstellen.',
+                  sources: ['yt-glad-montu'],
+                },
+                {
                   id: 'ruinous-skip',
                   text: 'Ruinous Blow nicht leveln – im TW-Stand keine eigene Cooldown-Spezialisierung',
                   detail: 'Die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) lohnen sich bei dem langen Cooldown kaum. Den Buff trotzdem vor Gruppen und Bossen nutzen – den Cooldown senkt ab Level 21 Keen Strike 12.',
@@ -454,7 +460,7 @@ export const gladiator: ClassDef = {
               items: [
                 {
                   id: 'pull-groups',
-                  text: 'Gruppen pullen: Rush Strike rein, Crushing Wave, dann Rending Blow im Laufen spammen',
+                  text: 'Gruppen pullen: Rush Strike oder Leaping Slam rein, Crushing Wave, dann Rending Blow im Laufen spammen',
                   sources: ['gege-glad'],
                 },
                 {
