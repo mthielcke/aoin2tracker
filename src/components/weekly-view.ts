@@ -114,6 +114,86 @@ export class WeeklyView extends LitElement {
       font-size: var(--sl-font-size-x-small);
       color: var(--sl-color-neutral-600);
     }
+    .overview {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sl-spacing-small);
+    }
+    .ov-row {
+      display: grid;
+      grid-template-columns: minmax(140px, 1fr) minmax(120px, 2fr) 130px auto;
+      gap: var(--sl-spacing-medium);
+      align-items: center;
+    }
+    .ov-name {
+      display: flex;
+      align-items: center;
+      gap: var(--sl-spacing-x-small);
+      min-width: 0;
+    }
+    .ov-name strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ov-row sl-progress-bar {
+      --height: 8px;
+    }
+    .ov-stats {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--sl-font-size-x-small);
+      color: var(--sl-color-neutral-600);
+      text-align: right;
+    }
+    .ov-stats strong {
+      font-size: var(--sl-font-size-small);
+      color: var(--sl-color-neutral-900);
+    }
+    .ov-link {
+      all: unset;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-size: var(--sl-font-size-small);
+      color: var(--sl-color-primary-600);
+    }
+    .ov-link:hover {
+      text-decoration: underline;
+    }
+    .ov-link:focus-visible {
+      outline: var(--sl-focus-ring);
+    }
+    @media (max-width: 600px) {
+      .ov-row {
+        grid-template-columns: 1fr auto auto;
+        row-gap: var(--sl-spacing-2x-small);
+      }
+      .ov-row sl-progress-bar {
+        grid-column: 1 / -1;
+        order: 3;
+      }
+      .ov-stats span {
+        display: none;
+      }
+    }
+    .char-card {
+      scroll-margin-top: var(--sl-spacing-medium);
+    }
+    .char-card.flash {
+      animation: flash 1.6s ease-out;
+    }
+    @keyframes flash {
+      0%,
+      30% {
+        border-color: var(--sl-color-primary-500);
+        box-shadow: 0 0 0 2px var(--sl-color-primary-500);
+      }
+      100% {
+        box-shadow: 0 0 0 0 transparent;
+      }
+    }
     .chars {
       display: flex;
       flex-direction: column;
@@ -388,14 +468,54 @@ export class WeeklyView extends LitElement {
     `;
   }
 
-  private renderChar(p: PlannedChar) {
-    const { character: c, role, activities } = p;
+  private totals({ character, activities }: PlannedChar) {
     const weekly = store.state.weekly;
     const planned = activities.reduce((s, a) => s + a.count(weekly) * a.minutes, 0);
-    const doneMin = activities.reduce((s, a) => s + this.doneOf(c.id, a) * a.minutes, 0);
-    const percent = planned ? Math.round((doneMin / planned) * 100) : 0;
+    const doneMin = activities.reduce((s, a) => s + this.doneOf(character.id, a) * a.minutes, 0);
+    return { planned, doneMin, percent: planned ? Math.round((doneMin / planned) * 100) : 0 };
+  }
+
+  private jumpTo(charId: string) {
+    const card = this.renderRoot.querySelector<HTMLElement>(`#char-${charId}`);
+    if (!card) return;
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    card.classList.remove('flash');
+    void card.offsetWidth;
+    card.classList.add('flash');
+  }
+
+  private renderOverview(planned: PlannedChar[]) {
     return html`
-      <div class="card char-card">
+      <div class="card overview">
+        ${planned.map((p) => {
+          const { character: c, role } = p;
+          const { planned: plannedMin, doneMin, percent } = this.totals(p);
+          return html`
+            <div class="ov-row">
+              <div class="ov-name">
+                <strong>${c.name}</strong>
+                <sl-badge variant=${role === 'main' ? 'primary' : 'neutral'} pill>${role === 'main' ? 'Main' : 'Twink'}</sl-badge>
+              </div>
+              <sl-progress-bar value=${percent} label=${`Wochenfortschritt ${c.name}`}></sl-progress-bar>
+              <div class="ov-stats">
+                <strong>${percent} %</strong>
+                <span>${fmtDuration(doneMin)} / ${fmtDuration(plannedMin)}</span>
+              </div>
+              <button class="ov-link" @click=${() => this.jumpTo(c.id)}>
+                Details <sl-icon name="arrow-down-short"></sl-icon>
+              </button>
+            </div>
+          `;
+        })}
+      </div>
+    `;
+  }
+
+  private renderChar(p: PlannedChar) {
+    const { character: c, role, activities } = p;
+    const { planned, doneMin, percent } = this.totals(p);
+    return html`
+      <div class="card char-card" id="char-${c.id}">
         <div class="char-head">
           <span class="char-name">${c.name}</span>
           <sl-badge variant=${role === 'main' ? 'primary' : 'neutral'} pill>${role === 'main' ? 'Main' : 'Twink'}</sl-badge>
@@ -431,6 +551,8 @@ export class WeeklyView extends LitElement {
           <div class="sub">Aktuelle Woche seit ${fmtDate(weekly.weekStart)} · nächster Reset ${fmtDate(nextReset)}</div>
         </div>
       </div>
+
+      ${planned.length ? this.renderOverview(planned) : nothing}
 
       ${this.renderSettings()}
 

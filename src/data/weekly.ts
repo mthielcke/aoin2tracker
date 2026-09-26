@@ -52,6 +52,30 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
     minutes: 15,
   },
   {
+    id: 'commands',
+    title: 'Command-Scrolls (Befehle)',
+    detail:
+      '12 Scrolls pro Woche beim Händler in der Hauptstadt kaufen. Jede Rolle schaltet eine kleine Mission frei (Journal → Duty → Command) und gibt u. a. Abyss-Punkte. Befehle im eigenen Gebiet sind schnell, Abyss-Befehle wegen PvP umkämpft. Zeit pro Befehl geschätzt.',
+    sources: ['yt-prog-whelps', 'yt-lvl-nobs', 'yt-beginner-nobs'],
+    estimate: true,
+    roles: ['main'],
+    unit: 'Befehle',
+    count: () => 12,
+    minutes: 5,
+  },
+  {
+    id: 'supply-requests',
+    title: 'Supply Requests',
+    detail:
+      'Tägliche und wöchentliche Liefer-Aufträge: Material oder gecraftete Teile abgeben, dafür Abyss-Punkte, Kinah und Katalysatoren. Überzählige Crafts vorher prüfen, statt sie zu zerlegen. Zeit geschätzt.',
+    sources: ['yt-lvl-nobs', 'yt-kinah-aselon', 'yt-craft-crusherx'],
+    estimate: true,
+    roles: ['main'],
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 15,
+  },
+  {
     id: 'nightmare',
     title: 'Nightmare',
     detail: '2 Einträge pro Tag, max. 14 gespeichert – nicht verfallen lassen. Zeit pro Boss geschätzt.',

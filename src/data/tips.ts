@@ -97,12 +97,19 @@ export const TIP_TOPICS: TipTopic[] = [
             id: 'no-exploration-loot',
             text: 'Truhen der Story-Dungeons (Kro Cave, Urugugu …) nicht öffnen – Energie sparen',
             detail: 'Die Beute ist für später wertlos, die Energie brauchst du für echte Dungeon-Runs.',
-            sources: ['yt-mistakes-lucky'],
+            sources: ['yt-mistakes-lucky', 'yt-dungeon-lucky'],
+          },
+          {
+            id: 'story-dungeons-solo',
+            text: 'Story-Dungeons (Kro Cave, Urugugu, Fire Temple, Draupnir) solo laufen – in der Gruppe wird der Boss stärker',
+            detail: 'Einfach selbst einen Raum erstellen und reingehen, statt auf eine Gruppe zu warten. Die Kugeln der Bosse aufheben: rot = HP, blau = Mana, grün = Ausdauer.',
+            sources: ['yt-dungeon-lucky'],
           },
           {
             id: 'fire-temple-once',
             text: 'Fire Temple (Exploration) nur einmal für die Level-57-Waffe',
-            sources: ['yt-mistakes-lucky'],
+            detail: 'Die Waffe droppt nur mit ca. 10–20 % Chance. Klappt es nicht, weiterziehen, statt den Dungeon zu wiederholen.',
+            sources: ['yt-mistakes-lucky', 'yt-dungeon-lucky'],
             uncertain: true,
           },
           {
@@ -222,17 +229,59 @@ export const TIP_TOPICS: TipTopic[] = [
           {
             id: 'extract',
             text: 'Beim Extrahieren kommen Enhance Stones zurück, Kinah nicht',
-            sources: ['yt-gear-sog'],
+            detail: 'Verstärken bis +10 kostet also unterm Strich nur Kinah – beim Auflösen gibt es die Steine zurück, teils sogar mehr.',
+            sources: ['yt-gear-sog', 'yt-dungeon-lucky'],
           },
           {
             id: 'manastones-once',
             text: 'Mana Stones einmal günstig einsetzen – das hebt den GS; nicht auf Übergangs-Gear optimieren',
-            sources: ['yt-gear-sog', 'yt-mistakes-lucky'],
+            detail: 'Früh reicht jeder grüne Mana Stone, egal welcher Stat – es geht nur darum, die GS-Grenze des nächsten Dungeons zu erreichen.',
+            sources: ['yt-gear-sog', 'yt-mistakes-lucky', 'yt-dungeon-lucky'],
           },
           {
             id: 'ascension-gate',
             text: 'Ascension Trial: Die GS-Grenze prüft nur die Zahl – „Mana-Stone-GS“ reicht zum Freischalten',
             sources: ['yt-mistakes-lucky'],
+          },
+        ],
+      },
+      {
+        title: 'Exploration & Conquest',
+        tips: [
+          {
+            id: 'exploration-pity',
+            text: 'Exploration ist der Helfer-Modus: Nach 3 geöffneten Belohnungen gibt es eine Pity-Box mit einem wählbaren Gear-Teil',
+            detail: 'Mit Abo öffnest du pro Run doppelt – dann reichen 2 Runs statt 3. Viele übersehen diese kostenlose Wahl und gehen direkt in Conquest.',
+            sources: ['yt-dungeon-lucky'],
+          },
+          {
+            id: 'draupnir-exploration',
+            text: 'Nach dem Leveln Draupnir (Exploration) für die Pity-Box wiederholen – Bakarma-Teil als Start-Gear, am besten das Oberteil',
+            sources: ['yt-dungeon-lucky'],
+          },
+          {
+            id: 'tier1-conquest',
+            text: 'Dann Conquest: Kro Cave für ein Level-68-Accessoire, danach alle Energie in Draupnir (Rüstung, Guard)',
+            detail: 'Laut aLuckyRO ca. 7 Runs mit Abo bzw. 14 ohne bis zur Pity-Box. Droppt eine Waffe, auf +10 bringen.',
+            sources: ['yt-dungeon-lucky'],
+            uncertain: true,
+          },
+          {
+            id: 'tier2-route',
+            text: 'Ab 1.400 GS: fehlende Bakarma-Teile über die Vakron-Exploration holen, dann Urugugu Conquest für Waffe und Accessoires',
+            detail: 'Vakron-Rüstung musst du nicht farmen. Draupnir-Gear +10, Urugugu-Waffe und -Accessoires +10 plus Arcana reichen für 2.100 GS (Tier 3).',
+            sources: ['yt-dungeon-lucky'],
+          },
+          {
+            id: 'tier3-pity',
+            text: 'Ab 2.100 GS lohnt die Fire-Temple-Exploration wieder – vor allem ohne Abo für die Pity-Box',
+            sources: ['yt-dungeon-lucky'],
+          },
+          {
+            id: 'craft-early-abo',
+            text: 'Mit Abo schon nach dem Draupnir-Gear mit Crafting starten (erste Stufe z. B. Star-Dragon-Rüstung)',
+            detail: 'Enhance, Amplification und Soul Binds wandern beim Upgrade auf die nächste Crafting-Stufe mit – Dropp-Gear nur auf +10.',
+            sources: ['yt-dungeon-lucky', 'yt-gear-freshy'],
           },
         ],
       },
@@ -339,6 +388,61 @@ export const TIP_TOPICS: TipTopic[] = [
         ],
       },
       {
+        title: 'Systeme richtig angehen',
+        tips: [
+          {
+            id: 'upgrade-enough',
+            text: 'Nur so weit upgraden, wie du für den nächsten Inhalt brauchst – teure Optimierung erst für Gear, das bleibt',
+            detail: 'Gilt besonders für seltene Transfer-Materialien und hochwertige Mana Stones.',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'no-kr-copy',
+            text: 'Endgame-Builds und Stat-Ziele aus Korea nicht blind kopieren',
+            detail: 'Global startet mit weniger Systemen, Arcana-Karten und Stats. KR-Builds als Orientierung nutzen, aber prüfen, was auf deinem Server verfügbar ist.',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'key-skills',
+            text: 'Skill-Ressourcen auf die Kernskills deiner Klasse konzentrieren, nicht gleichmäßig verteilen',
+            detail: 'Auch Arcana und Daevanion geben Skill-Level – sie sollten dieselben Kernskills stärken.',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'arcana-feed',
+            text: 'Arcana: Alte Karten lassen sich in bessere verfüttern – aber nicht 1:1, also nicht jede Karte voll ausbauen',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'daevanion-respec',
+            text: 'Daevanion umzuskillen ist einfach – erst die wichtigen Skill-Knoten, dann Stat-Knoten drumherum',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'closet',
+            text: 'Ausgemusterte Ausrüstung zerlegen schaltet ihr Aussehen im Closet frei – die Sammlung gibt dauerhafte Stats',
+            detail: 'Genauso geben Pantheon, Wings und Pets (Genus) permanente Stats – nebenbei mitnehmen, nicht vor Gear priorisieren.',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'presets',
+            text: 'Presets für Gear, Arcana, Skills, Titel und Wings anlegen, sobald du zwischen PvE und PvP wechselst',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'rifts',
+            text: 'Dimensional Rifts: alle 3 Std. (8× am Tag), 10 Min. Eintrittsfenster, ab Level 45 – standardmäßig mit PvE-Flag',
+            detail: 'Im Feindgebiet gibt es Quests, Weltbosse und Material. Das PvP-Flag lässt sich umschalten.',
+            sources: ['yt-beginner-freshy'],
+          },
+          {
+            id: 'no-checklist-stress',
+            text: 'Nicht jeden Tag alles abhaken wollen – die Systeme sind auf langfristigen Fortschritt ausgelegt',
+            sources: ['yt-beginner-freshy', 'yt-after45-sen'],
+          },
+        ],
+      },
+      {
         title: 'Täglich',
         tips: [
           {
@@ -361,7 +465,9 @@ export const TIP_TOPICS: TipTopic[] = [
           {
             id: 'supply-commands',
             text: 'Supply Requests und Command-Scrolls – geben Abyss-Punkte, auch für PvE-Spieler',
-            sources: ['yt-lvl-nobs', 'yt-beginner-nobs', 'yt-mistakes-lucky'],
+            detail:
+              'Command-Scrolls kaufst du beim Händler in der Hauptstadt, 12 pro Woche. Eine aktivierte Rolle schaltet eine kleine Mission frei (Journal → Duty → Command). Abyss-Befehle sind wegen PvP umkämpft.',
+            sources: ['yt-lvl-nobs', 'yt-beginner-nobs', 'yt-mistakes-lucky', 'yt-prog-whelps'],
           },
           {
             id: 'field-bosses',

@@ -155,7 +155,7 @@ export class AppRoot extends LitElement {
           <tips-view
             .topics=${TIP_TOPICS}
             heading="Tipps & Hinweise"
-            stand="Quellen: YouTube-Guides vom 19.08.–22.09.2026"
+            stand="Quellen: YouTube-Guides vom 19.08.–26.09.2026"
           ></tips-view>
         </sl-tab-panel>
         <sl-tab-panel name="crafting">

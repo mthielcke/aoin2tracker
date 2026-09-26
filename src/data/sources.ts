@@ -225,6 +225,27 @@ const list: Source[] = [
     note: '25.09.2026 · Abyss, Fraktion, Kinah, Roster, Minispiele',
   },
   {
+    id: 'yt-day1-sog',
+    title: 'What To Do Day 1 – Complete First 24 Hours Guide (Society Of Gaming)',
+    url: 'https://www.youtube.com/watch?v=QcrLBpbyA-s',
+    kind: 'youtube',
+    note: '24.09.2026 · Region, Fraktion, Level 45, Twinks',
+  },
+  {
+    id: 'yt-beginner-freshy',
+    title: 'Ultimate Beginners Guide – Everything You Should Know (FRESHY)',
+    url: 'https://www.youtube.com/watch?v=r9ypUSiClQM',
+    kind: 'youtube',
+    note: '26.09.2026 · Alle Progressionssysteme im Überblick',
+  },
+  {
+    id: 'yt-dungeon-lucky',
+    title: 'PvE Dungeon Progression for Beginner Players (aLuckyRO)',
+    url: 'https://www.youtube.com/watch?v=8_my5FPp_Tg',
+    kind: 'youtube',
+    note: '26.09.2026 · Exploration vs. Conquest, Pity-Boxen, +10-Regel',
+  },
+  {
     id: 'aion2kina-checklist',
     title: 'AION2 Kina – Daily & Weekly Checklist',
     url: 'https://www.aion2kina.com/en/tools/daily-checklist/',

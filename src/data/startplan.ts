@@ -20,6 +20,13 @@ export const START_PLAN: Phase[] = [
             sources: ['yt-mistakes-lucky'],
           },
           {
+            id: 'region',
+            text: 'Region nach niedrigstem Ping wählen – erst Region, dann Fraktion, dann Server',
+            detail:
+              'Global: NA Ost/West, Südamerika, Europa (Deutschland) und Asien. Elyos und Asmodier spielen auf getrennten Servern; PvE-Dungeons und Raids laufen trotzdem fraktionsübergreifend.',
+            sources: ['yt-day1-sog'],
+          },
+          {
             id: 'faction',
             text: 'Fraktion und Server bewusst wählen – dort, wo die großen Gilden hingehen',
             detail:
@@ -29,8 +36,9 @@ export const START_PLAN: Phase[] = [
           {
             id: 'roster',
             text: 'Roster planen: Main plus 1–2 Twinks mit Klassen, die Spaß machen',
-            detail: 'Twinks sammeln Energie, Ressourcen und Crafting-Chancen für den Main. Supports oder Templar eignen sich gut.',
-            sources: ['yt-start-sywo'],
+            detail:
+              'Twinks sammeln Energie, Ressourcen und Crafting-Chancen für den Main. Supports oder Templar eignen sich gut. Society of Gaming: 2–3 Twinks reichen, angelegt innerhalb der ersten Tage vor dem ersten Weekly-Reset.',
+            sources: ['yt-start-sywo', 'yt-day1-sog'],
           },
         ],
       },
@@ -297,9 +305,15 @@ export const START_PLAN: Phase[] = [
           },
           { id: 'runes', text: 'Clash Runes leicht verstärken (+1 bis +2), nicht riskieren', sources: ['yt-prog-whelps', 'yt-lvl-nobs'] },
           {
+            id: 'draupnir-pity',
+            text: 'Draupnir-Exploration bis zur Pity-Box wiederholen (3 Öffnungen, mit Abo 2 Runs) – ein Bakarma-Teil wählen',
+            sources: ['yt-dungeon-lucky'],
+          },
+          {
             id: 'push',
             text: 'Fehlende GS bis 1.400 über Verstärken (bis +10 sicher) und Intermediate-Mana-Stones auffüllen',
-            sources: ['yt-prog-whelps'],
+            detail: 'Reicht das nicht: Tier-1-Conquest (Kro Cave für ein Accessoire, sonst Draupnir) – Drop-Gear nur bis +10.',
+            sources: ['yt-prog-whelps', 'yt-dungeon-lucky'],
           },
           { id: 'reached', text: 'Main hat 1.400 GS erreicht – ab jetzt Tier-2-Dungeons', sources: ['yt-prog-whelps'] },
         ],
@@ -333,7 +347,8 @@ export const START_PLAN: Phase[] = [
           {
             id: 'tier2',
             text: 'Ab 1.400 GS: Tier-2-Dungeons (Urugugu Canyon, Vakron) statt Tier 1',
-            sources: ['yt-prog-whelps', 'yt-gear-sog'],
+            detail: 'Fehlende Bakarma-Teile über die Vakron-Exploration-Pity-Box holen, dann Urugugu Conquest für Waffe und Accessoires. Vakron-Rüstung musst du nicht farmen.',
+            sources: ['yt-prog-whelps', 'yt-gear-sog', 'yt-dungeon-lucky'],
           },
           {
             id: 'weapon-first',
@@ -380,7 +395,8 @@ export const START_PLAN: Phase[] = [
           {
             id: 'weekly',
             text: 'Wöchentlich: 12 Command-Scrolls, Ascension Trial, Shugo Festival, Invasion',
-            sources: ['yt-prog-whelps'],
+            detail: 'Command-Scrolls kaufst du beim Händler in der Hauptstadt – jede Rolle schaltet eine kleine Mission mit Abyss-Punkten frei. Im Tab „Woche“ abhaken.',
+            sources: ['yt-prog-whelps', 'yt-lvl-nobs'],
           },
           {
             id: 'abyss',
