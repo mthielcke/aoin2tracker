@@ -34,6 +34,11 @@ export class CharacterView extends LitElement {
         justify-content: space-between;
         gap: var(--sl-spacing-small);
       }
+      .head-actions {
+        display: flex;
+        gap: var(--sl-spacing-x-small);
+        align-items: flex-start;
+      }
       h2 {
         margin: 0;
         font-size: var(--sl-font-size-2x-large);
@@ -101,6 +106,19 @@ export class CharacterView extends LitElement {
     store.updateCharacter(this.character.id, changes);
   }
 
+  private openRename() {
+    const input = this.renderRoot.querySelector<SlInput>('#rename-input')!;
+    input.value = this.character.name;
+    this.renderRoot.querySelector<SlDialog>('#rename-dialog')!.show();
+  }
+
+  private rename() {
+    const name = this.renderRoot.querySelector<SlInput>('#rename-input')!.value.trim();
+    if (!name) return;
+    this.patch({ name });
+    this.renderRoot.querySelector<SlDialog>('#rename-dialog')!.hide();
+  }
+
   private confirmDelete() {
     this.renderRoot.querySelector<SlDialog>('#delete-dialog')!.show();
   }
@@ -134,9 +152,14 @@ export class CharacterView extends LitElement {
           <h2>${c.name}</h2>
           <div class="sub">${cls ? `${cls.name} · ${cls.role} · ${cls.weapon}` : `Unbekannte Klasse (${c.classId})`}</div>
         </div>
-        <sl-button variant="danger" outline size="small" @click=${this.confirmDelete}>
-          <sl-icon slot="prefix" name="trash"></sl-icon>Löschen
-        </sl-button>
+        <div class="head-actions">
+          <sl-button size="small" @click=${this.openRename}>
+            <sl-icon slot="prefix" name="pencil"></sl-icon>Umbenennen
+          </sl-button>
+          <sl-button variant="danger" outline size="small" @click=${this.confirmDelete}>
+            <sl-icon slot="prefix" name="trash"></sl-icon>Löschen
+          </sl-button>
+        </div>
       </div>
 
       <div class="controls">
@@ -201,6 +224,26 @@ export class CharacterView extends LitElement {
         .value=${c.notes}
         @sl-change=${(e: Event) => this.patch({ notes: (e.target as SlTextarea).value })}
       ></sl-textarea>
+
+      <sl-dialog
+        id="rename-dialog"
+        label="Charakter umbenennen"
+        @sl-initial-focus=${(e: Event) => {
+          e.preventDefault();
+          this.renderRoot.querySelector<SlInput>('#rename-input')!.focus();
+        }}
+      >
+        <sl-input
+          id="rename-input"
+          label="Name"
+          maxlength="40"
+          @keydown=${(e: KeyboardEvent) => e.key === 'Enter' && this.rename()}
+        ></sl-input>
+        <sl-button slot="footer" @click=${() => this.renderRoot.querySelector<SlDialog>('#rename-dialog')!.hide()}
+          >Abbrechen</sl-button
+        >
+        <sl-button slot="footer" variant="primary" @click=${this.rename}>Speichern</sl-button>
+      </sl-dialog>
 
       <sl-dialog id="delete-dialog" label="Charakter löschen?">
         „${c.name}“ und der gesamte Fortschritt werden entfernt. Das lässt sich nicht rückgängig machen – vorher ggf.
