@@ -257,7 +257,7 @@ export function renderDetailBlock(block: DetailBlock) {
         </div>`;
     }
     case 'table':
-      return html`<div class="table-wrap">
+      return html`${block.title ? html`<h3>${block.title}</h3>` : nothing}<div class="table-wrap">
         <table>
           <thead>
             <tr>

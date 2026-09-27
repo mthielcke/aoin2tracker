@@ -225,6 +225,27 @@ const list: Source[] = [
     note: '25.09.2026 · Abyss, Fraktion, Kinah, Roster, Minispiele',
   },
   {
+    id: 'yt-gear2200-freshy',
+    title: 'The Fastest & Most Efficient Way to Reach 2200 Gear Score (FRESHY)',
+    url: 'https://www.youtube.com/watch?v=hOyoQ_OXdWE',
+    kind: 'youtube',
+    note: '23.09.2026 · Frischer Char → 2.200 GS in 7 Tagen, Verstärkungsstufen',
+  },
+  {
+    id: 'yt-dropcraft-lucky',
+    title: 'F2P vs Subscription – Right Gear Progression: Drop or Craft Gear? (aLuckyRO)',
+    url: 'https://www.youtube.com/watch?v=hTdSVmtl00U',
+    kind: 'youtube',
+    note: '25.09.2026 · Dungeon- vs. Crafting-Gear, Artisan-Stein, Marktplatz nur mit Abo',
+  },
+  {
+    id: 'yt-endgame-freshy',
+    title: 'Entire AION 2 Endgame Content Explained in 9 Minutes (FRESHY)',
+    url: 'https://www.youtube.com/watch?v=vFdH7ZrZ4PY',
+    kind: 'youtube',
+    note: '19.09.2026 · Alle Aktivitäten ab 45, Limits, Energie',
+  },
+  {
     id: 'yt-odyle-mr4k',
     title: 'AION 2 Odyle Energy Guide – How to Get It & Never Waste It (MR4KTV)',
     url: 'https://www.youtube.com/watch?v=x5dHYQehW3w',

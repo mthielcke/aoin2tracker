@@ -79,7 +79,7 @@ export type DetailBlock =
   | { type: 'steps'; title?: string; items: string[] }
   | { type: 'list'; title?: string; items: string[] }
   | { type: 'skills'; skills: SkillDetail[] }
-  | { type: 'table'; columns: string[]; rows: string[][] };
+  | { type: 'table'; title?: string; columns: string[]; rows: string[][] };
 
 export interface DetailSection {
   id: string;

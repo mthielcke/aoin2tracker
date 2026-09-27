@@ -357,6 +357,18 @@ export const START_PLAN: Phase[] = [
             sources: ['yt-prog-whelps', 'yt-gear-sog', 'yt-dungeon-lucky'],
           },
           {
+            id: 'vakron-cubes',
+            text: 'Vakron: 3× Exploration für den Condensed Cube (aufheben!), dann Conquest bis zur Condensed Chest nach 21 Clears',
+            detail: 'Den Cube erst öffnen, wenn klar ist, welches Teil noch fehlt. Die Chest gibt 2 garantierte Teile.',
+            sources: ['yt-gear2200-freshy'],
+          },
+          {
+            id: 'enhance-rule',
+            text: 'Neue Tier-2-Teile sofort auf +5, alles andere nach und nach auf +7 – nicht über +10',
+            detail: 'Bis +10 gelingt Verstärken immer; beim Auflösen kommen die Enhance Stones zurück. Keine teuren Mana Stones und kein Potential auf Übergangs-Gear.',
+            sources: ['yt-gear2200-freshy', 'yt-prog-whelps', 'yt-dungeon-lucky'],
+          },
+          {
             id: 'weapon-first',
             text: 'Waffe und Guard zuerst auf +10, dann Accessoires – Rüstung ist zweitrangig',
             sources: ['yt-prog-whelps', 'yt-after45-sen'],
@@ -380,6 +392,19 @@ export const START_PLAN: Phase[] = [
             id: 'tier3',
             text: 'Ab 2.100 GS: Tier 3 (Fire Temple, Horn Den); ab 2.800 Sanctuary (Ludra)',
             sources: ['yt-prog-whelps'],
+          },
+          {
+            id: 'tier3-final',
+            text: 'Tier-3-Teile (Horn Den, Fire Temple) sind Endstücke fürs Dungeon-Gear – erst hier Soul Binds, Potential und über +10',
+            detail: 'Beim ersten Wechsel prüfen, ob Enhance und Soul Binds per Transfer mitwandern – die Quellen widersprechen sich.',
+            sources: ['yt-gear2200-freshy', 'yt-prog-whelps', 'yt-dropcraft-lucky'],
+            uncertain: true,
+          },
+          {
+            id: 'crafting-path',
+            text: 'Mit Abo parallel aufs Crafting-Gear hinarbeiten – es wächst per Upgrade mit, Dungeon-Gear nicht',
+            detail: 'Crafting-Gear: voller PvE Damage Boost und eine Soul-Bind-Zeile mehr. Engpass ist der Artisan-Stein; der Marktplatz ist nur mit Abo nutzbar.',
+            sources: ['yt-dropcraft-lucky', 'yt-gear-freshy'],
           },
           {
             id: 'crafted-ring',
@@ -431,6 +456,11 @@ export const START_PLAN: Phase[] = [
         title: 'Twinks',
         items: [
           { id: 'to-45', text: 'Twinks auf 45 bringen und ihre Horizontals erledigen', sources: ['yt-prog-whelps'] },
+          {
+            id: 'alts-1400',
+            text: 'Twink-Ziel: 1.400 GS für Tier-2-Conquest – dann täglich Kinah für den Main farmen',
+            sources: ['yt-gear2200-freshy'],
+          },
           {
             id: 'energy',
             text: 'Twink-Energie für Dungeons nutzen – z. B. Wings und Gemälde für den Main farmen',
