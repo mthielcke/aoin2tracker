@@ -14,6 +14,11 @@ export interface WeeklyActivity {
   /** Zeitwert ist eine eigene Schätzung, nicht aus der Excel bzw. einer Quelle. */
   estimate?: boolean;
   roles: WeeklyRole[];
+  /**
+   * 'pvp-char': nur der PvP-Charakter (Standard: Main).
+   * 'not-pvp-char': alle passenden Rollen außer dem PvP-Charakter.
+   */
+  assign?: 'pvp-char' | 'not-pvp-char';
   requires?: 'pvp' | 'abyss';
   unit: string;
   count: (o: WeeklyOptions) => number;
@@ -148,8 +153,9 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
   {
     id: 'arena-main',
     title: 'Arena-PvP (Full PvP)',
-    detail: 'Der Main spielt die volle PvP-Runde.',
-    roles: ['main'],
+    detail: 'Die volle PvP-Runde mit eigenem Gear – spielt der PvP-Charakter (Standard: Main).',
+    roles: ['main', 'alt'],
+    assign: 'pvp-char',
     requires: 'pvp',
     unit: 'pauschal',
     count: () => 1,
@@ -158,8 +164,10 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
   {
     id: 'arena-10v10',
     title: '10v10 Arena (Equalized)',
-    detail: 'Angeglichene Stats, kein Gear nötig – ca. 2.000 AP pro Sieg plus 3 Sieg-/Teilnahme-Kisten pro Woche.',
-    roles: ['alt'],
+    detail:
+      'Angeglichene Stats, kein Gear nötig – ca. 2.000 AP pro Sieg plus 3 Sieg-/Teilnahme-Kisten pro Woche. Spielt jeder außer dem PvP-Charakter, also auch der Main, sobald ein PvP-Twink gewählt ist.',
+    roles: ['main', 'alt'],
+    assign: 'not-pvp-char',
     requires: 'pvp',
     unit: 'pauschal',
     count: () => 1,
@@ -193,9 +201,10 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
     id: 'abyss-grind',
     title: 'Mobs im Abyss grinden',
     detail:
-      '2–3 h pro Woche empfohlen (hier 2 Sessions à ca. 75 Min.) – auch wenn du dabei stirbst und zurückfliegen musst, lohnt es sich langfristig.',
+      '2–3 h pro Woche empfohlen (hier 2 Sessions à ca. 75 Min.) – auch wenn du dabei stirbst und zurückfliegen musst, lohnt es sich langfristig. Macht der PvP-Charakter (Standard: Main); die AP bleiben vermutlich beim jeweiligen Charakter.',
     sources: ['yt-start-sywo'],
-    roles: ['main'],
+    roles: ['main', 'alt'],
+    assign: 'pvp-char',
     requires: 'abyss',
     unit: 'Sessions',
     count: () => 2,
@@ -203,8 +212,13 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
   },
 ];
 
-export function activitiesFor(role: WeeklyRole, o: WeeklyOptions): WeeklyActivity[] {
-  return WEEKLY_ACTIVITIES.filter((a) => a.roles.includes(role) && (!a.requires || o[a.requires]));
+export function activitiesFor(role: WeeklyRole, isPvpChar: boolean, o: WeeklyOptions): WeeklyActivity[] {
+  return WEEKLY_ACTIVITIES.filter((a) => {
+    if (!a.roles.includes(role) || (a.requires && !o[a.requires])) return false;
+    if (a.assign === 'pvp-char') return isPvpChar;
+    if (a.assign === 'not-pvp-char') return !isPvpChar;
+    return true;
+  });
 }
 
 export const KINAH_PER_CLAIM = 400_000;

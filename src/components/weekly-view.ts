@@ -31,6 +31,7 @@ const fmtDate = (ts: number) =>
 interface PlannedChar {
   character: Character;
   role: WeeklyRole;
+  isPvpChar: boolean;
   activities: WeeklyActivity[];
 }
 
@@ -315,15 +316,30 @@ export class WeeklyView extends LitElement {
     window.clearInterval(this.timer);
   }
 
+  /** Der gewählte PvP-Twink – nur gültig, wenn er existiert, eingeplant und nicht der Main ist. */
+  private pvpTwinkId(): string | undefined {
+    const { characters, plan, weekly } = store.state;
+    const id = weekly.pvpCharId;
+    const valid = id && id !== plan.mainId && !weekly.excluded.includes(id) && characters.some((c) => c.id === id);
+    return valid ? id : undefined;
+  }
+
   private planned(): PlannedChar[] {
     const { characters, plan, weekly } = store.state;
+    const pvpTwink = this.pvpTwinkId();
     const sorted = [...characters].sort((a, b) => Number(b.id === plan.mainId) - Number(a.id === plan.mainId));
     return sorted
       .filter((c) => !weekly.excluded.includes(c.id))
       .map((c) => {
         const role: WeeklyRole = c.id === plan.mainId ? 'main' : 'alt';
-        return { character: c, role, activities: activitiesFor(role, weekly) };
+        const isPvpChar = pvpTwink ? c.id === pvpTwink : role === 'main';
+        return { character: c, role, isPvpChar, activities: activitiesFor(role, isPvpChar, weekly) };
       });
+  }
+
+  private roleBadges({ role, isPvpChar }: PlannedChar) {
+    return html`<sl-badge variant=${role === 'main' ? 'primary' : 'neutral'} pill>${role === 'main' ? 'Main' : 'Twink'}</sl-badge>
+      ${isPvpChar && role === 'alt' ? html`<sl-badge variant="danger" pill>PvP</sl-badge>` : nothing}`;
   }
 
   private doneOf(charId: string, act: WeeklyActivity) {
@@ -381,15 +397,27 @@ export class WeeklyView extends LitElement {
             size="small"
             .checked=${weekly.pvp}
             @sl-change=${(e: Event) => store.updateWeekly({ pvp: (e.target as SlSwitch).checked })}
-            >Arena-PvP (Main Full PvP, Twinks 10v10)</sl-switch
+            >Arena-PvP (PvP-Charakter Full PvP, alle anderen 10v10)</sl-switch
           >
           <sl-switch
             size="small"
             .checked=${weekly.abyss}
             @sl-change=${(e: Event) => store.updateWeekly({ abyss: (e.target as SlSwitch).checked })}
-            >Abyss-Zeit (Artifact, 20 Wochenquests, 2–3 h Grinden)</sl-switch
+            >Abyss-Zeit (Main: Artifact + 20 Wochenquests · PvP-Charakter: 2–3 h Grinden)</sl-switch
           >
           <span class="hint">Abyss-Empfehlung aus „Do THIS From Day 1“ (SywoGG) – lohnt sich auch für reine PvE-Spieler.</span>
+          <sl-select
+            label="PvP-Charakter"
+            size="small"
+            help-text="Übernimmt Abyss-Grind und Full-PvP-Arena. Der Main behält Wochenquests und Artifact und spielt dann 10v10."
+            .value=${this.pvpTwinkId() ?? ''}
+            @sl-change=${(e: Event) => store.updateWeekly({ pvpCharId: ((e.target as SlSelect).value as string) || undefined })}
+          >
+            <sl-option value="">Main</sl-option>
+            ${characters
+              .filter((c) => c.id !== plan.mainId && !weekly.excluded.includes(c.id))
+              .map((c) => html`<sl-option value=${c.id}>${c.name}</sl-option>`)}
+          </sl-select>
         </div>
         <div class="stack">
           <h3>Wochen-Reset</h3>
@@ -488,13 +516,13 @@ export class WeeklyView extends LitElement {
     return html`
       <div class="card overview">
         ${planned.map((p) => {
-          const { character: c, role } = p;
+          const { character: c } = p;
           const { planned: plannedMin, doneMin, percent } = this.totals(p);
           return html`
             <div class="ov-row">
               <div class="ov-name">
                 <strong>${c.name}</strong>
-                <sl-badge variant=${role === 'main' ? 'primary' : 'neutral'} pill>${role === 'main' ? 'Main' : 'Twink'}</sl-badge>
+                ${this.roleBadges(p)}
               </div>
               <sl-progress-bar value=${percent} label=${`Wochenfortschritt ${c.name}`}></sl-progress-bar>
               <div class="ov-stats">
@@ -512,13 +540,13 @@ export class WeeklyView extends LitElement {
   }
 
   private renderChar(p: PlannedChar) {
-    const { character: c, role, activities } = p;
+    const { character: c, activities } = p;
     const { planned, doneMin, percent } = this.totals(p);
     return html`
       <div class="card char-card" id="char-${c.id}">
         <div class="char-head">
           <span class="char-name">${c.name}</span>
-          <sl-badge variant=${role === 'main' ? 'primary' : 'neutral'} pill>${role === 'main' ? 'Main' : 'Twink'}</sl-badge>
+          ${this.roleBadges(p)}
           <span class="sub">${getClass(c.classId)?.name ?? c.classId} · Lv. ${c.level}</span>
           ${c.level < 45 ? html`<sl-badge variant="warning" pill>unter 45 – Dungeons ggf. noch gesperrt</sl-badge>` : nothing}
           <span class="char-time">${fmtDuration(doneMin)} von ${fmtDuration(planned)}</span>

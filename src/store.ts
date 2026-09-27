@@ -24,6 +24,8 @@ export interface WeeklyState {
   abyss: boolean;
   /** Charaktere, die nicht in die Wochenplanung einfließen */
   excluded: string[];
+  /** Twink für Abyss-Grind und Full-PvP-Arena; leer = Main */
+  pvpCharId?: string;
   /** progress[characterId][activityId] = erledigte Einheiten */
   progress: Record<string, Record<string, number>>;
   weekStart: number;
@@ -154,7 +156,12 @@ class Store extends EventTarget {
     const characters = this.state.characters.filter((c) => c.id !== id);
     const plan = this.state.plan.mainId === id ? { ...this.state.plan, mainId: undefined } : this.state.plan;
     const { [id]: _removed, ...progress } = this.state.weekly.progress;
-    const weekly = { ...this.state.weekly, progress, excluded: this.state.weekly.excluded.filter((x) => x !== id) };
+    const weekly = {
+      ...this.state.weekly,
+      progress,
+      excluded: this.state.weekly.excluded.filter((x) => x !== id),
+      pvpCharId: this.state.weekly.pvpCharId === id ? undefined : this.state.weekly.pvpCharId,
+    };
     this.commit({ ...this.state, characters, plan, weekly, activeCharacterId: characters[0]?.id });
   }
 
@@ -170,7 +177,9 @@ class Store extends EventTarget {
   }
 
   updateWeekly(
-    changes: Partial<Pick<WeeklyState, 'membership' | 'pvp' | 'abyss' | 'excluded' | 'resetWeekday' | 'resetHour'>>,
+    changes: Partial<
+      Pick<WeeklyState, 'membership' | 'pvp' | 'abyss' | 'excluded' | 'pvpCharId' | 'resetWeekday' | 'resetHour'>
+    >,
   ) {
     const weekly = { ...this.state.weekly, ...changes };
     weekly.weekStart = lastWeeklyReset(Date.now(), weekly.resetWeekday, weekly.resetHour);
