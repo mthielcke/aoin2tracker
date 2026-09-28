@@ -2,7 +2,7 @@ import type { BuildDetails, DetailSection } from '../types';
 import { gladiatorPveDpsDetails } from './gladiator-pve-dps';
 
 /** Abschnitte aus dem DPS-Guide, die beim Leveln helfen – ohne Hinweise, die Ruinous Blow priorisieren. */
-const FROM_DPS = ['core', 'mana', 'active', 'passives', 'stigmas', 'rotation', 'daevanion'];
+const FROM_DPS = ['core', 'season1', 'mana', 'active', 'passives', 'stigmas', 'rotation', 'daevanion'];
 const SKIP_BLOCKS = ['Top-Priorität beim Leveln', 'Faustregel'];
 
 const dpsSections: DetailSection[] = gladiatorPveDpsDetails.sections
@@ -29,7 +29,7 @@ const dpsSections: DetailSection[] = gladiatorPveDpsDetails.sections
 export const gladiatorPveLevelingDetails: BuildDetails = {
   intro:
     'Leveling-Variante auf Basis der DPS-Guides, mit einer bewussten Abweichung: Ruinous Blow wird beim Leveln nicht gesteigert. Im aktuellen TW-Stand hat er keine eigene Spezialisierung, die seinen Cooldown senkt – die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) bringen bei dem langen Cooldown wenig. Die Punkte fließen stattdessen in die Skills, die du ständig drückst. Den Cooldown übernimmt Keen Strike: Ab Skill-Level 12 senkt jeder Treffer den Cooldown von Ruinous Blow um 1 s.',
-  sources: ['yt-glad-montu', 'yt-glad-endgame', 'gege-glad', 'yt-leveling'],
+  sources: ['yt-glad-arthars', 'yt-glad-montu', 'yt-glad-endgame', 'gege-glad', 'yt-leveling'],
   sections: [
     {
       id: 'level-20',
@@ -75,7 +75,7 @@ export const gladiatorPveLevelingDetails: BuildDetails = {
             'Direkt nach Level 20: Keen Strike auf 12 und Spez. 4 wählen – jeder Treffer senkt den Cooldown von Ruinous Blow um 1 s.',
             'Rending Blow und Overhead Slam auf 12: Overhead Slam garantierter Crit, Rending Blow mehr Single-Target-Schaden.',
             'Danach beide auf 16: Overhead Slam ohne Cooldown, Rending Blow MP bei Crit – das löst das Mana-Problem.',
-            'Ab Level 22 pro Level ein Stigma Shard: Rage Burst und Lifestealing Blade zuerst.',
+            'Ab Level 22 pro Level ein Stigma Shard: zuerst Focused Block (Gruppen-Buff über Blocken), dann Rage Burst, Lunge Stance und Zikel’s Blessing – auf Global nur 4 Slots.',
             'Daevanion beim Leveln: die Ecken der Boards zuerst, die Mitte mit 45 auffüllen.',
             'Mit 45 im Tracker auf „DPS (Greatsword)“ wechseln und Ruinous Blow neu bewerten – der Endgame-Guide hält Level 20 im PvE für lohnend.',
           ],

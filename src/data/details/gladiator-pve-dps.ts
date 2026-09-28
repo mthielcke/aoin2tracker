@@ -3,7 +3,7 @@ import type { BuildDetails } from '../types';
 export const gladiatorPveDpsDetails: BuildDetails = {
   intro:
     'Der Gladiator ist im Kern simpel: Buffs auf Cooldown halten und dann Rending Blow und Overhead Slam spammen. Der ganze Build dreht sich darum, Overhead Slam so oft wie möglich auszulösen und das Mana-Problem über Rending Blow zu lösen.',
-  sources: ['yt-glad-montu', 'yt-glad-endgame', 'gege-glad'],
+  sources: ['yt-glad-arthars', 'yt-glad-montu', 'yt-glad-endgame', 'gege-glad'],
   sections: [
     {
       id: 'core',
@@ -24,6 +24,70 @@ export const gladiatorPveDpsDetails: BuildDetails = {
           variant: 'primary',
           title: 'Top-Priorität beim Leveln',
           text: 'Overhead Slam, Rending Blow und Ruinous Blow zuerst auf Level 20. Alles andere ist deutlich weniger wichtig.',
+        },
+      ],
+    },
+    {
+      id: 'season1',
+      title: 'Global Season 1 (Arthars)',
+      blocks: [
+        {
+          type: 'text',
+          text: 'Arthars spielt Gladiator seit Monaten in TW und richtet seinen Guide ausdrücklich auf Global Season 1 aus: weniger Skillpunkte, weniger Arcana-Karten, langsameres Kampftempo und nur 4 Stigma-Slots. Der Kern bleibt gleich – aber nur drei Skills brauchen wirklich hohe Level.',
+        },
+        {
+          type: 'list',
+          title: 'Woher die Skill-Level kommen',
+          items: [
+            'Jeder Skill startet bei 10, Daevanion gibt +4 – also Level 14 für alle.',
+            'Jeder Ring gibt +1 Skill-Level: mit zwei Ringen bringst du die drei Kernskills auf 16.',
+            'Arcana-Karten geben nach fünf Kartenstufen im Schnitt +2 auf einen passenden Skill; eine Karte mit frei wählbaren Skills schließt die Lücke bis 20.',
+            'Ziel: Overhead Slam, Rending Blow und Ruinous Blow mindestens 16, Overhead Slam und Rending Blow auf 20. Alles andere reicht auf 12.',
+          ],
+        },
+        {
+          type: 'table',
+          title: 'Skill-Ziele und Spezialisierungen',
+          columns: ['Skill', 'Ziel', 'Spezialisierungen'],
+          rows: [
+            ['Overhead Slam', '16 → 20', '16: Double Strike (Chain) + kein Cooldown · 20: Crit'],
+            ['Rending Blow', '16 → 20', 'Bewegen während des Skills (Pflicht) + MP bei Crit · 20: +12 % Single-Target'],
+            ['Ruinous Blow', '16 → 20', '16: +30 % Skill-Crit + Extra-Schaden · 20: Skill Speed oder Multi-Hit'],
+            ['Leaping Slam', '12', 'Prepare for Battle bei Cast + Cooldown-Reset bei Kill'],
+            ['Rush Strike', '12', 'Reichweite (20 m) + Ausdauer oder Cooldown'],
+            ['Mocking Blade', '12', 'HP-Absorb als Notfall-Heilung + AoE – kein Additional Strike'],
+            ['Crushing Wave', '12', 'HP-Absorb + Cooldown-Reset bei Crit – zum Farmen, nicht im Boss-Kampf'],
+            ['Ankle Slice', '12', 'Reichweite + Block/Evasion ignorieren – kein Combo'],
+            ['Keen Strike', '12', 'Nur fürs Leveln – später nicht mehr einweben'],
+            ['Aerial Snare', '–', 'Im PvE nutzlos, nicht ins Makro'],
+            ['Defiance, Sword Aura Rampage', 'optional 16', 'Nur wenn Punkte übrig sind'],
+          ],
+        },
+        {
+          type: 'table',
+          title: 'Stigmas – nur 4 Slots',
+          columns: ['Stigma', 'Level', 'Warum'],
+          rows: [
+            ['Focused Block', '5', 'Erster Stigma schon beim Leveln: Blocken löst über Experienced Counterstrike +15 % Damage Boost für dich und die Gruppe aus'],
+            ['Rage Burst', '5 (höher = besser)', 'Aktiviert Overhead Slam für 10 s, senkt den Gegner-Angriff'],
+            ['Lunge Stance', '20', 'Wichtigster Level-20-Stigma: Crits senken mit 50 % Chance alle Cooldowns um 1 s – Rage Burst und damit Overhead Slam laufen praktisch dauerhaft'],
+            ['Zikel’s Blessing', '10', 'Persönlicher Buff, mehr Stagger und Multi-Hit'],
+            ['Alternative: Lifestealing Blade', '20', 'Statt Zikel’s: Gruppen-Schaden und Sustain – lohnt erst, wenn die Gruppe sauber spielt'],
+            ['Wave Armor', '15', 'Nur ohne Templar in der Gruppe'],
+          ],
+        },
+        {
+          type: 'list',
+          title: 'Passive, Arcana und Makro',
+          items: [
+            'Die Grund-Passive sind automatisch voll. Zusatzpunkte aus Gear: Attack Preparation → Experienced Counterstrike (+10 % Schaden von vorn, auch ohne Block) → Murderous Burst → Impact Hit.',
+            'Protection Armor und Destructive Impulse wegwürfeln – auf Gear und Arcana-Karten.',
+            'Auf Global sind Soul-Bind-Stats wie Angriffstempo, Laufgeschwindigkeit, Might und Precision meist wertvoller als Passiv-Level.',
+            'Stärkste Schadens-Stats: Weapon Damage Boost und Front Damage Boost (der Gladiator schlägt von vorn). Accuracy ist wichtig, weil Bosse von vorn parieren.',
+            'Arcana: Primal Vigor als 4er-Set – oder 3er-Set plus Magic Armor als 2er-Set, wenn das Mana nicht reicht. Karten mit dem Illusion-Stat (Cooldown-Reduktion) nie für den Gladiator.',
+            'Makro: Rage Burst ganz unten in das Makro mit Rending Blow und Overhead Slam, Ruinous Blow in ein eigenes Makro, Buffs separat – insgesamt sechs Tasten.',
+            'Stigma Shards: Shugo-Shop, Nightmare-Shop und Abyss-Shop (auf Global mit gestaffelten Preisen).',
+          ],
         },
       ],
     },
@@ -268,7 +332,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
       blocks: [
         {
           type: 'text',
-          text: 'Im Global-Launch sind vermutlich 4–6 Stigmas gleichzeitig ausrüstbar, und nur wenige lassen sich über Level 20 hinaus steigern. Die Kosten steigen mit dem Level stark – daher die gewählten Stigmas eher gleichmäßig leveln.',
+          text: 'Auf Global sind in Season 1 nur 4 Stigmas gleichzeitig ausrüstbar (Arthars). Die Kosten steigen mit dem Level stark – die konkrete Auswahl mit Ziel-Leveln steht unter „Global Season 1“.',
         },
         {
           type: 'skills',
@@ -301,8 +365,9 @@ export const gladiatorPveDpsDetails: BuildDetails = {
             },
             {
               name: 'Focused Block',
-              priority: 'mid',
+              priority: 'high',
               summary: 'Garantierter Parry – stellt Mana, Ausdauer, HP wieder her und gibt Laufgeschwindigkeit.',
+              note: 'Laut Arthars der erste Stigma beim Leveln: Blocken buffet über Experienced Counterstrike die ganze Gruppe.',
             },
             {
               name: 'Blade Toss',
@@ -495,16 +560,17 @@ export const gladiatorPveDpsDetails: BuildDetails = {
       blocks: [
         {
           type: 'text',
-          text: 'Die beiden ausführlichen Video-Guides sind sich bei den Grundlagen einig (Overhead Slam, Rending Blow, Ruinous Blow; Animation Cancel), unterscheiden sich aber im Detail:',
+          text: 'Die ausführlichen Video-Guides sind sich bei den Grundlagen einig (Overhead Slam, Rending Blow, Ruinous Blow; Animation Cancel), unterscheiden sich aber im Detail. Arthars ist die neueste Quelle und auf Global Season 1 ausgerichtet:',
         },
         {
           type: 'table',
-          columns: ['Thema', 'Montu', 'Endgame-Guide'],
+          columns: ['Thema', 'Montu', 'Endgame-Guide', 'Arthars (Global S1)'],
           rows: [
-            ['Aerial Snare', 'Praktisch ungenutzt', 'Mit 5–7 % Reset-Chance fester Teil des Openers'],
-            ['Kern-Stigmas', 'Rage Burst, Lunge Stance, Zikel’s Blessing, Lifestealing Blade', 'Zikel’s Blessing, Tenaciousness, Lunge Stance, Blade Toss'],
-            ['Blade Toss', 'Am wenigsten gespielt', 'Fester Bestandteil (Lv. 5 reicht)'],
-            ['Keen Strike', 'Später unwichtig (nach Rending Blow Spez. 5)', 'Hoch leveln (Patch-Buff, viel Filler-Schaden)'],
+            ['Aerial Snare', 'Praktisch ungenutzt', 'Mit 5–7 % Reset-Chance fester Teil des Openers', 'Im PvE nutzlos'],
+            ['Kern-Stigmas', 'Rage Burst, Lunge Stance, Zikel’s Blessing, Lifestealing Blade', 'Zikel’s Blessing, Tenaciousness, Lunge Stance, Blade Toss', 'Focused Block, Rage Burst, Lunge Stance, Zikel’s Blessing (4 Slots)'],
+            ['Blade Toss', 'Am wenigsten gespielt', 'Fester Bestandteil (Lv. 5 reicht)', 'Nicht nötig'],
+            ['Keen Strike', 'Später unwichtig (nach Rending Blow Spez. 5)', 'Hoch leveln (Patch-Buff, viel Filler-Schaden)', 'Nur fürs Leveln (12), danach nie einweben'],
+            ['Ruinous Blow', 'Top-Priorität, Lv. 20', 'Lv. 20 lohnt, 16 kaum', 'Zweitwichtigster Skill, mind. 16 (Skill-Crit + Extra-Schaden)'],
           ],
         },
       ],

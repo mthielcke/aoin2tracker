@@ -16,6 +16,13 @@ const list: Source[] = [
     note: 'KR/TW, sehr detailliert, High-End',
   },
   {
+    id: 'yt-glad-arthars',
+    title: 'The ULTIMATE AION 2 Gladiator Starter Guide – Global Launch (Arthars Gaming)',
+    url: 'https://www.youtube.com/watch?v=tYTZ8VucMXw',
+    kind: 'youtube',
+    note: '27.09.2026 · Global Season 1: Skill-Level, 4 Stigma-Slots, Passive, Arcana, Makro',
+  },
+  {
     id: 'yt-glad-montu',
     title: 'Everything You NEED to Know About Gladiator (Montu)',
     url: 'https://www.youtube.com/watch?v=qGJhvtXUt1E',

@@ -67,6 +67,11 @@ export const gladiator: ClassDef = {
                   sources: ['yt-glad-montu'],
                 },
                 {
+                  id: 'season1-levels',
+                  text: 'Global Season 1: die drei Kernskills über zwei Ringe auf 16 (Basis 14), Overhead Slam und Rending Blow per Arcana auf 20 – alles andere 12',
+                  sources: ['yt-glad-arthars'],
+                },
+                {
                   id: 'max-core',
                   text: 'Max: Rending Blow, Overhead Slam, Crushing Wave',
                   detail: 'Laut Montu ist Crushing Wave nur zum Mobben wichtig – Ruinous Blow hat Vorrang.',
@@ -157,6 +162,12 @@ export const gladiator: ClassDef = {
               kind: 'stigmas',
               title: 'Stigmas',
               items: [
+                {
+                  id: 'global-four',
+                  text: 'Global Season 1 – 4 Slots: Focused Block 5, Rage Burst 5, Lunge Stance 20, Zikel’s Blessing 10',
+                  detail: 'Lunge Stance 20 zuerst hochziehen: Crits senken mit 50 % Chance alle Cooldowns um 1 s – dadurch laufen Rage Burst und Overhead Slam praktisch dauerhaft. Lifestealing Blade (20) als Alternative zu Zikel’s.',
+                  sources: ['yt-glad-arthars'],
+                },
                 {
                   id: 'rage-burst',
                   text: 'Rage Burst ausrüsten – 10 s Overhead Slam ohne Proc',
@@ -518,10 +529,15 @@ export const gladiator: ClassDef = {
                   sources: ['yt-lvl-krix', 'yt-gear-dankrng'],
                 },
                 {
-                  id: 'rage-lifesteal',
-                  text: 'Rage Burst und Lifestealing Blade zuerst',
-                  detail: 'Rage Burst: 10 s Overhead Slam ohne Proc. Lifestealing Blade: Schaden plus Lebensraub.',
-                  sources: ['yt-glad-montu', 'gege-glad'],
+                  id: 'block-first',
+                  text: 'Erster Stigma: Focused Block – Blocken buffet über Experienced Counterstrike dich und die Gruppe (+15 %)',
+                  sources: ['yt-glad-arthars'],
+                },
+                {
+                  id: 'rage-lunge',
+                  text: 'Danach Rage Burst (Lv. 5 reicht zunächst), Lunge Stance und Zikel’s Blessing – Global hat nur 4 Slots',
+                  detail: 'Rage Burst: 10 s Overhead Slam ohne Proc. Lunge Stance ist später der wichtigste Level-20-Stigma.',
+                  sources: ['yt-glad-arthars', 'yt-glad-montu'],
                 },
               ],
             },
