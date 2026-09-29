@@ -178,7 +178,7 @@ export class PlanView extends LitElement {
       <div>
         <h2>Startplan</h2>
         <p class="intro">
-          Setup → Main bis Kro Cave, ca. Level 22 (Odyle-Energie läuft) → Twinks ebenso → Main auf 45 mit Horizontals → Main-Fokus bis zum
+          Setup → Main auf 22 (Expeditionen frei, Odyle-Energie läuft) → Twinks auf 22 → Main auf 45 mit Horizontals → Main-Fokus bis zum
           Wochenziel → Twinks weiterspielen. Der Plan gilt für den ganzen Account.
         </p>
       </div>

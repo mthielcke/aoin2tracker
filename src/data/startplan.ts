@@ -37,8 +37,14 @@ export const START_PLAN: Phase[] = [
             id: 'roster',
             text: 'Roster planen: Main plus 1–2 Twinks mit Klassen, die Spaß machen',
             detail:
-              'Twinks sammeln Energie, Ressourcen und Crafting-Chancen für den Main. Supports oder Templar eignen sich gut. Society of Gaming: 2–3 Twinks reichen, angelegt innerhalb der ersten Tage vor dem ersten Weekly-Reset.',
-            sources: ['yt-start-sywo', 'yt-day1-sog'],
+              'Twinks sammeln Energie, Ressourcen und Crafting-Chancen für den Main. Supports oder Templar eignen sich gut. Society of Gaming: 2–3 Twinks reichen, angelegt innerhalb der ersten Tage vor dem ersten Weekly-Reset. Madsin: 3 Twinks – 4 Charakterplätze sind kostenlos. Ist ein Server voll, kannst du dort trotzdem Twinks anlegen, sobald du schon einen Charakter auf ihm hast.',
+            sources: ['yt-start-sywo', 'yt-day1-sog', 'yt-plan-madsin'],
+          },
+          {
+            id: 'crafting-choice',
+            text: 'Crafting-Berufe festlegen: zuerst Handicrafting (Accessoires), dazu der Beruf für deine Waffe',
+            detail: 'Gladiator, Templar, Assassin, Cleric: Blacksmithing · Ranger, Chanter: ebenfalls Handicrafting · Sorcerer, Spiritmaster: Alchemy.',
+            sources: ['yt-plan-madsin'],
           },
         ],
       },
@@ -95,9 +101,9 @@ export const START_PLAN: Phase[] = [
   },
   {
     id: 'main-21',
-    title: '2 · Main bis Kro Cave (ca. Level 22) – Odyle-Energie starten',
+    title: '2 · Main auf Level 22 – Expeditionen frei, Odyle-Energie starten',
     description:
-      'Die Odyle-Energie (für die Belohnungs-Cubes in Dungeons) startet erst, wenn du in der Main Story Quest um Level 22 den Boss von Kro Cave besiegst – Level 21 allein reicht nicht. Ab dann lädt sie sich auch offline auf. Deshalb zuerst den Main dorthin bringen, dann die Twinks.',
+      'Die Odyle-Energie (für die Belohnungs-Cubes in Dungeons) startet erst, wenn eine Level-22-Mission der Main Story Quest das Expeditions-Menü öffnet – Level 21 allein reicht nicht. Ab dann lädt sie sich auch offline auf. Energie ist in den ersten zwei Wochen die wichtigste Ressource: zuerst den Main auf 22, dann jeden Twink.',
     sections: [
       {
         id: 'route',
@@ -107,9 +113,9 @@ export const START_PLAN: Phase[] = [
           { id: 'msq', text: 'Main Story Quest (gelb) durchziehen', sources: ['yt-prog-whelps', 'yt-lvl-spid'] },
           {
             id: 'on-the-way',
-            text: 'Federn, Sealed Dungeons und grüne Side Quests nur mitnehmen, wenn sie auf dem Weg liegen',
-            detail: '1–21 ist der langsamste Abschnitt. Die Punkte machen den Charakter stärker, der Rest wird mit 45 nachgeholt.',
-            sources: ['yt-prog-whelps', 'yt-lvl-spid'],
+            text: 'Sealed Dungeons und grüne Side Quests nur mitnehmen, wenn sie auf dem Weg liegen',
+            detail: 'Sie füllen den Ascension-Balken, den die Story für die Ascension-Quests braucht. Nicht alles abgrasen – der Rest wird mit 45 nachgeholt. Federn nur mit dem Main einsammeln.',
+            sources: ['yt-prog-whelps', 'yt-lvl-spid', 'yt-plan-madsin'],
           },
           { id: 'kisks', text: 'Kisks und Teleporter unterwegs freischalten', sources: ['yt-lvl-spid'] },
         ],
@@ -156,9 +162,9 @@ export const START_PLAN: Phase[] = [
           },
           {
             id: 'reached',
-            text: 'Main hat Kro Cave in der Story abgeschlossen (ca. Level 22) – Odyle-Energie läuft',
-            detail: 'Kro Cave solo laufen, die Truhe aber nicht öffnen. Prüfen: Der Odyle-Energie-Wert steigt danach mit der Zeit an.',
-            sources: ['yt-odyle-mr4k', 'yt-gear-dankrng', 'mmo-codex-dungeons'],
+            text: 'Main hat mit Level 22 das Expeditions-Menü freigeschaltet – Odyle-Energie läuft',
+            detail: 'Laut Madsin und FRESHY reicht die Level-22-Mission, Kro Cave selbst musst du dafür nicht abschließen (MR4KTV nennt den Boss). Prüfen: Der Odyle-Energie-Wert steigt danach mit der Zeit an. Kro Cave solo laufen, die Truhe nicht öffnen.',
+            sources: ['yt-plan-madsin', 'yt-gear2200-freshy', 'yt-odyle-mr4k', 'yt-gear-dankrng'],
           },
         ],
       },
@@ -166,8 +172,8 @@ export const START_PLAN: Phase[] = [
   },
   {
     id: 'alts-21',
-    title: '3 · Twinks bis Kro Cave (ca. Level 22)',
-    description: 'Umloggen und jeden Twink per Story bis zum Kro-Cave-Boss bringen – danach sammelt jeder Twink eigene Odyle-Energie im Hintergrund.',
+    title: '3 · Twinks auf Level 22',
+    description: 'Umloggen und jeden Twink per Story auf 22 bringen, bis das Expeditions-Menü offen ist – danach sammelt jeder Twink eigene Odyle-Energie im Hintergrund. Pro Twink ca. 1 Stunde.',
     sections: [
       {
         id: 'alts',
@@ -178,7 +184,12 @@ export const START_PLAN: Phase[] = [
             id: 'create',
             text: 'Twinks im Tracker anlegen und Level pflegen – der Status erscheint oben in dieser Phase',
           },
-          { id: 'msq-only', text: 'Twinks nur per Main Story Quest bis Kro Cave (ca. 22) – keine Nebeninhalte', sources: ['yt-odyle-mr4k'] },
+          {
+            id: 'msq-only',
+            text: 'Twinks nur per Main Story Quest auf 22 – keine Nebeninhalte, Federn komplett ignorieren',
+            detail: 'Der Monolith gilt serverweit: Was der Main abgibt, holen sich die Twinks später per Sync-Knopf am Monolith.',
+            sources: ['yt-odyle-mr4k', 'yt-plan-madsin', 'yt-gear2200-freshy'],
+          },
           {
             id: 'park',
             text: 'Twinks nach Kro Cave parken: Die Odyle-Energie läuft voll, ohne dass du spielst',
@@ -239,6 +250,12 @@ export const START_PLAN: Phase[] = [
             text: 'Letzte Ascension abschließen – gibt das Armband; am Ende der Story gibt es die Unique-Waffe',
             sources: ['yt-prog-whelps'],
           },
+          {
+            id: 'why-45',
+            text: 'Level 45 möglichst am ersten Tag: Erst ab 45 laufen Duty-Missionen und Nightmare-Tickets (2 pro Tag, max. 14)',
+            detail: 'Je früher die Tickets laufen, desto früher schaffst du den Nightmare-Endboss und kannst die Zikel-Statue kaufen – die trägt bis weit in Season 2.',
+            sources: ['yt-plan-madsin'],
+          },
           { id: 'reached', text: 'Main hat Level 45 erreicht (ca. 1.000 GS)', sources: ['yt-prog-whelps'] },
         ],
       },
@@ -257,13 +274,15 @@ export const START_PLAN: Phase[] = [
         items: [
           {
             id: 'feathers',
-            text: 'Alle Federn sammeln und am Monolith abgeben (nur eigene Fraktion)',
-            sources: ['yt-prog-whelps', 'yt-lvl-nobs'],
+            text: 'Federn nur mit dem Main sammeln und abgeben (ca. 186), Twinks per Sync-Knopf am Monolith freischalten',
+            detail: 'Der Monolith gilt serverweit. Zum Maximieren braucht es insgesamt ca. 560 Federn; überzählige lassen sich in Power Shards umwandeln.',
+            sources: ['yt-prog-whelps', 'yt-lvl-nobs', 'yt-plan-madsin'],
           },
           {
             id: 'sealed',
-            text: 'Alle 61 Sealed Dungeons abschließen (je 2 Daevanion-Punkte)',
-            sources: ['yt-prog-whelps'],
+            text: 'Alle 61 Sealed Dungeons abschließen (je 2 Daevanion-Punkte) – auf jedem Charakter',
+            detail: 'Daevanion-Kristalle und Skillpunkte geben GS. Das dauert – Madsin plant dafür Tag 2 und einen Teil von Tag 3 für alle Charaktere ein.',
+            sources: ['yt-prog-whelps', 'yt-plan-madsin'],
           },
           { id: 'strongholds', text: 'Alle Strongholds abschließen – Material für den Gürtel', sources: ['yt-prog-whelps'] },
           {
@@ -282,14 +301,15 @@ export const START_PLAN: Phase[] = [
             id: 'rift',
             text: 'Über den Space-Time Rift ins Feindgebiet: dort ebenfalls Sealed Dungeons und Strongholds',
             detail:
-              'In KR öffnet der Rift um 2/5/8/11 Uhr (alle 3 h) für 10 Minuten; drüben darfst du 1 h bleiben. Meist reichen 2 Sessions. Federn gibt es dort nicht.',
-            sources: ['yt-prog-whelps'],
+              'In KR öffnet der Rift um 2/5/8/11 Uhr (alle 3 h) für 10 Minuten; drüben darfst du 1 h bleiben. Meist reichen 2 Sessions. Madsin: Im Global-Test gaben die Sealed Dungeons im Feindgebiet keine Daevanion-Kristalle und Skillpunkte mehr – dann lohnt sich der Ausflug kaum. Im Spiel prüfen.',
+            sources: ['yt-prog-whelps', 'yt-gear2200-freshy', 'yt-plan-madsin'],
+            uncertain: true,
           },
           {
             id: 'abyss-feathers',
-            text: 'Abyss-Federn am Abyss-Monolith abgeben – die Punkte fürs PvP-Board zählen ebenfalls als GS',
-            sources: ['yt-prog-whelps'],
-            uncertain: true,
+            text: 'Abyss-Federn am Abyss-Monolith abgeben – alle zusammen bringen über das PvP-Board ca. +52 GS',
+            detail: 'Der Abyss ist PvP-Gebiet. Direkt mit 45 hingehen, solange es noch leer ist – sonst an Tag 3 oder nachts.',
+            sources: ['yt-prog-whelps', 'yt-plan-madsin'],
           },
         ],
       },
@@ -305,11 +325,22 @@ export const START_PLAN: Phase[] = [
           },
           {
             id: 'belt-amulet',
-            text: 'Gürtel, Amulett und Armband auf +10, dann per Morph zur nächsten Stufe',
-            detail: 'Zum Morphen muss das Teil in allen Presets abgelegt sein – sonst lässt es sich nicht auswählen.',
-            sources: ['yt-prog-whelps', 'yt-gear-sog'],
+            text: 'Gürtel und Amulett jeweils auf +10, dann per Substance Morph zur nächsten Stufe – bis Gold',
+            detail: 'Gold dann erst einmal nicht weiter verstärken, das ist früh zu teuer. Zum Morphen muss das Teil in allen Presets abgelegt sein.',
+            sources: ['yt-prog-whelps', 'yt-gear-sog', 'yt-plan-madsin'],
           },
-          { id: 'runes', text: 'Clash Runes leicht verstärken (+1 bis +2), nicht riskieren', sources: ['yt-prog-whelps', 'yt-lvl-nobs'] },
+          {
+            id: 'bracelets',
+            text: 'Blaues Liberator- und goldenes Ascension-Armband auf +10/+11 – die bleiben lange',
+            detail: 'Intermediate Mana Stones und Soul Stones einsetzen, bis mindestens ein blauer und ein grüner Wert dabei ist. Das übrige Quest-Gear nicht anfassen.',
+            sources: ['yt-plan-madsin'],
+          },
+          {
+            id: 'runes',
+            text: 'Clash Runes leicht verstärken (+1 bis +2), nicht riskieren',
+            detail: 'Scheitert die Verstärkung, geht die Rune kaputt. Madsin bleibt bei +1 und riskiert nur überzählige Runen.',
+            sources: ['yt-prog-whelps', 'yt-lvl-nobs', 'yt-plan-madsin'],
+          },
           {
             id: 'draupnir-pity',
             text: 'Draupnir-Exploration bis zur Pity-Box wiederholen (3 Öffnungen, mit Abo 2 Runs) – ein Bakarma-Teil wählen',
@@ -318,8 +349,8 @@ export const START_PLAN: Phase[] = [
           {
             id: 'push',
             text: 'Fehlende GS bis 1.400 über Verstärken (bis +10 sicher) und Intermediate-Mana-Stones auffüllen',
-            detail: 'Reicht das nicht: Tier-1-Conquest (Kro Cave für ein Accessoire, sonst Draupnir) – Drop-Gear nur bis +10.',
-            sources: ['yt-prog-whelps', 'yt-dungeon-lucky'],
+            detail: 'Goldene Teile bis +11 mit Intermediate Mana Stones, blaue Teile notfalls +3 mit Lesser Mana Stones. Reicht das nicht: Tier-1-Conquest (Kro Cave für ein Accessoire, sonst Draupnir) – Drop-Gear nur bis +10.',
+            sources: ['yt-prog-whelps', 'yt-dungeon-lucky', 'yt-plan-madsin'],
           },
           { id: 'reached', text: 'Main hat 1.400 GS erreicht – ab jetzt Tier-2-Dungeons', sources: ['yt-prog-whelps'] },
         ],
@@ -329,7 +360,18 @@ export const START_PLAN: Phase[] = [
         kind: 'systems',
         title: 'Jetzt lohnt es sich',
         items: [
-          { id: 'shugo', text: 'Die gesparten Shugo-Schlüssel einsetzen', sources: ['yt-mistakes-lucky', 'yt-start-sywo'] },
+          {
+            id: 'shugo',
+            text: 'Die gesparten Shugo-Schlüssel einsetzen – nur auf dem Main',
+            detail: '3 Schlüssel pro Tag und Server, die Belohnung hängt am Level. Im Festival-Shop zuerst die Daevanion-Kristalle (GS), dann Stigma Shards kaufen. Shugo ist auch die Hauptquelle für Odyle und Artisan-Steine.',
+            sources: ['yt-mistakes-lucky', 'yt-start-sywo', 'yt-plan-madsin'],
+          },
+          {
+            id: 'before-reset',
+            text: 'Vor dem ersten Weekly-Reset: Command-Contracts kaufen und die Odyle-Energie aus Substance Morph und Abo-Shop holen',
+            detail: 'Die Contracts lassen sich in die nächste Woche mitnehmen, die Energie-Käufe setzen wöchentlich zurück – zusammen ca. 20 volle Dungeon-Öffnungen.',
+            sources: ['yt-plan-madsin', 'yt-odyle-mr4k'],
+          },
           {
             id: 'cubes',
             text: 'Hidden Cubes und Dimensional Invasion mitnehmen – wichtig für die frühe Genus-Progression',
@@ -351,6 +393,12 @@ export const START_PLAN: Phase[] = [
         title: 'Gear-Progression',
         items: [
           {
+            id: 'energy-rule',
+            text: 'Energie des Mains nur für die höchste erreichbare Stufe oder garantierte Beute – frühe Stufen laufen die Twinks',
+            detail: 'Exploration immer genau dreimal öffnen (Pity-Teil), sonst Energie in Transcendence und die höchsten Conquest-Stufen.',
+            sources: ['yt-plan-madsin'],
+          },
+          {
             id: 'tier2',
             text: 'Ab 1.400 GS: Tier-2-Dungeons (Urugugu Canyon, Vakron) statt Tier 1',
             detail: 'Fehlende Bakarma-Teile über die Vakron-Exploration-Pity-Box holen, dann Urugugu Conquest für Waffe und Accessoires. Vakron-Rüstung musst du nicht farmen.',
@@ -359,8 +407,8 @@ export const START_PLAN: Phase[] = [
           {
             id: 'vakron-cubes',
             text: 'Vakron: 3× Exploration für den Condensed Cube (aufheben!), dann Conquest bis zur Condensed Chest nach 21 Clears',
-            detail: 'Den Cube erst öffnen, wenn klar ist, welches Teil noch fehlt. Die Chest gibt 2 garantierte Teile.',
-            sources: ['yt-gear2200-freshy'],
+            detail: 'Den Cube erst öffnen, wenn klar ist, welches Teil noch fehlt. Die Chest gibt 2 garantierte Teile. Madsin nimmt aus der Exploration direkt das Brustteil (120 Energie für ein sicheres Upgrade).',
+            sources: ['yt-gear2200-freshy', 'yt-plan-madsin'],
           },
           {
             id: 'enhance-rule',
@@ -376,7 +424,8 @@ export const START_PLAN: Phase[] = [
           {
             id: 'transcendence',
             text: 'Transcendence laufen und Arcana nach höchster Stufe einsetzen – für den GS zählen Set und Skills noch nicht',
-            sources: ['yt-prog-whelps'],
+            detail: 'Ab 1.900 GS Stufe 2: garantiert grüne Karten (je +40 GS), mit Chance auf blaue. Anfangs nur die Slots füllen, nicht optimieren – die richtigen Karten kommen ab Stufe 4.',
+            sources: ['yt-prog-whelps', 'yt-plan-madsin'],
           },
           {
             id: 'transfer',
@@ -392,6 +441,12 @@ export const START_PLAN: Phase[] = [
             id: 'tier3',
             text: 'Ab 2.100 GS: Tier 3 (Fire Temple, Horn Den); ab 2.800 Sanctuary (Ludra)',
             sources: ['yt-prog-whelps'],
+          },
+          {
+            id: 'horn-den',
+            text: 'Ab 2.100 GS: Horn Den – 3× Exploration öffnen (Pity noch nicht nehmen), dann Nuakum-Conquest 28-mal',
+            detail: 'Nach 14 Runs mit Doppel-Öffnung gibt es die Pity samt Ticket; 2 Tickets = eine Guard. Danach das Exploration-Pity für ein fehlendes Teil – Stiefel und Handschuhe zuerst (beste Soul Binds).',
+            sources: ['yt-plan-madsin'],
           },
           {
             id: 'tier3-final',
@@ -411,6 +466,24 @@ export const START_PLAN: Phase[] = [
             text: 'Erstes Crafting-Ziel: Ringe – Skill-Schwellen 12/16/20 erreichen, zusätzlicher Soul Bind',
             sources: ['yt-prog-whelps'],
           },
+          {
+            id: 'craft-order',
+            text: 'Crafting-Reihenfolge: Kette, 2 Ohrringe, 2 Ringe, dann die Waffe – Gold-Basen mit Twink-Kinah im Auktionshaus kaufen',
+            detail: 'Madsin rechnet mit ca. 4 Mio. Kinah pro Basis. Danach per Transfer-Crafting aufwerten (Star Dragon → Splendid → Dark Dragon → Ebony), Waffe vor Accessoires. Crafts ohne Proc nicht wegwerfen – Supply Requests oder Markt.',
+            sources: ['yt-plan-madsin'],
+          },
+          {
+            id: 'craft-afk',
+            text: 'Beim AFK oder über Nacht Level-1-Crafts in Serie laufen lassen – bis Novice 50, Quest, dann Professional',
+            detail: 'Jeder Craft gibt feste EP, auch auf hohem Level. Vor den Accessoires mindestens Professional 20, mit blauen Zwischenprodukten 25–30 – die Erfolgschance steigt mit dem Level.',
+            sources: ['yt-plan-madsin'],
+          },
+          {
+            id: 'soulbinds-early',
+            text: 'Soul Binds früh nicht jagen – nur Laufgeschwindigkeit (Stiefel, Ohrringe) und Angriffstempo (Handschuhe, Waffe, Guard, Kette)',
+            detail: 'Auf der Crafting-Waffe mit Soul Codexes würfeln, bis zwei gute Werte oder Angriffstempo drauf sind.',
+            sources: ['yt-plan-madsin'],
+          },
         ],
       },
       {
@@ -426,14 +499,20 @@ export const START_PLAN: Phase[] = [
           {
             id: 'weekly',
             text: 'Wöchentlich: 12 Command-Scrolls, Ascension Trial, Shugo Festival, Invasion',
-            detail: 'Command-Scrolls kaufst du beim Händler in der Hauptstadt – jede Rolle schaltet eine kleine Mission mit Abyss-Punkten frei. Im Tab „Woche“ abhaken.',
-            sources: ['yt-prog-whelps', 'yt-lvl-nobs'],
+            detail: 'Command-Scrolls kaufst du beim Händler in der Hauptstadt – jede Rolle schaltet eine kleine Mission mit Abyss-Punkten frei. Ascension Trial und Daily Dungeon erst am letzten Tag vor dem Reset: Die Belohnung hängt von deiner Stärke ab – auch auf den Twinks.',
+            sources: ['yt-prog-whelps', 'yt-lvl-nobs', 'yt-plan-madsin'],
           },
           {
             id: 'abyss',
             text: 'Abyss: Artifact-Kämpfe und die 20 Wochenquests, dazu 2–3 h Mobs grinden',
-            detail: 'Alles davon sind PvE-Aktivitäten – auch als PvE-Spieler langfristig sehr lohnend.',
-            sources: ['yt-start-sywo'],
+            detail: 'Alles davon sind PvE-Aktivitäten – auch als PvE-Spieler langfristig sehr lohnend. Madsin: Offenes PvP lohnt sich anfangs nicht. Belagerungen und Weltbosse über die Gruppensuche mitmachen – schon die Teilnahme füllt den größten Teil des AP-Limits, und das Limit summiert sich über die Wochen.',
+            sources: ['yt-start-sywo', 'yt-plan-madsin'],
+          },
+          {
+            id: 'ap-stigma',
+            text: 'Abyss-Punkte zuerst in Stigma Shards (10.000 AP) statt in frühes PvP-Gear',
+            detail: 'Im Nightmare-Shop ebenfalls Stigma Shards kaufen, aber 14.000 Marken für die Zikel-Statue zurücklegen.',
+            sources: ['yt-plan-madsin'],
           },
           {
             id: 'silentium',
@@ -448,7 +527,7 @@ export const START_PLAN: Phase[] = [
   {
     id: 'alts-continue',
     title: '7 · Twinks weiterspielen',
-    description: 'Wenn der Main sein Wochenziel erreicht hat, geht es mit den Twinks weiter.',
+    description: 'Wenn der Main sein Wochenziel erreicht hat, geht es mit den Twinks weiter. Madsin zieht sie schon an Tag 2 auf 45, damit auch dort Nightmare-Tickets laufen – das ist die schnellere, aber zeitintensivere Variante.',
     sections: [
       {
         id: 'alts',
@@ -459,7 +538,14 @@ export const START_PLAN: Phase[] = [
           {
             id: 'alts-1400',
             text: 'Twink-Ziel: 1.400 GS für Tier-2-Conquest – dann täglich Kinah für den Main farmen',
-            sources: ['yt-gear2200-freshy'],
+            detail: 'Twinks laufen die 1- und 2-Sterne-Dungeons für Kinah und Crafting-Material und schicken alles zum Main. Gear der Twinks: einfach, was droppt.',
+            sources: ['yt-gear2200-freshy', 'yt-plan-madsin'],
+          },
+          {
+            id: 'season-shop',
+            text: 'Saison-Shop-Material (Odyle, Drachen-Zutaten) mit den Twinks kaufen und übers Server-Lager zum Main schicken',
+            detail: 'Die Marken des Mains für die Talisra-Wings aufheben – die Basis-Wings für Season 1.',
+            sources: ['yt-plan-madsin'],
           },
           {
             id: 'energy',

@@ -232,6 +232,13 @@ const list: Source[] = [
     note: '25.09.2026 · Abyss, Fraktion, Kinah, Roster, Minispiele',
   },
   {
+    id: 'yt-plan-madsin',
+    title: 'My Progression Plans for Global (Madsin)',
+    url: 'https://www.youtube.com/watch?v=9r4nDbBxRxk',
+    kind: 'youtube',
+    note: '28.09.2026 · Die ersten 3 Tage, Main-Route bis Ludra, Crafting, Shops, Q&A',
+  },
+  {
     id: 'yt-gear2200-freshy',
     title: 'The Fastest & Most Efficient Way to Reach 2200 Gear Score (FRESHY)',
     url: 'https://www.youtube.com/watch?v=hOyoQ_OXdWE',
