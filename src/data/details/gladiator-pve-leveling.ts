@@ -29,7 +29,7 @@ const dpsSections: DetailSection[] = gladiatorPveDpsDetails.sections
 export const gladiatorPveLevelingDetails: BuildDetails = {
   intro:
     'Leveling-Variante auf Basis der DPS-Guides, mit einer bewussten Abweichung: Ruinous Blow wird beim Leveln nicht gesteigert. Im aktuellen TW-Stand hat er keine eigene Spezialisierung, die seinen Cooldown senkt – die Knoten (Skill Speed, Reichweite, Skill-Crit, Extra-Schaden, Block/Evasion ignorieren) bringen bei dem langen Cooldown wenig. Die Punkte fließen stattdessen in die Skills, die du ständig drückst. Den Cooldown übernimmt Keen Strike: Ab Skill-Level 12 senkt jeder Treffer den Cooldown von Ruinous Blow um 1 s.',
-  sources: ['yt-glad-arthars', 'yt-glad-montu', 'yt-glad-endgame', 'gege-glad', 'yt-leveling'],
+  sources: ['wakayashi-glad', 'yt-glad-arthars', 'yt-glad-montu', 'yt-glad-endgame', 'gege-glad', 'yt-leveling'],
   sections: [
     {
       id: 'level-20',

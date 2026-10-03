@@ -16,6 +16,13 @@ const list: Source[] = [
     note: 'KR/TW, sehr detailliert, High-End',
   },
   {
+    id: 'wakayashi-glad',
+    title: 'Wakayashi.gg – Gladiator-Guide (deutsch)',
+    url: 'https://wakayashi.gg/aion2',
+    kind: 'web',
+    note: 'Stand 27.09.2026 · Global: Skill-Ziele, Spezialisierungs-Prioritäten, Stigmas mit/ohne Templar, Makro',
+  },
+  {
     id: 'yt-glad-arthars',
     title: 'The ULTIMATE AION 2 Gladiator Starter Guide – Global Launch (Arthars Gaming)',
     url: 'https://www.youtube.com/watch?v=tYTZ8VucMXw',
