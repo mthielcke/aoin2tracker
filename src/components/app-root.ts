@@ -6,6 +6,7 @@ import './build-detail';
 import './character-panel';
 import './plan-view';
 import './weekly-view';
+import './craft-plan';
 import './todo-list';
 import './tips-view';
 import './sources-view';
@@ -159,6 +160,8 @@ export class AppRoot extends LitElement {
           ></tips-view>
         </sl-tab-panel>
         <sl-tab-panel name="crafting">
+          <craft-plan></craft-plan>
+          <sl-divider></sl-divider>
           <tips-view
             .topics=${CRAFTING_TOPICS}
             heading="Crafting & Gathering"

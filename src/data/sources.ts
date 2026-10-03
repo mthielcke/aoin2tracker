@@ -309,6 +309,13 @@ const list: Source[] = [
     note: 'Einträge pro Tag und Reset-Zeiten (KR/TW: täglich 05:00, wöchentlich Mi 05:00)',
   },
   {
+    id: 'yt-craft-silvias',
+    title: 'Aion 2 – Guide zu den Berufen: Was craften, was sammeln? (Silvias, russisch)',
+    url: 'https://www.youtube.com/watch?v=8T12po8Myqk',
+    kind: 'youtube',
+    note: '03.10.2026 · Global-Stand: Proc-Kette, Bruchrisiko, Berufslevel 30 für Blau, Odyle-Morph',
+  },
+  {
     id: 'yt-craft-mr4k',
     title: 'AION 2 Crafting – Why You Need to Start Early (MR4KTV)',
     url: 'https://www.youtube.com/watch?v=alJ1CWVWL1E',
