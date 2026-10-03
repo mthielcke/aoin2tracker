@@ -23,6 +23,27 @@ const list: Source[] = [
     note: 'Stand 27.09.2026 · Global: Skill-Ziele, Spezialisierungs-Prioritäten, Stigmas mit/ohne Templar, Makro',
   },
   {
+    id: 'wakayashi-cleric',
+    title: 'Wakayashi.gg – Kleriker-Guide (deutsch)',
+    url: 'https://wakayashi.gg/aion2',
+    kind: 'web',
+    note: 'Global: Skill-Ziele, Spezialisierungs-Prioritäten, 4 Stigmas + Tausch-Stigmas, zwei Makro-Ketten',
+  },
+  {
+    id: 'wakayashi-chanter',
+    title: 'Wakayashi.gg – Kantor-Guide (deutsch)',
+    url: 'https://wakayashi.gg/aion2',
+    kind: 'web',
+    note: 'Global: Dark Crush als Hauptschaden, Skill-Ziele, 4 Stigmas + Tausch, Makro',
+  },
+  {
+    id: 'wakayashi-ranger',
+    title: 'Wakayashi.gg – Jäger-Guide (deutsch)',
+    url: 'https://wakayashi.gg/aion2',
+    kind: 'web',
+    note: 'Global: Zielpfeil auf Max-Charge, Skill-Ziele, Stigmas, Makro',
+  },
+  {
     id: 'yt-glad-arthars',
     title: 'The ULTIMATE AION 2 Gladiator Starter Guide – Global Launch (Arthars Gaming)',
     url: 'https://www.youtube.com/watch?v=tYTZ8VucMXw',
@@ -404,13 +425,6 @@ const list: Source[] = [
     url: 'https://gegebase.com/games/aion2/ranger_pve_guide',
     kind: 'web',
     note: 'Stand Sept. 2026',
-  },
-  {
-    id: 'vortex-cleric',
-    title: 'Vortex Gaming – Cleric PvE/PvP Skill & Stigma Guide',
-    url: 'https://vortexgaming.io/en/postdetail/977592',
-    kind: 'web',
-    note: 'Übersetzter KR-Guide, Skill-Namen teils abweichend übersetzt',
   },
   {
     id: 'questlog',

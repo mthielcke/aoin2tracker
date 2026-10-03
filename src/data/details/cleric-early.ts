@@ -2,8 +2,8 @@ import type { BuildDetails } from '../types';
 
 export const clericEarlyDetails: BuildDetails = {
   intro:
-    'In Aion 2 heilt der Cleric nicht nur, er macht auch Schaden. Frisch auf 45 farmst du zwei bis drei Wochen die ersten Dungeons im Normal-Modus – dafür brauchst du keinen „harten“ Heiler, sondern einen offensiven Cleric, der die Gruppe schneller macht. Diese Seite gilt für beide Cleric-Varianten.',
-  sources: ['yt-cleric-beginner', 'yt-cleric-skills', 'gege-cleric', 'vortex-cleric'],
+    'Der Cleric heilt nicht nur, er macht mit Condemnation auch ordentlich Schaden. Damit Condemnation permanent läuft, muss Chain of Torment auf dem Ziel liegen, und Earth’s Punishment lässt sie durchgehend kritten. Die Heilung skaliert über Healing Enhancement mit der Angriffskraft – deshalb ist Prayer of Amplification Schadens- und Heil-Buff zugleich. Diese Seite gilt für beide Cleric-Varianten; Grundlage ist der Global-Guide von Wakayashi.',
+  sources: ['wakayashi-cleric', 'yt-cleric-beginner', 'yt-cleric-skills', 'gege-cleric'],
   sections: [
     {
       id: 'core',
@@ -12,18 +12,18 @@ export const clericEarlyDetails: BuildDetails = {
         {
           type: 'list',
           items: [
-            'Die ersten Dungeons (im Video u. a. „Kro Cave“ und „Draupnir Cave“) im Normal-Modus sind leicht zu heilen – Punkte lieber in Schaden und Party-Support stecken.',
-            'Für die nächsten Dungeons (u. a. Fire Temple) brauchst du ca. 2,2k Gear Score – bis dahin wird gefarmt.',
-            'Schaden: Bolt, Judgment/Condemnation, Divine Aura, Lightning Strike und das Stigma Noble Aura.',
-            'Party-Support: Debuff auf den Boss, Radiant-Passive (Gruppe heilt sich beim Angreifen selbst) und Summon Resurrection.',
-            'Du und der Tank müssen überleben – deshalb im Daevanion Defense und Damage Tolerance statt Crit.',
+            'Hauptschaden: Condemnation – braucht Chain of Torment auf dem Ziel und kritet dank Earth’s Punishment garantiert. Spez. 4 setzt bei Crit den Cooldown zurück.',
+            'Zweitschaden: Judgment Thunder (spambar) und Bolt (Charge-Skill, von Hand voll laden).',
+            'Debuffs mit 100 % Uptime: Chain of Torment (Gegner nimmt mehr Schaden) und Debilitating Mark (Gegner macht weniger Schaden).',
+            'Heilung: Radiant Recovery (AoE, entfernt Debuffs), Healing Light (Einzelziel) und Light of Regeneration (HoT im Makro).',
+            'Stärken: viel Survivability, einzige Klasse mit Battle-Rez, Solo-Content dank Selbstheilung leicht. Schwächen: wenig DPS, im 1v1 sehr schwach.',
           ],
         },
         {
           type: 'callout',
           variant: 'warning',
-          title: 'Summon Resurrection immer dabei',
-          text: 'Wiederbelebungssteine sind am Anfang selten und teuer; Gruppen sparen sie für die schweren Dungeons. Ein Cleric ohne Resurrection-Stigma fliegt schnell aus der Gruppe.',
+          title: 'Summon Resurrection bereithalten',
+          text: 'Wiederbelebungssteine sind am Anfang selten und teuer. Summon Resurrection holt gefallene Gruppenmitglieder ohne Stein zurück – als Tausch-Stigma für schwere Inhalte.',
         },
       ],
     },
@@ -34,9 +34,8 @@ export const clericEarlyDetails: BuildDetails = {
         {
           type: 'list',
           items: [
-            'Aion-1-Modus (Tab-Target): Nach jedem Skill greift der Charakter automatisch an und lädt Mana auf. Laut Video der überlegene Modus.',
-            'Aion-2-Modus (Action Combat): Der Charakter bleibt nach dem Skill stehen – kein Mana durch Auto-Attacks.',
-            'Earth’s Retribution auf Level 8 mit Mana-Spezialisierung – mehr nicht.',
+            'Aion-1-Modus (Tab-Target): Nach jedem Skill greift der Charakter automatisch an und lädt Mana auf.',
+            'Earth’s Retribution (Linksklick) regeneriert 110 MP pro Treffer und verkürzt mit Spez. 4 den Cooldown von Bolt. Deshalb Linksklick zusammen mit der Makro-Taste halten.',
             'Mana leer? Makro-Taste loslassen, kurz Auto-Attacks laufen lassen, dann weiter.',
           ],
         },
@@ -44,84 +43,33 @@ export const clericEarlyDetails: BuildDetails = {
     },
     {
       id: 'active',
-      title: 'Aktive Skills (frisch 45)',
+      title: 'Skills & Spezialisierungen',
       blocks: [
         {
-          type: 'text',
-          text: 'Die Spezialisierungen nennt das Video beim Namen, nicht nach Slot. Die Slot-Nummern aus dem KR-Guide stehen unten unter „Spezialisierungen fürs Endgame“.',
+          type: 'table',
+          columns: ['Skill', 'Deutsch', 'Ziel', 'Spezialisierungen (Priorität)', 'Ab Lv.'],
+          rows: [
+            ['Radiant Recovery', 'Glanz der Genesung', '20', '5 (+5 % Max-LP-Regeneration) → 2 (1× zusätzlich) → 3 (−3 s)', '12'],
+            ['Condemnation', 'Verdammnis', '20', '4 (Cooldown-Reset bei Crit) → 2 (+12 % Single-Target) → 5 (Multi-Hit)', '8'],
+            ['Judgment Thunder', 'Blitz des Urteils', '20', '5 (+1 Zusatzaktivierung) → 2 (+12 % Single-Target) → 1 (−20 % MP)', '1'],
+            ['Healing Light', 'Licht der Heilung', '20', '4 (+2 % LP) → 1 (+2 Anwendungen) → 5 (−2 s)', '10'],
+            ['Light of Regeneration', 'Licht der Regeneration', '16', '5 (Schadensresistenz für die Gruppe) → 4 (Lauftempo)', '7'],
+            ['Bolt', 'Donnerschlag', '16', '3 (+30 % Fähigkeitstempo) → 4 (+20 % Single-Target)', '14'],
+            ['Divine Aura', 'Heilige Aura', '16', '5 (−10 s Cooldown) → 3 (+50 % Schusstempo)', '3'],
+            ['Chain of Torment', 'Kette des Schmerzes', '12', '4 (−10 % PvE-Schadensresistenz) → 2 (+3 s DoT)', '4'],
+            ['Debilitating Mark', 'Mal der Schwächung', '12', '4 (−10 % PvE-Schadensverstärkung) → 2 (−15 % Verteidigung)', '1'],
+            ['Earth’s Retribution', 'Rache der Erde', '12', '4 (−7 s Bolt-Cooldown) → 2', '1'],
+            ['Defiance', 'Schockaufhebung', '12', '3 (+10 % LP) → 4 (+2 s Zähigkeit)', '16'],
+            ['Lightning Strike Scattershot', 'Blitzfeuer', '–', 'Spammen, wenn der Boss gestaggert ist', '5'],
+          ],
         },
         {
-          type: 'skills',
-          skills: [
-            {
-              name: 'Bolt',
-              priority: 'top',
-              target: 'max',
-              summary: 'Stärkster Schadensskill. Spezialisierung: Quick Cast (30 % schneller zaubern).',
-              note: 'Seit Patch +20 % PvE-Schaden.',
-            },
-            {
-              name: 'Judgment',
-              priority: 'top',
-              target: 'max',
-              summary: 'Spezialisierung: +12 % Schaden – du triffst meistens einen Boss.',
-            },
-            {
-              name: 'Condemnation',
-              priority: 'top',
-              target: 'max',
-              summary: 'Voll stapeln; Spezialisierung +12 % Single-Target-Schaden.',
-              note: 'Name aus Transkript („conclusion“) – eventuell mit Judgment verwechselt, im Spiel prüfen.',
-            },
-            {
-              name: 'Divine Aura',
-              priority: 'top',
-              target: 'max',
-              summary: 'Spezialisierung: im Dungeon 50 % Angriffstempo (mehr Treffer in 5 s); gegen viele Ziele die AoE-Variante.',
-            },
-            {
-              name: 'Lightning Strike',
-              priority: 'high',
-              target: 'max',
-              summary: 'Stagger-Skill – den Boss in Stagger-Phasen bursten. Früh Mobilität (oder HP), ab Level 12 Multi-Hit-Chance.',
-            },
-            {
-              name: 'Debuff-Skill (Debilitating Mark)',
-              priority: 'high',
-              summary: 'Starker Boss-Debuff (−50 % laut Video, senkt u. a. die Verteidigung) – die ganze Gruppe macht mehr Schaden.',
-              note: 'Name im Video nicht genannt; laut GEGEBASE ist Debilitating Mark der zentrale Offensiv-Debuff.',
-            },
-            {
-              name: 'Radiant Recovery',
-              priority: 'high',
-              summary: 'Wichtige Heilung. Spezialisierung: −3 s Cooldown.',
-              note: 'Wenn Wisdom Stones knapp sind, anfangs sparen und erst offensiv investieren.',
-            },
-            {
-              name: 'Light of Regeneration',
-              priority: 'mid',
-              target: 'Lv. 10',
-              summary: 'Spezialisierung: +20 % Heilung, wenn das Ziel ≤ 50 % HP hat.',
-              note: 'Name aus Transkript („lightning restoration“) – im Spiel prüfen.',
-            },
-            {
-              name: 'Healing Light',
-              priority: 'mid',
-              summary: 'Einzelheilung. Wenn gelevelt: zwei aufeinanderfolgende Heilungen.',
-              note: 'Für die ersten Dungeons laut Video unnötig – wichtig erst für schweren PvE-Content und PvP.',
-            },
-            {
-              name: 'Earth’s Retribution',
-              priority: 'mid',
-              target: 'Lv. 8',
-              summary: 'Filler; nur wegen der Mana-Spezialisierung.',
-            },
-            {
-              name: 'Defiance',
-              priority: 'mid',
-              target: 'Lv. 8',
-              summary: 'Befreit aus CC; Spezialisierung: 10 % HP.',
-            },
+          type: 'list',
+          title: 'Hinweise',
+          items: [
+            'Radiant Recovery geht als Erstes auf 20: größter AoE-Heal mit kurzem Cooldown.',
+            'Divine Aura ist stationär und nur kurz da – nur nutzen, wenn der Boss steht. Ideal gegen Gegner mit Treffer-Zähler statt Lebensbalken.',
+            'Debilitating Mark ist ein schwacher Schadens-Skill, aber der Debuff hält 100 % Uptime – deshalb im Makro.',
           ],
         },
       ],
@@ -131,41 +79,15 @@ export const clericEarlyDetails: BuildDetails = {
       title: 'Passive Skills',
       blocks: [
         {
-          type: 'callout',
-          variant: 'primary',
-          title: 'Die drei Kern-Passives',
-          text: 'Eines offensiv (Crit/Double Chance), zwei für die Gruppe (Radiant-Passive und Healing Enhancement).',
-        },
-        {
-          type: 'skills',
-          skills: [
-            {
-              name: 'Empyrean Lord’s Grace',
-              priority: 'top',
-              summary: 'Crit, Double Chance und Extra-Schaden – dein Offensiv-Passive.',
-              note: 'Name aus Transkript („empire lord“) – im Spiel prüfen.',
-            },
-            {
-              name: 'Radiant-Passive (Party-Heilung)',
-              priority: 'top',
-              summary: 'Gruppenmitglieder heilen sich alle 5 s um ca. 800–900 HP, wenn sie angreifen.',
-              note: 'Genauer Name im Transkript unklar („radiant blending“).',
-            },
-            {
-              name: 'Healing Enhancement',
-              priority: 'top',
-              summary: 'Healing Boost – so hoch wie möglich. Skaliert seit Patch mit Attack Power.',
-            },
-            {
-              name: 'Earth’s Grace',
-              priority: 'mid',
-              summary: 'Crit – auch deine Heilungen profitieren von Crits.',
-            },
-            {
-              name: 'Warm Benediction',
-              priority: 'low',
-              summary: 'Mehr HP und MP. Gut mit Tank, bei knappen Punkten verzichtbar.',
-            },
+          type: 'steps',
+          title: 'Reihenfolge',
+          items: [
+            'Empyrean Lord’s Grace (Segen des Gebieters)',
+            'Earth’s Grace (Segen der Erde)',
+            'Healing Enhancement (Heilungsverstärkung) – je mehr Angriffskraft, desto mehr Heilung',
+            'Warm Benediction (Warme Gnade)',
+            'Immortal Veil (Schleier der Unsterblichkeit)',
+            'Danach: Survival Willpower, Prayer of Concentration, Radiant Benediction, Empyrean Lords’ Benediction, Heal Block',
           ],
         },
       ],
@@ -175,75 +97,87 @@ export const clericEarlyDetails: BuildDetails = {
       title: 'Stigmas',
       blocks: [
         {
-          type: 'skills',
-          skills: [
-            {
-              name: 'Noble Aura',
-              priority: 'top',
-              summary: 'Dein stärkster Schaden: dauerhaft aktiv, gibt Crit und macht alle 2 s viel Schaden.',
-            },
-            {
-              name: 'Summon Resurrection',
-              priority: 'top',
-              target: 'Lv. 1 → 5',
-              summary: 'Pflicht. Lv. 1 reicht zum Start (2 s Zauberzeit), ab +5 nur noch 1 s.',
-            },
-            {
-              name: 'Earth’s Punishment',
-              priority: 'high',
-              summary: 'Niedriger Cooldown, guter Debuff, am Ende sehr viel Schaden.',
-            },
-            {
-              name: 'Benevolence',
-              priority: 'mid',
-              target: 'Lv. 5',
-              summary: 'Vorab casten, zeitgesteuerte Gruppenheilung; läuft sie aus, neu casten und DPS-Skills darum herum ketten.',
-            },
-            {
-              name: 'Absolution',
-              priority: 'mid',
-              target: 'Lv. 5',
-              summary: 'Für Notfälle mit viel Schaden auf der Gruppe.',
-            },
-            {
-              name: 'Light of Protection',
-              priority: 'mid',
-              target: 'Lv. 5',
-              summary: 'PvE Damage Boost/Tolerance, Heilung und Accuracy für die Gruppe.',
-              note: 'Nur ohne Chanter in der Gruppe – dessen Mantras sind besser.',
-            },
-          ],
-        },
-        {
-          type: 'list',
-          title: 'Stigma Shards besorgen',
-          items: [
-            'Supply-Request-Lieferungen erledigen.',
-            'Im Abyss Mobs farmen und im Shop Shards kaufen.',
-            'Ziel: die eingesetzten Stigmas auf 5 bringen.',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'macro',
-      title: 'Makro',
-      blocks: [
-        {
-          type: 'steps',
-          items: [
-            'Einstellungen → Tastenbelegung → Gameplay → In-Game-Makro: Taste belegen.',
-            'Im Makro-Fenster mehrere Zeilen anlegen. Die Reihenfolge richtet sich nach deinen Cooldowns – frisch 45 hast du kaum Cooldown-Reduktion.',
-            'Die Zeilen am Ende wiederholen, weil das Makro manchmal einen Skill überspringt.',
-            'Verzögerung: Ping < 50 → 10 ms; Ping 80–100+ → 40–50 ms. „Schatten“ am Charakter = Animation Cancel funktioniert.',
-            'Heilung manuell dazwischen drücken (z. B. Taste 2) – das Makro lässt Vorrang-Eingaben durch.',
+          type: 'table',
+          title: 'Grund-Setup (4 Slots)',
+          columns: ['Stigma', 'Deutsch', 'Ziel', 'Warum'],
+          rows: [
+            ['Light of Protection', 'Licht des Schutzes', '20', 'Toggle-Buff: mehr Schaden und Schadensresistenz für dich und die Gruppe. Stackt nicht mit der Invokation der Unbesiegbarkeit vom Kantor.'],
+            ['Earth’s Punishment', 'Strafe der Erde', '20', 'Lässt Condemnation garantiert kritten; auf höheren Leveln wichtiger Gruppen-Buff. Stackt nicht mit Hoheit des Sturmwinds vom Kantor.'],
+            ['Prayer of Amplification', 'Gebet der Verstärkung', '15', '+20 % Angriffskraft – und damit auch mehr Heilung.'],
+            ['Noble Aura', 'Edle Aura', '5', 'Folgt dir, 5 min Laufzeit. Nicht ins Makro (1 min Cooldown).'],
           ],
         },
         {
           type: 'callout',
           variant: 'primary',
-          title: 'Kein Auto-Attack im Makro nötig',
-          text: 'Im Aion-1-Modus füllt der Charakter Lücken selbst mit Auto-Attacks und lädt Mana. Nur im Aion-2-Modus musst du Auto-Attacks ins Makro einbauen.',
+          title: 'Reihenfolge beim Leveln der Stigmas',
+          text: 'Erst alle vier auf 5, dann Earth’s Punishment und Prayer of Amplification über 10 auf 15, danach Light of Protection und Earth’s Punishment auf 20. Prayer bleibt auf 15, Noble Aura auf 5.',
+        },
+        {
+          type: 'table',
+          title: 'Tausch-Stigmas',
+          columns: ['Stigma', 'Wofür'],
+          rows: [
+            ['Absolution', 'AoE-Heal wie Radiant Recovery, stapelbar, entfernt Debuffs'],
+            ['Benevolence (Hoheit des Lebens)', 'Langer Heal über Zeit, auf höheren Leveln mit Ausdauer und Reinigung'],
+            ['Summon Resurrection', 'Battle-Rez ohne Wiederbelebungsstein'],
+            ['Salvation (Erlösung)', 'Immunitäts-Buff – im PvE lassen sich manche Mechaniken teilweise skippen'],
+            ['Yustiel’s Power', 'Schild und Tankiness für die Gruppe – nur, wenn du den Inhalt kennst'],
+          ],
+        },
+        {
+          type: 'text',
+          text: 'Beim Tausch fliegt zuerst Noble Aura raus, mit Kantor in der Gruppe auch Light of Protection.',
+        },
+      ],
+    },
+    {
+      id: 'macro',
+      title: 'Hotbar, Makro & Rotation',
+      blocks: [
+        {
+          type: 'table',
+          title: 'Hotbar',
+          columns: ['Taste', 'Belegung'],
+          rows: [
+            ['1 / 2', 'Divine Aura (stationär) / Noble Aura (folgt dir) – beide nicht ins Makro'],
+            ['3', 'Bolt – von Hand voll laden'],
+            ['4', 'Radiant Recovery (AoE-Heal)'],
+            ['6', 'Light of Protection – einmal anschalten'],
+            ['7', 'Makro-Kette 1: Prayer of Amplification → Earth’s Punishment → Condemnation → Chain of Torment'],
+            ['R', 'Makro-Kette 2: Debilitating Mark → Light of Regeneration → Judgment Thunder'],
+            ['Q', 'Healing Light (Einzelziel)'],
+            ['E', 'Lightning Strike Scattershot – bei Stagger'],
+            ['Linksklick', 'Earth’s Retribution – Weaving und Mana'],
+            ['Rechte Maustaste', 'Makro-Taste: löst die Ketten auf 7 und R aus'],
+          ],
+        },
+        {
+          type: 'steps',
+          title: 'Ablauf',
+          items: [
+            'Taste 6: Light of Protection aktivieren, falls es nicht schon läuft.',
+            'Taste 2 für Noble Aura, dann Taste 1 für die stationäre Divine Aura.',
+            'Prayer of Amplification zünden.',
+            'Bolt bis Max laden.',
+            'Linksklick und Makro-Taste (rechte Maustaste) gedrückt halten.',
+            'Verliert jemand LP: Q für ein einzelnes Ziel, 4 für den AoE-Heal.',
+          ],
+        },
+        {
+          type: 'list',
+          title: 'Drei typische Fehler',
+          items: [
+            'Alles ins Makro packen: Divine Aura, Noble Aura, Radiant Recovery und Bolt gehören nicht hinein – nur, was 100 % Uptime hält oder Schaden macht.',
+            'Mit dem Heilen warten: Radiant Recovery schon für eine Person nutzen, Healing Light nicht geizen.',
+            'Buffs mit dem Kantor doppeln: Earth’s Punishment, Chain of Torment und Debilitating Mark stacken nicht mit seinen Gegenstücken – absprechen.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Verzögerung',
+          text: 'Wakayashi nutzt 10 ms. Bei Ping ab ca. 80 ms eher 40–50 ms. „Schatten“ am Charakter zeigen, dass das Animation Canceling funktioniert.',
         },
       ],
     },
@@ -280,51 +214,21 @@ export const clericEarlyDetails: BuildDetails = {
     },
     {
       id: 'healing',
-      title: 'Heilung & Burst',
+      title: 'Heil-Prioritäten',
       blocks: [
         {
           type: 'steps',
-          title: 'Heil-Prioritäten (GEGEBASE)',
           items: [
             'Tank in Gefahr',
             'Ziel einer Mechanik',
-            'Mehrere Verletzte → AoE-Heilung',
+            'Mehrere Verletzte → Radiant Recovery',
             'Einzelziel → Healing Light',
-            'Dauerschaden → HoTs',
+            'Dauerschaden → Light of Regeneration (läuft im Makro) bzw. Benevolence',
           ],
         },
-        {
-          type: 'list',
-          items: [
-            'Burst-Fenster: Debilitating Mark → Prayer of Amplification → Bolt → Divine Aura.',
-            'Heil-Reichweite seit Patch 40 m, dafür 20–50 % weniger Heilung – Abstand halten.',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'specs',
-      title: 'Spezialisierungen fürs Endgame',
-      blocks: [
         {
           type: 'text',
-          text: 'Aus dem übersetzten KR-Guide (Vortex Gaming): empfohlene Spezialisierungs-Slots bei Skill-Level 20. Die Skill-Namen sind dort anders übersetzt und können vom Spiel abweichen.',
-        },
-        {
-          type: 'table',
-          columns: ['Skill', 'Lv. 20', 'unter Lv. 20'],
-          rows: [
-            ['Divine Retribution', '2, 3, 4', '2, 4'],
-            ['Judgment Bolt', '2, 4, 5', '2, 5'],
-            ['Curse of Weakness', '2, 4', '2, 4'],
-            ['Sacred Energy', '3, 4, 5', '3, 4'],
-            ['Chain of Suffering', '2, 4', '2, 4'],
-            ['Lightning Barrage', '4, 5 (ab Lv. 16)', '3, 4'],
-            ['Light of Regeneration', '1, 4, 5', '3, 4, 5'],
-            ['Condemnation', '2, 3, 4', '2, 3, 4'],
-            ['Light of Healing', '3, 4, 5', '4, 5'],
-            ['Radiance of Joy', '1, 3, 5', '3, 5'],
-          ],
+          text: 'Heil-Reichweite seit Patch 40 m, dafür 20–50 % weniger Heilung – Abstand halten.',
         },
       ],
     },

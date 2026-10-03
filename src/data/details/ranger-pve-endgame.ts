@@ -343,16 +343,20 @@ export const rangerPveEndgameDetails: BuildDetails = {
     },
     {
       id: 'compare',
-      title: 'Unterschiede zur Einsteiger-Variante',
+      title: 'Unterschiede zu Wakayashi (Global)',
       blocks: [
         {
+          type: 'text',
+          text: 'Die Einsteiger-Variante folgt inzwischen dem Global-Guide von Wakayashi. Im Kern stimmen beide überein (gleiche Stigmas, Marking Shot nur von Hand, Focused Eye und Hunter’s Resolve zuerst). Abweichungen:',
+        },
+        {
           type: 'table',
-          columns: ['Thema', 'Einsteiger (AluxHero)', 'Endgame (Allyria)'],
+          columns: ['Thema', 'Wakayashi (Global)', 'Allyria (Endgame)'],
           rows: [
-            ['Kern-Stigmas', 'Vaizel’s Authority, Crit/Multi-Buff, Mother Nature, Exploding Arrow, Supporting Fire', 'Vaizel’s Authority, Bow of Blessing, Supporting Fire + Flex'],
-            ['Marking Shot', 'Level 1, aber in Makro-Zeile 1', 'Tier 2 (+16), nur manuell für Buff-Uptime'],
-            ['Deadshot', 'Manuell drücken', 'Stufe 3 über Makro-Software oder manuell aufladen'],
-            ['Daevanion', 'Combat Speed, Crit Damage, Multi-Hit zuerst', 'Seltenheit orange > blau > grün > weiß, Skill-Meilensteine'],
+            ['Level-20-Skills', 'Deadshot, Gale Arrow, Drill Dart, Snipe', 'Tempest Shot, Gale Arrow, Deadshot, Drill Dart'],
+            ['Erster Skill auf 20', 'Deadshot', 'Gale Arrow'],
+            ['Vierter Stigma', 'Griffon Arrow (Lv. 5)', 'Flex: Arrow Rain, Griffon Arrow, Mother Nature oder Kick'],
+            ['Marking Shot', 'Lv. 12', 'Lv. 16'],
           ],
         },
       ],

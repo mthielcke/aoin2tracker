@@ -14,7 +14,7 @@ export const ranger: ClassDef = {
       name: 'Einsteiger-DPS (frisch 45)',
       mode: 'pve',
       summary:
-        'Frisch 45: Mana über Snipe und Tab-Target-Modus managen, Combat Speed und Multi-Hit stapeln, mobil bleiben. Endgame: Precision-Fenster über Marking Shot für Deadshot.',
+        'Deadshot immer auf Max laden, davor buffen (Vaizel’s Authority, Supporting Fire, Bow of Blessing, Marking Shot, Gale Arrow). Linksklick plus Makro halten, Marking Shot von Hand nachlegen.',
       details: rangerPveDpsDetails,
       phases: [
         {
@@ -60,49 +60,35 @@ export const ranger: ClassDef = {
               title: 'Skills',
               items: [
                 {
-                  id: 'levels',
-                  text: 'Drei Kern-Skills auf 10, Rest auf 8',
-                  sources: ['yt-ranger-early'],
+                  id: 'deadshot-first',
+                  text: 'Deadshot als Erstes auf 20 – immer bis Max laden. Spez. 2 (+30 % Tempo) → 4 (Block/Evasion ignorieren) → 5 (Zusatzschaden)',
+                  sources: ['wakayashi-ranger', 'yt-ranger-early'],
                 },
                 {
-                  id: 'aoe-spam-mp',
-                  text: 'AoE-Spam-Skill (4 Ziele): −20 % MP-Kosten',
-                  sources: ['yt-ranger-early'],
-                  uncertain: true,
+                  id: 'gale-20',
+                  text: 'Gale Arrow auf 20 – Spez. 4 (Kampftempo + PvE-Schaden) → 5 (−10 s Cooldown) → 3 (in Bewegung)',
+                  sources: ['wakayashi-ranger', 'allyria-ranger'],
                 },
                 {
-                  id: 'deadshot-charge',
-                  text: 'Deadshot: Spezialisierung +30 % Aufladegeschwindigkeit',
-                  detail: 'Höchster Einzelschaden (ca. 10–12k voll aufgeladen).',
-                  sources: ['yt-ranger-early', 'gege-ranger'],
+                  id: 'drill-20',
+                  text: 'Drill Dart auf 20 – Spez. 5 (+1 Aktivierung) → 3 (+20 % Tempo) → 4 (garantierter Multi-Hit)',
+                  detail: 'Solo beim Farmen kann früh der HP-Absorb helfen (aLuckyRO).',
+                  sources: ['wakayashi-ranger', 'yt-ranger-early'],
                 },
                 {
-                  id: 'drill-dart',
-                  text: 'Drill Dart: HP-Absorb (Sustain beim Solo-Farmen)',
-                  sources: ['yt-ranger-early', 'gege-ranger'],
+                  id: 'snipe-20',
+                  text: 'Snipe auf 20 – Spez. 4 (−1 s Deadshot-Cooldown) → 5 (Sturmpfeil als 4. Folge) → 3 (Multi-Hit)',
+                  sources: ['wakayashi-ranger'],
                 },
                 {
-                  id: 'root-mobility',
-                  text: 'Root/Snare-Skill: Mobilitäts-Spezialisierung',
-                  sources: ['yt-ranger-early'],
-                  uncertain: true,
+                  id: 'secondary-16',
+                  text: 'Tempest Shot, Burst Arrow und Defiance auf 16 – auf Global gehen nur vier Skills auf 20',
+                  sources: ['wakayashi-ranger'],
                 },
                 {
-                  id: 'buff-duration',
-                  text: 'Combat-Speed-Buff (+7 %): +5 s Dauer',
-                  sources: ['yt-ranger-early'],
-                  uncertain: true,
-                },
-                {
-                  id: 'defiance-8',
-                  text: 'Defiance auf 8 – 20 % HP-Wiederherstellung',
-                  sources: ['yt-ranger-early'],
-                },
-                {
-                  id: 'marking-early',
-                  text: 'Marking Shot anfangs auf 1 lassen',
-                  detail: 'Früh laut Video kaum wirksam – im Endgame aber S-Tier (siehe Mittleres Endgame).',
-                  sources: ['yt-ranger-early'],
+                  id: 'rest-12',
+                  text: 'Marking Shot, Snare Shot, Explosion Trap und Suppressing Arrow auf 12',
+                  sources: ['wakayashi-ranger'],
                 },
               ],
             },
@@ -112,21 +98,14 @@ export const ranger: ClassDef = {
               title: 'Stigmas',
               items: [
                 {
-                  id: 'buffs',
-                  text: 'Zwei Buff-Stigmas: Vaizel’s Authority (Schaden + Perfect) und Crit-/Multi-Hit-Buff',
-                  sources: ['yt-ranger-ultimate'],
-                  uncertain: true,
+                  id: 'core-four',
+                  text: 'Vaizel’s Authority 20, Bow of Blessing 20, Supporting Fire 15, Griffon Arrow 5',
+                  sources: ['wakayashi-ranger', 'allyria-ranger'],
                 },
                 {
                   id: 'mother-nature',
-                  text: 'Mother Nature (Defense + Lebensraub) – alternativ Arrow Storm für mehr Schaden',
+                  text: 'Musst du mehr aushalten: Mother Nature (Defense + Lebensraub) im vierten Slot',
                   sources: ['yt-ranger-ultimate'],
-                },
-                {
-                  id: 'damage',
-                  text: 'Schadens-Stigmas: Exploding Arrow und Supporting Fire (Beschwörung, 50 % Mittreffer)',
-                  sources: ['yt-ranger-ultimate'],
-                  uncertain: true,
                 },
               ],
             },
@@ -138,13 +117,22 @@ export const ranger: ClassDef = {
                 {
                   id: 'macro-setup',
                   text: 'Makro-Taste belegen, Verzögerung nach Ping (10 ms bei < 50, 40–50 ms bei 80+)',
-                  sources: ['yt-ranger-ultimate'],
+                  sources: ['yt-ranger-ultimate', 'wakayashi-ranger'],
                 },
                 {
-                  id: 'macro-lines',
-                  text: '3 Zeilen: Buff-Kette (Marking Shot → Gale Arrow → Drill Dart → Tempest Shot), Root-Kette, Rest-Kette',
-                  detail: 'Explosiv-Skill, Schadens-Buff, Deadshot und Heilung manuell drücken.',
-                  sources: ['yt-ranger-ultimate'],
+                  id: 'macro-chains',
+                  text: 'Makro (rechte Maustaste halten, dazu Linksklick): Drill Dart → Burst Arrow → Tempest Shot, Buff-Kette Vaizel’s → Supporting Fire → Bow of Blessing, Gale Arrow → Griffon Arrow → Snare Shot',
+                  sources: ['wakayashi-ranger'],
+                },
+                {
+                  id: 'manual',
+                  text: 'Marking Shot und Deadshot nie ins Makro – Marking Shot nachlegen, wenn der Buff ausläuft, Deadshot voll laden',
+                  sources: ['wakayashi-ranger', 'allyria-ranger'],
+                },
+                {
+                  id: 'scattershot',
+                  text: 'Arrow Scattershot (E) bei Stagger spammen – ab Level 16 gibt er viel Cooldown zurück',
+                  sources: ['wakayashi-ranger'],
                 },
               ],
             },
@@ -200,12 +188,6 @@ export const ranger: ClassDef = {
                   text: 'Combat Speed und Multi-Hit Chance auf Gear/Accessoires priorisieren',
                   sources: ['yt-ranger-daevanion'],
                 },
-                {
-                  id: 'stat-order',
-                  text: 'Crit → Attack/Weapon Damage → Precision-Boni → Damage Amp → Accuracy',
-                  sources: ['gege-ranger'],
-                  uncertain: true,
-                },
               ],
             },
           ],
@@ -220,20 +202,9 @@ export const ranger: ClassDef = {
               title: 'Skills',
               items: [
                 {
-                  id: 's-tier',
-                  text: 'Marking Shot und Deadshot hochziehen (S-Tier)',
-                  detail: 'Marking Shot öffnet das Precision-Fenster (10 s), Deadshot ist der Payoff.',
-                  sources: ['gege-ranger'],
-                },
-                {
-                  id: 'a-plus',
-                  text: 'Burst Arrow und Snipe (Kettenstart) als nächstes',
-                  sources: ['gege-ranger'],
-                },
-                {
-                  id: 'a-tier',
-                  text: 'Rapid Fire, Spiral Arrow, Gale Arrow, Drill Dart, Explosive Arrow',
-                  sources: ['gege-ranger'],
+                  id: 'four-20',
+                  text: 'Über Arcana und Daevanion die vier Hauptskills auf 20 bringen: Deadshot, Gale Arrow, Drill Dart, Snipe',
+                  sources: ['wakayashi-ranger'],
                 },
               ],
             },
@@ -243,9 +214,9 @@ export const ranger: ClassDef = {
               title: 'Passives',
               items: [
                 {
-                  id: 'passives-core',
-                  text: 'Focused Eye, Concentrated Fire, Vigilant Eye, Hunter’s Resolve',
-                  sources: ['gege-ranger', 'yt-ranger-daevanion'],
+                  id: 'passives-order',
+                  text: 'Passive: Focused Eye → Hunter’s Resolve → Hunter’s Soul → Concentrated Fire → Rooting Eye → Vigilant Eye',
+                  sources: ['wakayashi-ranger', 'allyria-ranger'],
                 },
               ],
             },
@@ -255,18 +226,13 @@ export const ranger: ClassDef = {
               title: 'Rotation',
               items: [
                 {
-                  id: 'opener',
-                  text: 'Opener: Marking Shot → Deadshot → Burst Arrow → Snipe → Explosive Arrow',
-                  sources: ['gege-ranger'],
-                },
-                {
-                  id: 'sustain',
-                  text: 'Sustain: Snipe → Rapid Fire → Spiral Arrow → Burst Arrow → Gale Arrow → Drill Dart',
-                  sources: ['gege-ranger'],
+                  id: 'pull',
+                  text: 'Vor dem Pull: Buff-Kette (Slot 3), Marking Shot, Gale Arrow – dann Deadshot voll laden',
+                  sources: ['wakayashi-ranger'],
                 },
                 {
                   id: 'no-waste',
-                  text: 'Marking Shot nicht in Unverwundbarkeitsphasen verschwenden; Deadshot nur im Precision-Fenster',
+                  text: 'Marking Shot nicht in Unverwundbarkeitsphasen verschwenden',
                   sources: ['gege-ranger'],
                 },
               ],
@@ -318,6 +284,7 @@ export const ranger: ClassDef = {
                 {
                   id: 'flex',
                   text: '4. Slot (ab 45) nach Inhalt: Arrow Rain, Griffon Arrow, Mother Nature oder Kick',
+                  detail: 'Wakayashi setzt standardmäßig Griffon Arrow auf 5 – Vaizel’s und Bow of Blessing auf 20, Supporting Fire auf 15.',
                   sources: ['allyria-ranger'],
                 },
                 {
@@ -335,6 +302,7 @@ export const ranger: ClassDef = {
                 {
                   id: 'tier1',
                   text: 'Tier 1 zuerst: Gale Arrow > Deadshot > Drill Dart > Tempest Shot > Burst Arrow',
+                  detail: 'Wakayashi zieht Deadshot als Erstes auf 20 und nimmt Snipe statt Tempest Shot als vierten Level-20-Skill.',
                   sources: ['allyria-ranger'],
                 },
                 {

@@ -2,8 +2,8 @@ import type { BuildDetails } from '../types';
 
 export const chanterPveHybridDetails: BuildDetails = {
   intro:
-    'Der Chanter ist „Support first, healer second, melee DPS third“: Mantras für die Gruppe, Recuperation als Heilung und Schaden über Spinning Strike und Dark Crush. Direkt nach dem Leveln sind Skillpunkte, Stigma Shards und Daevanion-Punkte knapp – und Mana ist das größte Problem.',
-  sources: ['yt-chanter-ultimate', 'yt-chanter-rework', 'gege-chanter'],
+    'Der Chanter ist der Buff-Motor der Gruppe: „Support first, healer second, melee DPS third“. Dark Crush ist die Hauptschadensquelle, wird aber nur kurz nach Spinning Strike, Impactful Crush oder Marchutan’s Wrath frei. Beide Invokationen (Mantras) laufen dauerhaft, und vor jedem Pull kommt Power of the Storm. Grundlage sind der Global-Guide von Wakayashi und das Chanter-Video von aLuckyRO.',
+  sources: ['wakayashi-chanter', 'yt-chanter-ultimate', 'yt-chanter-rework', 'gege-chanter'],
   sections: [
     {
       id: 'core',
@@ -12,18 +12,18 @@ export const chanterPveHybridDetails: BuildDetails = {
         {
           type: 'list',
           items: [
-            'Dark Crush ist der Kern-Proc: Er wird durch deine Ranged-Skills ausgelöst (seit dem Rework garantiert, dafür nur noch Single-Target).',
-            'Spinning Strike ist dein stärkster Schadensskill; seit dem Rework stapelt er Crit-Damage bis +30 %.',
-            'Marchutan’s Wrath und Impactful Crush lösen Dark Crush erneut aus – darauf baut das Makro auf.',
-            'Undefeated Mantra (+100 Accuracy für dich und die Gruppe) ist das wichtigste Stigma und wird langfristig auf 20 gezogen.',
-            'Obliterate macht 50 Stagger-Schaden – als „offensiver Chanter“ bei Stagger-Phasen helfen.',
+            'Dark Crush ist der Hauptschaden und wird durch Spinning Strike, Impactful Crush oder Marchutan’s Wrath freigeschaltet – darauf baut das Makro auf.',
+            'Spinning Strike: Schaden plus Schadens-Buff; seit dem Rework stapelt er Crit-Damage bis +30 %. Auto-Attack-Treffer senken seinen Cooldown.',
+            'Invokationen (Undefeated Mantra, Sprint Mantra) sind Permabuffs für die Gruppe, solange sie leuchten.',
+            'Power of the Storm vor dem Pull zünden – senkt die Cooldowns der noch nicht gedrückten Skills.',
+            'Stärken: beste Team-Synergie, gute Survivability, einfaches Pet-Farming dank Rushing Smash mit Reset. Schwächen: früh wenig Dark-Crush-Uptime, keine starken Heals und kein Battle-Rez.',
           ],
         },
         {
           type: 'callout',
           variant: 'primary',
           title: 'Frisch 45: Budget',
-          text: 'Nach dem Leveln ca. 230–250 Skillpunkte (ohne vollen Monolith). Keine Skills auf 12 oder 16 – deshalb fehlen Cooldown-Reduktionen, und Makro sowie Mana leiden. Das ist normal und wird mit mehr Punkten besser.',
+          text: 'Nach dem Leveln ca. 230–250 Skillpunkte (ohne vollen Monolith). Die Level-16-Spezialisierungen (z. B. Dark Crush ohne Cooldown) fehlen noch, deshalb leiden Makro und Mana. Das ist normal und wird mit mehr Punkten besser.',
         },
       ],
     },
@@ -32,112 +32,51 @@ export const chanterPveHybridDetails: BuildDetails = {
       title: 'Mana-Management',
       blocks: [
         {
-          type: 'text',
-          text: 'Am Anfang ist Mana beim Chanter ein massives Problem, später kaum noch. Anders als andere Klassen hat der Chanter nur zwei Stellschrauben dafür.',
-        },
-        {
           type: 'steps',
-          title: 'Fahrplan',
           items: [
-            'Auto-Attack auf Level 8 mit MP-Wiederherstellungs-Spezialisierung.',
-            'Inexorable Blow auf Level 8 mit MP-Spezialisierung (−20 % MP-Kosten).',
-            'Kampfmodus prüfen: Im Aion-1-Modus (Tab-Target) greift der Charakter in Cooldown-Lücken automatisch an und lädt so Mana auf – im Aion-2-Modus (Action Combat) nicht.',
-            'Im Makro Auto-Attack-Zeilen einplanen – im Aion-2-Modus unbedingt mehrfach.',
-            'Später (mehr Punkte, Nightmare) Inexorable Blow auf die Single-Target-Spezialisierung (+12 %) umstellen.',
+            'Onslaught (Auto-Attack, Linksklick) früh mit MP-Spezialisierung – später auf die Spezialisierungen aus der Tabelle unten umstellen.',
+            'Incandescent Blow früh mit MP-Spezialisierung (−20 % Kosten), später +12 % Single-Target (wichtig für Nightmare).',
+            'Aion-1-Modus (Tab-Target): Der Charakter greift in Cooldown-Lücken automatisch an und lädt Mana.',
+            'Linksklick in der Kombo dauerhaft halten – das ist Weaving (Animation Canceling) und Mana-Rückgewinnung zugleich.',
           ],
         },
         {
           type: 'callout',
           variant: 'warning',
           title: 'Ohne Mana kein Schaden',
-          text: 'Ohne Mana bleibt nur der schwache Auto-Attack. Wenn die Rotation stockt, bewusst ein paar Auto-Attacks spammen, bis das Mana wieder da ist.',
+          text: 'Wenn die Rotation stockt, bewusst ein paar Auto-Attacks spammen, bis das Mana wieder da ist.',
         },
       ],
     },
     {
       id: 'active',
-      title: 'Aktive Skills (frisch 45)',
+      title: 'Skills & Spezialisierungen',
       blocks: [
         {
-          type: 'text',
-          text: 'Setup für direkt nach dem Leveln. Die Spezialisierungen nennt das Video nur beim Namen, nicht nach Slot – deshalb stehen sie hier im Text. Einige Skill-Namen stammen aus dem Transkript und sollten im Spiel geprüft werden.',
+          type: 'table',
+          columns: ['Skill', 'Deutsch', 'Ziel', 'Spezialisierungen (Priorität)', 'Ab Lv.'],
+          rows: [
+            ['Dark Crush', 'Finsterbruch', '20', '5 (kein Cooldown, ab 16) → 4 (Durchschlag als 2. Folge) → 3 (garantierter Crit) – bis 16 zuerst Crit', '4'],
+            ['Spinning Strike', 'Wirbelschlag', '20', '1 (−5 s Cooldown) → 3 (+20 % Single-Target) → 2 (+10 % Heilungsverstärkung)', '14'],
+            ['Recuperation', 'Zauber der Genesung', '20', '4 (+5 % LP-Regeneration) → 1 (2× hintereinander, HoT) → 5 (−3 s)', '8'],
+            ['Onslaught (Auto-Attack)', 'Zerschmetterungsschlag', '20', '4 (−1 s Spinning-Strike-Cooldown) → 5 (Orkanschlag als 4. Folge) → 3 (Multi-Hit)', '1'],
+            ['Incandescent Blow', 'Gleißschlag', '16', '3 (+12 % Single-Target) → 5 (Block/Evasion ignorieren, Multi-Hit)', '1'],
+            ['Rushing Smash', 'Sturmschlag', '16', '4 (Cooldown-Reset bei Kill – Pet-Farming) → 5', '1'],
+            ['Defiance', 'Schockaufhebung', '16', '5 (+50 % PvE-Schadensresistenz) → 3 (10 % LP)', '16'],
+            ['Impactful Crush', 'Wuchtschlag', '12', '3 (in Bewegung) → 4 (+30 % Tempo)', '3'],
+            ['Heat Wave Blow', 'Hitzewellenschlag', '12', '4 (Multi-Hit) → 3', '7'],
+            ['Tremor Crush', 'Erschütterungsschlag', '12', '2 (+10 m Reichweite) → 3', '10'],
+            ['Wave Blow', 'Wellenschlag', '12', '4 (−15 % PvE-Schaden des Ziels) → 1', '12'],
+            ['Gust Rampage', 'Sturmraserei', '–', 'Spammen, wenn der Boss gestaggert ist – ab 16 gibt er viel Cooldown zurück', '5'],
+          ],
         },
         {
-          type: 'skills',
-          skills: [
-            {
-              name: 'Dark Crush',
-              priority: 'top',
-              target: 'max',
-              summary: 'Kern-Proc, ausgelöst durch Ranged-Skills. Spezialisierung: Critical Hit. HP-Regeneration ist unnötig (du heilst dich selbst).',
-            },
-            {
-              name: 'Spinning Strike',
-              priority: 'top',
-              summary: 'Höchster Schaden. Spezialisierung: −5 s Cooldown – extrem wichtig, damit er öfter kommt.',
-              note: 'Rework: Crit-Damage-Stacks bis +30 %; Auto-Attack-Crits senken seinen Cooldown um je 1 s.',
-            },
-            {
-              name: 'Recuperation',
-              priority: 'top',
-              target: 'max',
-              summary: 'Heilung. Spezialisierung: Continuous Cast – zweimal nutzbar, jeder Cast entfernt einen Debuff.',
-            },
-            {
-              name: 'Auto-Attack',
-              priority: 'high',
-              target: 'Lv. 8',
-              summary: 'Spezialisierung: MP-Wiederherstellung – wichtigste Mana-Quelle.',
-            },
-            {
-              name: 'Inexorable Blow',
-              priority: 'high',
-              target: 'Lv. 8',
-              summary: 'Erst MP-Spezialisierung (−20 % Kosten), später Single-Target-Schaden (+12 %, wichtig für Nightmare).',
-            },
-            {
-              name: 'Rushing Smash',
-              priority: 'mid',
-              target: 'Lv. 8',
-              summary: 'Gap-Closer, gut für Quests. Übrige Punkte laut Video hierhin und in Inexorable Blow.',
-            },
-            {
-              name: 'Impactful Crush',
-              priority: 'mid',
-              target: 'Lv. 8',
-              summary: 'Löst Dark Crush erneut aus – fester Bestandteil des Makros.',
-            },
-            {
-              name: 'Defiance',
-              priority: 'mid',
-              target: 'Lv. 8',
-              summary: 'Befreit aus CC; Level 8 wegen der HP-Wiederherstellung.',
-            },
-            {
-              name: 'Gust Rampage',
-              priority: 'mid',
-              target: 'Lv. 8 (nur Bosse)',
-              summary: 'Wirkt nur gegen Bosse. Random-Gruppe: HP-Absorb; mit Cleric in der Gruppe: MP-Wiederherstellung.',
-              note: 'Kein Boss-Content geplant? Resetten und Punkte sparen – zusammen mit dem Passive Raging Spell.',
-            },
-            {
-              name: 'Heaving Blow',
-              priority: 'low',
-              target: 'Lv. 8 (Rest-Punkte)',
-              summary: 'Anfangs überspringen, mit übrigen Punkten auf 8 für etwas mehr Quest-Schaden.',
-              note: 'Name aus Transkript („head blowing blow“) – im Spiel prüfen.',
-            },
-            {
-              name: 'Tremor Crush',
-              priority: 'low',
-              summary: 'Früh überspringen – kein hoher Schaden.',
-            },
-            {
-              name: 'Whirlwind Blow',
-              priority: 'low',
-              summary: 'PvP-Skill, für PvE überspringen.',
-              note: 'Name aus Transkript („way blow“) – im Spiel prüfen.',
-            },
+          type: 'list',
+          title: 'Hinweise',
+          items: [
+            'Dark Crush geht als Erstes auf 20.',
+            'Inexorable Blow aus dem aLuckyRO-Video entspricht Incandescent Blow (gleiche Spezialisierungen).',
+            'Gust Rampage: in Random-Gruppen HP-Absorb, mit Cleric in der Gruppe MP-Wiederherstellung (aLuckyRO).',
           ],
         },
       ],
@@ -147,30 +86,15 @@ export const chanterPveHybridDetails: BuildDetails = {
       title: 'Passive Skills',
       blocks: [
         {
-          type: 'skills',
-          skills: [
-            { name: 'Attack Preparation', priority: 'top', target: 'max', summary: 'Alle Punkte hier – wichtigstes Schadens-Passive.' },
-            { name: 'Wind Promise', priority: 'top', target: 'max', summary: 'Crit-Damage-Boost, ebenfalls maxen.' },
-            {
-              name: 'Inspiring Spell',
-              priority: 'high',
-              target: 'max',
-              summary: 'Viel Crit- und Perfect-Chance.',
-              note: 'Name aus Transkript („inex spell“) – im Spiel prüfen.',
-            },
-            {
-              name: 'Raging Spell',
-              priority: 'mid',
-              target: 'max (nur Bosse)',
-              summary: 'Wirkt mit Gust Rampage zusammen. Ohne Boss-Content resetten.',
-            },
-            {
-              name: 'Heil-/HP-Passive',
-              priority: 'mid',
-              summary: 'Erhöht Healing Boost. Kann gemaxt werden – bei PvE-Problemen Punkte lieber in die DPS-Passives.',
-            },
-            { name: 'Impact Hit', priority: 'low', summary: 'Reines PvP-Passive.' },
-            { name: 'Cross Guard', priority: 'low', summary: 'Laut Video „completely garbage“ – keine Punkte.' },
+          type: 'steps',
+          title: 'Reihenfolge',
+          items: [
+            'Attack Preparation (Angriffsvorbereitung)',
+            'Wind’s Promise (Gelübde des Windes) – Crit-Damage',
+            'Impact Hit (Schocktreffer)',
+            'Inspiring Spell (Zauber der Eingebung) – Crit- und Perfect-Chance',
+            'Earth’s Promise (Gelübde der Erde)',
+            'Danach: Blessing of Life, Protection Circle, Survival Willpower, Raging Spell – Cross Guard zuletzt',
           ],
         },
       ],
@@ -180,27 +104,23 @@ export const chanterPveHybridDetails: BuildDetails = {
       title: 'Stigmas',
       blocks: [
         {
-          type: 'steps',
-          title: 'Reihenfolge mit wenig Stigma Shards',
-          items: [
-            'Sprint Mantra auf 5 – Tempo brauchst du immer (+10 ist später okay).',
-            'Incandescent Blow auf 5 – Cooldown-Bonus; 30-s-Skill mit 20 m Reichweite.',
-            'Marchutan’s Wrath auf 5 – löst Dark Crush aus, +20 % Schaden auf Ziele.',
-            'Obliterate auf 1 – 50 Stagger-Schaden für die Gruppe.',
-            '6. Slot: Guardian Blessing (solo, dauerhafter HP-Buff) oder Power Storm (Gruppen-Buff).',
-            'Alle restlichen Shards in Undefeated Mantra – erst 10, dann 20.',
+          type: 'table',
+          title: 'Grund-Setup (4 Slots)',
+          columns: ['Stigma', 'Deutsch', 'Ziel', 'Warum'],
+          rows: [
+            ['Undefeated Mantra', 'Invokation der Unbesiegbarkeit', '20', 'Permabuff für die Gruppe (u. a. +100 Accuracy). Stackt nicht mit Light of Protection vom Cleric.'],
+            ['Power of the Storm', 'Hoheit des Sturmwinds', '20', 'Vor jedem Pull – senkt die Cooldowns. Stackt nicht mit Earth’s Punishment vom Cleric.'],
+            ['Sprint Mantra', 'Invokation des Sprints', '15', 'Bewegungstempo für die Gruppe'],
+            ['Marchutan’s Wrath', 'Marchutans Zorn', '5', 'Schaltet Dark Crush frei, +20 % Schaden aufs Ziel'],
           ],
         },
         {
-          type: 'skills',
-          skills: [
-            { name: 'Undefeated Mantra', priority: 'top', target: '10 → 20', summary: '+100 Accuracy für dich und die Gruppe. Das Stigma, das du am höchsten ziehst.' },
-            { name: 'Marchutan’s Wrath', priority: 'high', target: 'Lv. 5', summary: 'Kombo mit Dark Crush, +20 % Schaden auf Ziele.' },
-            { name: 'Incandescent Blow', priority: 'high', target: 'Lv. 5', summary: 'Cooldown-Bonus ab +5; 30 s CD, 20 m Reichweite.', note: 'Name aus Transkript („freshen blow“) – im Spiel prüfen.' },
-            { name: 'Sprint Mantra', priority: 'high', target: 'Lv. 5', summary: 'Bewegungstempo für die Gruppe.' },
-            { name: 'Obliterate', priority: 'mid', target: 'Lv. 1', summary: '50 Stagger-Schaden bei Stagger-Phasen.' },
-            { name: 'Guardian Blessing', priority: 'mid', summary: 'Dauerhafter HP-Buff – beste Wahl solo.' },
-            { name: 'Power Storm', priority: 'mid', summary: 'Gruppen-Buff (ca. 1,5–2 min CD) – für Gruppencontent statt Guardian Blessing.' },
+          type: 'list',
+          title: 'Tauschen',
+          items: [
+            'Ohne Cleric im Team statt Sprint Mantra: Guardian Blessing (dauerhafte Tankiness).',
+            'Bei hartem Content statt Sprint Mantra: Focused Defense (aktiver Block, der Schaden negiert).',
+            'Mit wenig Shards: erst alle vier auf 5, dann Undefeated Mantra hochziehen.',
           ],
         },
       ],
@@ -224,15 +144,11 @@ export const chanterPveHybridDetails: BuildDetails = {
               'Attack Bonus; Pfad über Attack Preparation +1 Richtung Attack Speed; danach Dark-Crush- und Spinning-Strike-Perfection-Linie; HP/Crit/MP und Crit-Damage-Knoten',
               'Cross Guard, Cooldown-Reduction-Pfad, Blessing (Healing Boost)',
             ],
-            [
-              'Zikel',
-              'Damage-Boost-Linie über Inexorable Blow und Rushing Smash',
-              'Impact Hit (Double Chance); Tremor Crush – wenn nötig den günstigeren Knoten nehmen',
-            ],
+            ['Zikel', 'Damage-Boost-Linie über Incandescent Blow und Rushing Smash', 'Tremor Crush – wenn nötig den günstigeren Knoten nehmen'],
             [
               'Vaizel',
-              'Critical-Damage-Boost-Linien, Wind Promise, Rushing Smash',
-              'Blessing of Life, Whirlwind Blow, Defense-Knoten, Impactful/Tremor-Crush-Linien',
+              'Critical-Damage-Boost-Linien, Wind’s Promise, Rushing Smash',
+              'Blessing of Life, Wave Blow, Defense-Knoten, Impactful/Tremor-Crush-Linien',
             ],
             ['Triniel', 'Kürzester Weg zu Attack Preparation', 'Multi-Hit-Chance – früh nicht nötig'],
             ['Ariel / Asphel', 'Nur offensive Knoten: Damage Boost', 'Damage Tolerance und andere defensive Knoten'],
@@ -247,11 +163,7 @@ export const chanterPveHybridDetails: BuildDetails = {
         {
           type: 'list',
           title: 'Standard-Bücher',
-          items: [
-            'Regionalquests – eine der Hauptquellen.',
-            'Exploration-Dungeons auf der Heimatkarte.',
-            'Dieselben Dungeons im Feindgebiet.',
-          ],
+          items: ['Regionalquests – eine der Hauptquellen.', 'Exploration-Dungeons auf der Heimatkarte.', 'Dieselben Dungeons im Feindgebiet.'],
         },
         {
           type: 'list',
@@ -272,60 +184,60 @@ export const chanterPveHybridDetails: BuildDetails = {
     },
     {
       id: 'macro',
-      title: 'Makro',
+      title: 'Hotbar, Makro & Rotation',
       blocks: [
         {
-          type: 'steps',
-          title: 'Einrichten',
-          items: [
-            'Einstellungen → Tastenbelegung → Gameplay → Makro: Taste (Tastatur oder Maus) belegen.',
-            'Skill-Fenster → Makro-Reiter → Zeilen hinzufügen. Eine aktive Zeile führt alle Skills darin nacheinander aus.',
-            'Ziel wählen: im Action-Combat-Modus Rechtsklick, im Aion-1-Modus Tab.',
-            'Verzögerung: Ping < 50 → 10 ms; Ping ≥ 80–100 → 40–50 ms.',
-            'Kontrolle: „Schatten“ am Charakter bedeuten, dass der Animation Cancel funktioniert.',
-          ],
-        },
-        {
           type: 'table',
-          columns: ['#', 'Skill', 'Zweck'],
+          title: 'Hotbar',
+          columns: ['Taste', 'Belegung'],
           rows: [
-            ['1', 'Dark Crush (+ Spinning Strike)', 'Start, Proc-Kette'],
-            ['2', 'Rushing Smash', 'Überbrückt den Dark-Crush-Cooldown'],
-            ['3', 'Impactful Crush', 'Löst Dark Crush erneut aus'],
-            ['4', 'Dark Crush', ''],
-            ['5', 'Marchutan’s Wrath', 'Löst Dark Crush erneut aus'],
-            ['6', 'Dark Crush', ''],
-            ['7', 'Dark Crush', 'Doppelt, damit der Proc nicht verloren geht'],
-            ['8', 'Auto-Attack', 'Mana'],
+            ['1 / 2', 'Rushing Smash / Tremor Crush – Bewegung und Dashes'],
+            ['3', 'Recuperation – Heilung und Debuff-Entferner'],
+            ['4', 'Power of the Storm – vor dem Pull'],
+            ['5', 'Spinning Strike – Schaden plus Buff, gedrückt halten'],
+            ['7 / 8', 'Sprint Mantra / Undefeated Mantra – müssen leuchten'],
+            ['R', 'Makro-Kette: Dark Crush → Impactful Crush → Marchutan’s Wrath → Incandescent Blow'],
+            ['E', 'Gust Rampage – bei Stagger'],
+            ['Linksklick', 'Onslaught – Weaving und Mana, dauerhaft halten'],
+            ['Rechte Maustaste', 'Makro-Taste'],
           ],
         },
         {
-          type: 'text',
-          text: 'Die erste Runde ist oft nicht perfekt, ab der zweiten steuern die Cooldowns das Makro sauber. Ideal von Hand: Spinning Strike → Dark Crush → auf Rushing Smash warten → Impactful Crush → Auto-Attacks → Dark Crush.',
+          type: 'steps',
+          title: 'Ablauf',
+          items: [
+            'Beide Invokationen aktivieren, wenn sie nicht schon leuchten.',
+            'Power of the Storm vor dem Pull zünden.',
+            'Spinning Strike gedrückt halten für Schaden und Buff.',
+            'Linksklick (Onslaught) gedrückt halten.',
+            'Makro-Taste (rechte Maustaste) gedrückt halten.',
+          ],
         },
         {
-          type: 'callout',
-          variant: 'warning',
-          title: 'Stand nach dem Dark-Crush-Rework',
-          text: 'Im Rework-Video nutzt derselbe Creator nur zwei Zeilen: Zeile 1 die Dark-Crush-Kette, Zeile 2 Spinning Strike + Inexorable Blow. Beide Varianten ausprobieren und nach Ping anpassen.',
+          type: 'list',
+          title: 'Drei typische Fehler',
+          items: [
+            'Ohne Buffs pullen: Power of the Storm muss vor dem Pull laufen, sonst bleiben die Cooldowns lang.',
+            'Invokationen vergessen: Beide müssen leuchten.',
+            'Gust Rampage liegen lassen: Bei Stagger spammen.',
+          ],
+        },
+        {
+          type: 'list',
+          title: 'Einrichten & Alternative',
+          items: [
+            'Einstellungen → Tastenbelegung → Gameplay → Makro: Taste belegen. Verzögerung 10 ms, bei Ping ab ca. 80 ms eher 40–50 ms.',
+            'aLuckyRO nutzte frisch 45 ein längeres Makro: Dark Crush → Rushing Smash → Impactful Crush → Dark Crush → Marchutan’s Wrath → 2× Dark Crush → Auto-Attack. Hilft, solange Dark Crush noch einen Cooldown hat.',
+          ],
         },
       ],
     },
     {
       id: 'rotation',
-      title: 'Rotation & Heilung',
+      title: 'Heilung',
       blocks: [
         {
           type: 'list',
-          title: 'Opener (GEGEBASE)',
-          items: [
-            'Undefeated Mantra → Spinning Strike → Dark Crush → Incandescent Blow → Bursting Blow → Impactful Crush → Onslaught-Kette.',
-            'Sustain: Spinning Strike → Dark Crush → große Burst-Skills → Impactful Crush → Filler.',
-          ],
-        },
-        {
-          type: 'list',
-          title: 'Heil-Regel',
           items: [
             'Kleiner Schaden: Recuperation.',
             'Ein Ziel stark verletzt: Healing Touch.',
@@ -352,7 +264,7 @@ export const chanterPveHybridDetails: BuildDetails = {
           type: 'list',
           items: [
             'Blessing of Life skaliert mit Attack Power – Attack hilft also auch dem Support.',
-            'Gear-Reihenfolge: Staff → Core → Abyss → Accessoires → Arcana → Daevanion → Seal.',
+            'Gear-Reihenfolge: Staff → Core → Abyss → Accessoires → Arcana → Daevanion → Seal. Den Stab craftest du über Handicrafting.',
           ],
         },
       ],

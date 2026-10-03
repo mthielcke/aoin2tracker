@@ -2,8 +2,8 @@ import type { BuildDetails } from '../types';
 
 export const rangerPveDpsDetails: BuildDetails = {
   intro:
-    'Der Ranger ist ein Glaskanonen-Fernkämpfer: Wirst du erwischt, bist du tot – also immer in Bewegung bleiben. Frisch auf 45 sind Mana und Skillpunkte knapp; der Build unterscheidet sich deutlich vom Mid- und Endgame. Die zwei wichtigsten Stats sind Combat Speed und Multi-Hit-Chance.',
-  sources: ['yt-ranger-ultimate', 'yt-ranger-early', 'yt-ranger-daevanion', 'gege-ranger'],
+    'Der Ranger spielt um einen Skill: Deadshot ist ein Charge-Skill, der wichtigste im Kit, und muss immer bis Max geladen werden. Davor kommen die Buffs. Er ist ein Glaskanonen-Fernkämpfer – früh schwach, stark gear-abhängig und mana-hungrig. Grundlage dieser Seite ist der Global-Guide von Wakayashi, ergänzt um die Einsteiger-Videos.',
+  sources: ['wakayashi-ranger', 'yt-ranger-ultimate', 'yt-ranger-early', 'yt-ranger-daevanion', 'gege-ranger'],
   sections: [
     {
       id: 'core',
@@ -12,18 +12,18 @@ export const rangerPveDpsDetails: BuildDetails = {
         {
           type: 'list',
           items: [
-            'Snipe ist dein Auto-Attack: Er macht Schaden und lädt Mana.',
-            'Deadshot ist dein höchster Einzelschaden (voll aufgeladen ca. 10–12k).',
-            'Multi-Hit ist beim Ranger „alles“: Viele schnelle Treffer statt eines großen Skills.',
+            'Deadshot (Zielpfeil) immer bis Max laden und auf Cooldown nutzen – der wichtigste Schaden im Kit.',
+            'Vor dem Pull buffen: Vaizel’s Authority, Supporting Fire und Bow of Blessing, dann Marking Shot und Gale Arrow für weitere Buff-Stacks.',
+            'Danach Linksklick (Snipe) und Makro-Taste halten, Marking Shot von Hand nachlegen, sobald der Buff ausläuft.',
             'Combat Speed und Multi-Hit-Chance bestimmen Gear, Accessoires, Waffe und Daevanion.',
-            'Bewegung ist deine Verteidigung – Spezialisierungen für Mobilität und HP-Absorb halten dich am Leben.',
+            'Stärken: hohe Reichweite, mobil (Deadshot auch in Bewegung), bester Open-World-Farmer, gute CC. Schwächen: früh sehr schwach, mana-hungrig, nur ein Defensiv-Cooldown.',
           ],
         },
         {
           type: 'callout',
           variant: 'primary',
-          title: 'Frisch 45: Skill-Level',
-          text: 'Drei Kern-Skills mit eigenen Punkten auf 10, alles andere auf 8. Höhere Level kommen später über Daevanion und Arcana.',
+          title: 'Auf Global gehen nur vier Skills auf 20',
+          text: 'Deadshot, Gale Arrow, Drill Dart und Snipe. Tempest Shot, Burst Arrow und Defiance bleiben auf 16, der Rest auf 12.',
         },
       ],
     },
@@ -32,94 +32,40 @@ export const rangerPveDpsDetails: BuildDetails = {
       title: 'Mana & Kampfmodus',
       blocks: [
         {
-          type: 'text',
-          text: 'Mit ca. 2,8k Mana frisch auf 45 ist der Ranger extrem mana-hungrig – vor allem der AoE-Spam-Skill leert den Balken sehr schnell.',
-        },
-        {
-          type: 'steps',
+          type: 'list',
           items: [
-            'Snipe: Spezialisierung MP-Wiederherstellung.',
-            'AoE-Spam-Skill (trifft bis zu 4 Ziele): Spezialisierung −20 % MP-Kosten.',
-            'Aion-1-Modus (Tab-Target) nutzen: Nach jedem Skill schießt der Charakter automatisch Snipe und lädt Mana. Im Aion-2-Modus (Action Combat) bleibt er stehen.',
-            'Deshalb muss Snipe im Tab-Target-Modus nicht ins Makro.',
+            'Snipe ist dein Auto-Attack: Schaden plus Mana. Linksklick zusammen mit der Makro-Taste halten – das ist auch das Weaving (Animation Canceling).',
+            'Aion-1-Modus (Tab-Target): Nach jedem Skill schießt der Charakter automatisch Snipe und lädt Mana. Im Aion-2-Modus bleibt er stehen.',
+            'Beim Leveln hilft auf Snipe die MP-Spezialisierung; später wechselst du auf die Spezialisierungen unten.',
           ],
         },
       ],
     },
     {
       id: 'active',
-      title: 'Aktive Skills (frisch 45)',
+      title: 'Skills & Spezialisierungen',
       blocks: [
         {
-          type: 'text',
-          text: 'Das Video zeigt viele Skills nur im Bild. Namen ohne Nennung sind aus GEGEBASE zugeordnet und sollten im Spiel geprüft werden.',
+          type: 'table',
+          columns: ['Skill', 'Deutsch', 'Ziel', 'Spezialisierungen (Priorität)', 'Ab Lv.'],
+          rows: [
+            ['Deadshot', 'Zielpfeil', '20', '2 (+30 % Fähigkeitstempo) → 4 (Block/Evasion ignorieren, Multi-Hit) → 5 (Zusatzschaden)', '14'],
+            ['Gale Arrow', 'Orkanpfeil', '20', '4 (Kampftempo + PvE-Schaden) → 5 (−10 s Cooldown) → 3 (in Bewegung)', '7'],
+            ['Drill Dart', 'Bohrpfeil', '20', '5 (+1 Zusatzaktivierung) → 3 (+20 % Tempo) → 4 (garantierter Multi-Hit)', '4'],
+            ['Snipe', 'Scharfschuss', '20', '4 (−1 s Deadshot-Cooldown) → 5 (Sturmpfeil als 4. Folge) → 3 (+50 % Multi-Hit)', '1'],
+            ['Tempest Shot', 'Schnellschuss', '16', '3 (+12 % Single-Target) → 2 (+10 % Skill-Crit)', '1'],
+            ['Burst Arrow', 'Sprengpfeil', '16', '4 (+20 % Single-Target) → 3 (in Bewegung)', '10'],
+            ['Defiance', 'Schockaufhebung', '16', '5 (+50 % PvE-Schadensresistenz) → 3 (20 % LP)', '16'],
+            ['Marking Shot', 'Markierungsschuss', '12', '1 (+5 % Perfektion) → 3 (+5 s Dauer)', '3'],
+            ['Snare Shot', 'Schlingenpfeil', '12', '3 (in Bewegung) → 2 (+20 % Tempo)', '1'],
+            ['Explosion Trap', 'Explosionsfalle', '12', '1 (Gegner heranziehen) → 3 (Zusatzschaden nach 3 s)', '8'],
+            ['Suppressing Arrow', 'Unterdrückungspfeil', '12', '3 (+20 % Tempo) → 1 (+50 % Multi-Hit)', '12'],
+            ['Arrow Scattershot', 'Pfeilhagel', '–', 'Spammen, wenn der Boss gestaggert ist – ab Level 16 gibt er viel Cooldown zurück', '5'],
+          ],
         },
         {
-          type: 'skills',
-          skills: [
-            {
-              name: 'Deadshot',
-              priority: 'top',
-              summary: 'Aufgeladener Schuss, höchster Schaden. Spezialisierung: +30 % Aufladegeschwindigkeit.',
-              note: 'Im Makro-Setup manuell drücken.',
-            },
-            {
-              name: 'Snipe',
-              priority: 'top',
-              summary: 'Auto-Attack, Single-Target. Spezialisierung: MP-Wiederherstellung.',
-            },
-            {
-              name: 'AoE-Spam-Skill (Rapid Fire)',
-              priority: 'top',
-              summary: 'Trifft bis zu 4 Gegner, wird ständig gespammt. Spezialisierung: −20 % MP-Kosten.',
-              note: 'Name im Video nicht genannt – vermutlich Rapid Fire.',
-            },
-            {
-              name: 'Explosiv-Skill (Bodenziel)',
-              priority: 'high',
-              summary: 'Wird platziert, explodiert und explodiert nach 3 s erneut. Spezialisierung: Extra-Explosion nach 3 s. Stark in Kombination mit den Stigmas.',
-              note: 'Name im Video nicht genannt – vermutlich Explosive Arrow bzw. Explosion Trap.',
-            },
-            {
-              name: 'Gale Arrow',
-              priority: 'high',
-              summary: 'Gibt dir den Buff „Gale“: +7 % Combat Speed sowie PvE/PvP Damage Boost (15 s). Spezialisierung: +5 s Dauer.',
-              note: 'Zuordnung aus Transkript – im Spiel prüfen.',
-            },
-            {
-              name: 'Drill Dart',
-              priority: 'high',
-              summary: 'Chance auf HP-Absorb – beim Solo-Farmen deine Heilung. Löst nur nach einem Crit aus.',
-            },
-            {
-              name: 'Stagger-Skill',
-              priority: 'mid',
-              summary: 'Aktiv, wenn der Boss gestaggert ist. Spezialisierung: HP-Absorb – danach bist du wieder voll.',
-            },
-            {
-              name: 'Root-/Snare-Skill',
-              priority: 'mid',
-              summary: 'Wenig Schaden, 50 s Cooldown. Spezialisierung: Mobilität (bewegen statt stehen).',
-            },
-            {
-              name: 'Defiance',
-              priority: 'mid',
-              target: 'Lv. 8',
-              summary: 'Befreit aus CC. Spezialisierung: 20 % HP-Wiederherstellung.',
-            },
-            {
-              name: 'Marking Shot',
-              priority: 'low',
-              target: 'Lv. 1',
-              summary: 'Früh reicht Level 1. Erhöht Perfect-Chance und Crit und ist deshalb trotzdem Teil der ersten Makro-Zeile.',
-              note: 'Laut GEGEBASE im Endgame S-Tier (Precision-Fenster für Deadshot) – dann hochziehen.',
-            },
-            {
-              name: 'Single-Target-Skill (Durchschnitt)',
-              priority: 'low',
-              summary: 'Kein PvE-Skill, durchschnittlicher Cooldown, Stats nicht spielentscheidend – so lassen.',
-            },
-          ],
+          type: 'text',
+          text: 'Solo beim Farmen kann auf Drill Dart der HP-Absorb helfen (aLuckyRO) – für Gruppen-Content zurück auf die Schadens-Spezialisierungen.',
         },
       ],
     },
@@ -128,17 +74,16 @@ export const rangerPveDpsDetails: BuildDetails = {
       title: 'Passive Skills',
       blocks: [
         {
-          type: 'skills',
-          skills: [
-            { name: 'Focused Eye', priority: 'top', summary: 'Als Erstes leveln – auch für PvP extrem wichtig.' },
-            {
-              name: 'Hunter’s Resolve',
-              priority: 'top',
-              summary: 'Critical Damage Boost – das zweite Kern-Passive.',
-              note: 'Name aus Transkript („hunter reservation“) – im Spiel prüfen.',
-            },
-            { name: 'Wind Vigor', priority: 'low', summary: 'Für PvE nicht wichtig.' },
-            { name: 'Revitalization', priority: 'low', summary: 'Für PvE nicht wichtig.', note: 'Name aus Transkript – im Spiel prüfen.' },
+          type: 'steps',
+          title: 'Reihenfolge',
+          items: [
+            'Focused Eye (Fokussiertes Auge)',
+            'Hunter’s Resolve (Entschlossenheit des Jägers)',
+            'Hunter’s Soul (Jägerseele)',
+            'Concentrated Fire (Fokussiertes Feuer)',
+            'Rooting Eye (Fesselndes Auge)',
+            'Vigilant Eye (Achtsames Auge)',
+            'Danach: Melee Fire, Wind Vigor, Revitalization Contract, Unyielding Resolve',
           ],
         },
       ],
@@ -148,110 +93,73 @@ export const rangerPveDpsDetails: BuildDetails = {
       title: 'Stigmas',
       blocks: [
         {
-          type: 'callout',
-          variant: 'warning',
-          title: 'Nur für PvE und offenes PvP',
-          text: 'Für Arena und 1v1 braucht es einen ganz anderen Build mit manueller Bewegung (Silence, Höhe, Knockdown). Als Neueinsteiger erstmal ignorieren.',
+          type: 'table',
+          title: 'Grund-Setup (4 Slots)',
+          columns: ['Stigma', 'Deutsch', 'Ziel'],
+          rows: [
+            ['Vaizel’s Authority', 'Vaizels Hoheit', '20'],
+            ['Bow of Blessing', 'Segensbogen', '20'],
+            ['Supporting Fire', 'Unterstützungsfeuer', '15'],
+            ['Griffon Arrow', 'Greifenpfeil', '5'],
+          ],
         },
         {
           type: 'text',
-          text: 'Der Spiel-Tutor empfiehlt ein anderes Start-Stigma – einfach kostenlos resetten und dem Build folgen.',
+          text: 'Musst du mehr aushalten, kann Mother Nature (Defense + Lebensraub) den vierten Slot übernehmen.',
         },
         {
-          type: 'skills',
-          skills: [
-            {
-              name: 'Vaizel’s Authority',
-              priority: 'top',
-              summary: 'Buff: mehr Angriffsschaden und Perfect-Chance (Waffe trifft mit Maximalschaden). Laut Video 12 s, +20 % Schaden.',
-              note: 'Name aus Transkript („Verizon authority“) – im Spiel prüfen.',
-            },
-            {
-              name: 'Crit-/Multi-Hit-Buff',
-              priority: 'top',
-              summary: 'Zweiter Buff: Crit und Multi-Hit-Chance – für den Ranger essenziell.',
-              note: 'Name im Video nicht genannt.',
-            },
-            {
-              name: 'Mother Nature',
-              priority: 'high',
-              summary: 'PvE-/PvP-Defense plus Lebensraub – du heilst dich beim Angreifen. Die sichere Wahl für PvE.',
-            },
-            {
-              name: 'Arrow Storm',
-              priority: 'mid',
-              summary: 'Alternative zu Mother Nature: mehr Schaden, dafür kein Sustain.',
-            },
-            {
-              name: 'Exploding Arrow',
-              priority: 'high',
-              summary: 'Wichtiger Schadens-Stigma, kombiniert mit dem Explosiv-Skill.',
-            },
-            {
-              name: 'Supporting Fire',
-              priority: 'high',
-              summary: 'Beschwörung: trifft bei deinen Angriffen mit 50 % Chance mit und gibt Extra-HP.',
-            },
-            {
-              name: 'Survival-Stigma (PvE Damage Tolerance)',
-              priority: 'mid',
-              summary: 'Erhöht PvE Damage Tolerance – wichtig zum Überleben.',
-              note: 'Name im Video nicht genannt.',
-            },
-          ],
+          type: 'callout',
+          variant: 'warning',
+          title: 'Nur für PvE und offenes PvP',
+          text: 'Für Arena und 1v1 braucht es einen anderen Build mit manueller Bewegung (Silence, Höhe, Knockdown). Als Neueinsteiger erstmal ignorieren.',
         },
       ],
     },
     {
       id: 'macro',
-      title: 'Makro',
+      title: 'Hotbar, Makro & Rotation',
       blocks: [
-        {
-          type: 'steps',
-          title: 'Einrichten',
-          items: [
-            'Einstellungen → Tastenbelegung → Gameplay → Makro: Taste belegen (Tastatur- oder Maustaste).',
-            'Skill-Fenster (K) → Makro-Reiter → Zeilen hinzufügen.',
-            'Verzögerung: Ping < 50 → 10 ms; Ping 80–100+ → 40–50 ms.',
-            '„Schatten“ am Charakter zeigen, dass der Animation Cancel passt. Mit wenig Combat Speed (frisch ca. 34 %) sieht man sie kaum – nach ein paar Tagen nachjustieren.',
-          ],
-        },
         {
           type: 'table',
-          columns: ['Zeile', 'Inhalt', 'Zweck'],
+          title: 'Hotbar',
+          columns: ['Taste', 'Belegung'],
           rows: [
-            ['1', 'Buffs (Multi-Hit, Perfect) → Marking Shot → Gale Arrow → Drill Dart → Tempest Shot', 'Buff-Kette; Marking Shot gibt Crit und Perfect-Chance, Drill Dart löst nach Crits aus'],
-            ['2', 'Root-Skill → Skills mit Bonus gegen gerootete Ziele', 'Root-Kette für mehr Schaden'],
-            ['3', 'Weitere Skill-Kette', 'Füllt Cooldowns'],
-            ['Manuell', 'Explosiv-Skill, Schadens-Buff-Stigma, Deadshot, Heilung', 'Hohe Priorität, besser gezielt drücken'],
+            ['1', 'Marking Shot – immer von Hand, nie ins Makro (lange Animation)'],
+            ['2', 'Deadshot – auf Max laden'],
+            ['3', 'Buff-Kette: Vaizel’s Authority → Supporting Fire → Bow of Blessing'],
+            ['5', 'Gale Arrow → Griffon Arrow → Snare Shot'],
+            ['7 / 8', 'Explosion Trap / Suppressing Arrow'],
+            ['R', 'Drill Dart → Burst Arrow → Tempest Shot (Hauptschaden)'],
+            ['E', 'Arrow Scattershot – bei Stagger'],
+            ['Linksklick', 'Snipe – Weaving und Mana'],
+            ['Rechte Maustaste', 'Makro-Taste: löst die Ketten auf R, 3 und 5 aus'],
           ],
         },
         {
-          type: 'text',
-          text: 'Mehr Schaden gewünscht? Eine weitere Makro-Zeile hinzufügen und ein Stigma mit Cooldown einbauen.',
-        },
-      ],
-    },
-    {
-      id: 'combos',
-      title: 'Kombos & Rotation',
-      blocks: [
-        {
-          type: 'list',
-          title: 'Aus dem Video (frisch 45)',
+          type: 'steps',
+          title: 'Ablauf',
           items: [
-            'Burst (Einzelziel oder Gruppe): Schadens-Buff (12 s) → stärkster Skill → Falle → Explosionen spammen.',
-            'Einzelziel simpel: Gegner rooten und draufschießen.',
+            'Vor dem Pull Slot 3 durchdrücken: Vaizel’s Authority, Supporting Fire und Bow of Blessing.',
+            'Marking Shot und Gale Arrow für etwas Schaden und weitere Buff-Stacks.',
+            'Deadshot bis Max laden und abfeuern.',
+            'Linksklick und Makro-Taste (rechte Maustaste) gedrückt halten. Marking Shot von Hand nachlegen, sobald der Buff über der Manaleiste ausläuft.',
+            'Deadshot separat drücken, sobald er wieder bereit ist.',
           ],
         },
         {
           type: 'list',
-          title: 'Endgame (GEGEBASE)',
+          title: 'Drei typische Fehler',
           items: [
-            'Opener: Marking Shot → Deadshot → Burst Arrow → Snipe → Explosive Arrow.',
-            'Sustain: Snipe → Rapid Fire → Spiral Arrow → Burst Arrow → Gale Arrow → Drill Dart.',
-            'Deadshot nur im Precision-Fenster nutzen; Marking Shot nicht in Unverwundbarkeitsphasen verschwenden.',
+            'Deadshot nicht voll laden – er muss immer bis Max.',
+            'Marking Shot ins Makro packen – die Animation ist zu lang.',
+            'Ohne Buffs schießen – erst Slot 3, dann Marking Shot und Gale Arrow, dann Deadshot.',
           ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Verzögerung',
+          text: 'Wakayashi nutzt 10 ms. Bei Ping ab ca. 80 ms eher 40–50 ms. Mit wenig Combat Speed (frisch ca. 34 %) nach ein paar Tagen nachjustieren.',
         },
       ],
     },
@@ -289,16 +197,12 @@ export const rangerPveDpsDetails: BuildDetails = {
       title: 'Stats & Gear',
       blocks: [
         {
-          type: 'table',
-          columns: ['Quelle', 'Priorität'],
-          rows: [
-            ['Video (Gear, Accessoires, Waffe)', 'Combat Speed und Multi-Hit-Chance'],
-            ['GEGEBASE (Endgame)', 'Crit → Attack/Weapon Damage → Precision-Boni → Damage Amp → Accuracy'],
-          ],
-        },
-        {
           type: 'list',
-          items: ['Gear-Reihenfolge: Bogen → Offensiv-Teile → Accessoires → Abyss → Arcana/Daevanion → Seal.'],
+          items: [
+            'Combat Speed und Multi-Hit-Chance auf Gear, Accessoires und Waffe.',
+            'Gear-Reihenfolge: Bogen → Offensiv-Teile → Accessoires → Abyss → Arcana/Daevanion → Seal.',
+            'Den Bogen craftest du über Handicrafting.',
+          ],
         },
       ],
     },
