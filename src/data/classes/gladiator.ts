@@ -87,7 +87,7 @@ export const gladiator: ClassDef = {
                 {
                   id: 'spec-rending-5',
                   text: 'Rending Blow Spez. 5 (rot): MP bei Crit – so früh wie möglich',
-                  detail: 'Löst das Mana-Problem; danach kann Keen Strike aus der Rotation. Priorität: Spez. 3 (Bewegen) → 5 (MP bei Crit) → 4 (Single-Target).',
+                  detail: 'Löst das Mana-Problem. Keen Strike bleibt trotzdem im Weaving (Spez. 4: Ruinous-Blow-Cooldown). Priorität: Spez. 3 (Bewegen) → 5 (MP bei Crit) → 4 (Single-Target).',
                   sources: ['yt-glad-montu', 'wakayashi-glad', 'yt-glad-arthars'],
                 },
                 {
@@ -196,7 +196,7 @@ export const gladiator: ClassDef = {
                 {
                   id: 'macro',
                   text: 'Makro (rechte Maustaste halten): Lunge Stance → Ruinous Blow → Rage Burst, je 10 ms',
-                  detail: 'Bis ca. Level 16 zusätzlich Linksklick (Keen Strike) halten – Mana ist knapp und Overhead Slam läuft noch nicht dauerhaft. Danach nur noch das Makro. Immer von vorn angreifen.',
+                  detail: 'Dazu Linksklick (Keen Strike) halten – Mana und −1 s Ruinous-Blow-Cooldown pro Treffer. Immer von vorn angreifen.',
                   sources: ['wakayashi-glad'],
                 },
                 {
@@ -398,7 +398,7 @@ export const gladiator: ClassDef = {
                 },
                 {
                   id: 'weave-keen',
-                  text: 'Keen Strike zwischen Rending Blows einweben, solange Mana fehlt',
+                  text: 'Keen Strike dauerhaft zwischen Rending Blows einweben – Mana und ab Level 12 Ruinous-Blow-Cooldown',
                   detail: 'Links-, Rechtsklick – der Rechtsklick bricht die Animation ab.',
                   sources: ['yt-glad-montu'],
                 },
@@ -435,7 +435,7 @@ export const gladiator: ClassDef = {
                 {
                   id: 'core-16',
                   text: 'Danach beide auf 16 – Overhead Slam ohne Cooldown, Rending Blow MP bei Crit',
-                  detail: 'Rending Blow Spez. 5 löst das Mana-Problem; danach kann Keen Strike aus der Rotation.',
+                  detail: 'Rending Blow Spez. 5 löst das Mana-Problem. Keen Strike bleibt im Weaving – wegen Spez. 4 (Ruinous-Blow-Cooldown).',
                   sources: ['yt-glad-montu'],
                 },
               ],

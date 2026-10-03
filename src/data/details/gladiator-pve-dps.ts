@@ -59,7 +59,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
             ['Defiance', '16', 'Befreit aus CC'],
             ['Crushing Wave', '12', 'HP-Absorb + Cooldown-Reset bei Crit – zum Farmen, nicht im Boss-Kampf'],
             ['Ankle Slice', '12', 'Reichweite + Block/Evasion ignorieren – kein Combo'],
-            ['Keen Strike', '12', 'Nur fürs Leveln – später nicht mehr einweben'],
+            ['Keen Strike', '12', 'Spez. 4: −1 s Ruinous-Blow-Cooldown pro Treffer – bleibt im Weaving'],
             ['Aerial Snare', 'max. 12', 'Im PvE kaum genutzt, nicht ins Makro'],
             ['Sword Aura Rampage', '–', 'Kein Ziel-Level'],
           ],
@@ -86,7 +86,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
             'Auf Global sind Soul-Bind-Stats wie Angriffstempo, Laufgeschwindigkeit, Might und Precision meist wertvoller als Passiv-Level.',
             'Stärkste Schadens-Stats: Weapon Damage Boost und Front Damage Boost (der Gladiator schlägt von vorn). Accuracy ist wichtig, weil Bosse von vorn parieren.',
             'Arcana: Primal Vigor als 4er-Set – oder 3er-Set plus Magic Armor als 2er-Set, wenn das Mana nicht reicht. Karten mit dem Illusion-Stat (Cooldown-Reduktion) nie für den Gladiator.',
-            'Makro (rechte Maustaste halten): Lunge Stance → Ruinous Blow → Rage Burst, je 10 ms. Bis ca. Level 16 zusätzlich Linksklick (Keen Strike) halten, danach nur noch das Makro.',
+            'Makro (rechte Maustaste halten): Lunge Stance → Ruinous Blow → Rage Burst, je 10 ms. Dazu Linksklick (Keen Strike) halten – bringt Mana und senkt den Cooldown von Ruinous Blow.',
             'Stigma Shards: Shugo-Shop, Nightmare-Shop und Abyss-Shop (auf Global mit gestaffelten Preisen).',
           ],
         },
@@ -98,17 +98,17 @@ export const gladiatorPveDpsDetails: BuildDetails = {
       blocks: [
         {
           type: 'text',
-          text: 'Früh hat der Gladiator echte Mana-Probleme. Die Lösung hat zwei Stufen: erst Keen Strike einweben, später Rending Blow mit der roten Spezialisierung – danach ist Mana praktisch kein Thema mehr.',
+          text: 'Früh hat der Gladiator echte Mana-Probleme. Rending Blow mit der roten Spezialisierung (Spez. 5, MP bei Crit) löst sie später. Keen Strike bleibt trotzdem im Weaving: Mit Spez. 4 senkt jeder Treffer den Cooldown von Ruinous Blow – und damit kommt Prepare for Battle (+20 % PvE-Schaden) öfter.',
         },
         {
           type: 'steps',
           title: 'Fahrplan',
           items: [
-            'Keen Strike (Linksklick) früh auf Level 12 – stellt ca. 100 MP pro Treffer wieder her.',
+            'Keen Strike (Linksklick) auf Level 12 mit Spez. 4 – ca. 100 MP pro Treffer und −1 s Ruinous-Blow-Cooldown.',
             'Keen Strike zwischen Rending Blows einweben: Linksklick, Rechtsklick – der Rechtsklick bricht die Animation ab und kostet kaum Zeit.',
-            'Übergang: Rending Blow grün (weniger MP-Kosten) oder Lunge Stance (senkt MP-Kosten aller Skills) nutzen.',
-            'So früh wie möglich Rending Blow rot (Spez. 5) freischalten: MP bei kritischem Treffer. Must-have!',
-            'Ab dann kann Keen Strike aus der Rotation – er wird zu einem der unwichtigsten Skills.',
+            'Übergang: Lunge Stance senkt die MP-Kosten aller Skills.',
+            'So früh wie möglich Rending Blow rot (Spez. 5) freischalten: MP bei kritischem Treffer. Damit ist Mana kein Thema mehr.',
+            'Keen Strike bleibt danach im Weaving – jetzt vor allem wegen des Ruinous-Blow-Cooldowns.',
           ],
         },
         {
@@ -116,7 +116,6 @@ export const gladiatorPveDpsDetails: BuildDetails = {
           title: 'Weitere Mana-Quellen',
           items: [
             'Focused Block (Stigma): garantierter Parry, stellt Mana, Ausdauer und HP wieder her.',
-            'Keen Strike grün (Extra-Mana) – wird laut Montu selten gebraucht.',
             'Arcana-Set Magic Armor (2er) – mit Keen-Strike-Weaving laut Endgame-Guide kaum noch Mana-Probleme.',
           ],
         },
@@ -124,7 +123,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
           type: 'callout',
           variant: 'success',
           title: 'Faustregel',
-          text: 'Hast du Rending Blow rot noch nicht: Keen Strike weben. Hast du ihn: Keen Strike weglassen und Punkte in Overhead Slam, Rending Blow, Ruinous Blow stecken.',
+          text: 'Keen Strike immer einweben: ohne Rending Blow rot für Mana, mit Rending Blow rot für den Ruinous-Blow-Cooldown. Keen Strike reicht auf 12 – weitere Punkte gehören in Overhead Slam, Rending Blow und Ruinous Blow.',
         },
       ],
     },
@@ -183,7 +182,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
               name: 'Keen Strike',
               priority: 'mid',
               target: 'früh Lv. 12',
-              summary: 'Linksklick-Basisangriff, ca. 100 MP pro Treffer. Später einer der unwichtigsten Skills.',
+              summary: 'Linksklick-Basisangriff: ca. 100 MP pro Treffer, mit Spez. 4 −1 s Ruinous-Blow-Cooldown pro Treffer. Bleibt dauerhaft im Weaving, Level 12 reicht.',
               specs: [
                 { slot: 1, text: 'Mehr Mana-Wiederherstellung' },
                 { slot: 2, text: '1 % HP-Absorb' },
@@ -391,7 +390,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
             'Ruinous Blow für Prepare for Battle (+20 % PvE-Schaden, +100 Crit).',
             'Rage Burst → 10 s Overhead Slam spammen.',
             'Sonst Rending Blow spammen und Overhead Slam sofort drücken, wenn der 7-%-Proc kommt.',
-            'Keen Strike nur einweben, solange das Mana knapp ist (bis ca. Level 16 bzw. bis Rending Blow Spez. 5) – danach reichen Rage Burst und Lunge Stance für dauerhaften Overhead Slam.',
+            'Keen Strike zwischen Rending Blows einweben – Mana und kürzerer Ruinous-Blow-Cooldown.',
             'Mit Leaping Slam und Rush Strike (nach Ausweichen) am Boss bleiben; Defiance gegen CC – Uptime ist alles.',
           ],
         },
@@ -561,7 +560,7 @@ export const gladiatorPveDpsDetails: BuildDetails = {
       blocks: [
         {
           type: 'text',
-          text: 'Die Global-Guides von Arthars und Wakayashi stimmen im Kern überein. Ältere KR/TW-Angaben (Blade Toss, Tenaciousness, Aerial-Snare-Opener, Keen Strike hoch leveln, Ruinous Blow nur 16) sind entfernt. Offen bleiben nur Details:',
+          text: 'Die Global-Guides von Arthars und Wakayashi stimmen im Kern überein. Ältere KR/TW-Angaben (Blade Toss, Tenaciousness, Aerial-Snare-Opener, Keen Strike über 12 leveln, Ruinous Blow nur 16) sind entfernt. Wakayashi und Arthars lassen den Linksklick später weg – wir behalten Keen Strike wegen Spez. 4 (Ruinous-Blow-Cooldown) im Weaving. Offen bleiben nur Details:',
         },
         {
           type: 'table',
