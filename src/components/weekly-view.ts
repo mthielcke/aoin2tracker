@@ -11,6 +11,7 @@ import {
   activitiesFor,
   claimsPerWeek,
   type WeeklyActivity,
+  type WeeklyOptions,
   type WeeklyRole,
 } from '../data/weekly';
 import { StoreController, lastWeeklyReset, store, type Character } from '../store';
@@ -27,6 +28,9 @@ const fmtDuration = (minutes: number) => {
 
 const fmtDate = (ts: number) =>
   new Date(ts).toLocaleString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+
+/** Pseudo-Charakter für die Karte „Kaufen & Herstellen“. */
+const SHOP_ID = 'shop';
 
 interface PlannedChar {
   character: Character;
@@ -324,26 +328,43 @@ export class WeeklyView extends LitElement {
     return valid ? id : undefined;
   }
 
+  /** Wochenoptionen inkl. Anzahl eingeplanter Twinks (für Aktivitäten pro Twink). */
+  private opts(): WeeklyOptions {
+    const { characters, plan, weekly } = store.state;
+    const alts = characters.filter((c) => c.id !== plan.mainId && !weekly.excluded.includes(c.id)).length;
+    return { ...weekly, alts };
+  }
+
   private planned(): PlannedChar[] {
     const { characters, plan, weekly } = store.state;
     const pvpTwink = this.pvpTwinkId();
+    const opts = this.opts();
     const sorted = [...characters].sort((a, b) => Number(b.id === plan.mainId) - Number(a.id === plan.mainId));
-    return sorted
+    const chars: PlannedChar[] = sorted
       .filter((c) => !weekly.excluded.includes(c.id))
       .map((c) => {
         const role: WeeklyRole = c.id === plan.mainId ? 'main' : 'alt';
         const isPvpChar = pvpTwink ? c.id === pvpTwink : role === 'main';
-        return { character: c, role, isPvpChar, activities: activitiesFor(role, isPvpChar, weekly) };
+        return { character: c, role, isPvpChar, activities: activitiesFor(role, isPvpChar, opts) };
       });
+    if (!chars.length) return chars;
+    const shop: PlannedChar = {
+      character: { id: SHOP_ID, name: 'Kaufen & Herstellen', classId: '', buildId: '', level: 45, done: {}, notes: '', createdAt: 0 },
+      role: 'shop',
+      isPvpChar: false,
+      activities: activitiesFor('shop', false, opts),
+    };
+    return [...chars, shop];
   }
 
   private roleBadges({ role, isPvpChar }: PlannedChar) {
+    if (role === 'shop') return html`<sl-badge variant="success" pill>Account</sl-badge>`;
     return html`<sl-badge variant=${role === 'main' ? 'primary' : 'neutral'} pill>${role === 'main' ? 'Main' : 'Twink'}</sl-badge>
       ${isPvpChar && role === 'alt' ? html`<sl-badge variant="danger" pill>PvP</sl-badge>` : nothing}`;
   }
 
   private doneOf(charId: string, act: WeeklyActivity) {
-    return Math.min(store.state.weekly.progress[charId]?.[act.id] ?? 0, act.count(store.state.weekly));
+    return Math.min(store.state.weekly.progress[charId]?.[act.id] ?? 0, act.count(this.opts()));
   }
 
   private toggleIncluded(id: string, included: boolean) {
@@ -453,7 +474,7 @@ export class WeeklyView extends LitElement {
   }
 
   private renderActivity(charId: string, act: WeeklyActivity) {
-    const total = act.count(store.state.weekly);
+    const total = act.count(this.opts());
     const done = this.doneOf(charId, act);
     const sources = (act.sources ?? []).map((id) => SOURCES[id]).filter(Boolean);
     const single = total === 1;
@@ -497,8 +518,8 @@ export class WeeklyView extends LitElement {
   }
 
   private totals({ character, activities }: PlannedChar) {
-    const weekly = store.state.weekly;
-    const planned = activities.reduce((s, a) => s + a.count(weekly) * a.minutes, 0);
+    const opts = this.opts();
+    const planned = activities.reduce((s, a) => s + a.count(opts) * a.minutes, 0);
     const doneMin = activities.reduce((s, a) => s + this.doneOf(character.id, a) * a.minutes, 0);
     return { planned, doneMin, percent: planned ? Math.round((doneMin / planned) * 100) : 0 };
   }
@@ -542,13 +563,16 @@ export class WeeklyView extends LitElement {
   private renderChar(p: PlannedChar) {
     const { character: c, activities } = p;
     const { planned, doneMin, percent } = this.totals(p);
+    const isShop = p.role === 'shop';
     return html`
       <div class="card char-card" id="char-${c.id}">
         <div class="char-head">
           <span class="char-name">${c.name}</span>
           ${this.roleBadges(p)}
-          <span class="sub">${getClass(c.classId)?.name ?? c.classId} · Lv. ${c.level}</span>
-          ${c.level < 45 ? html`<sl-badge variant="warning" pill>unter 45 – Dungeons ggf. noch gesperrt</sl-badge>` : nothing}
+          ${isShop
+            ? html`<span class="sub">Pro Server bzw. auf dem Main – alles, was du wöchentlich kaufst, morphst oder herstellst</span>`
+            : html`<span class="sub">${getClass(c.classId)?.name ?? c.classId} · Lv. ${c.level}</span>
+                ${c.level < 45 ? html`<sl-badge variant="warning" pill>unter 45 – Dungeons ggf. noch gesperrt</sl-badge>` : nothing}`}
           <span class="char-time">${fmtDuration(doneMin)} von ${fmtDuration(planned)}</span>
         </div>
         <sl-progress-bar value=${percent} label=${`Fortschritt ${c.name}`}></sl-progress-bar>
@@ -560,15 +584,17 @@ export class WeeklyView extends LitElement {
   render() {
     const { characters, plan, weekly } = store.state;
     const planned = this.planned();
+    const opts = this.opts();
+    const charCount = planned.filter((p) => p.role !== 'shop').length;
     const totalMin = planned.reduce(
-      (s, p) => s + p.activities.reduce((t, a) => t + a.count(weekly) * a.minutes, 0),
+      (s, p) => s + p.activities.reduce((t, a) => t + a.count(opts) * a.minutes, 0),
       0,
     );
     const doneMin = planned.reduce(
       (s, p) => s + p.activities.reduce((t, a) => t + this.doneOf(p.character.id, a) * a.minutes, 0),
       0,
     );
-    const claims = planned.length * claimsPerWeek(weekly);
+    const claims = charCount * claimsPerWeek(weekly);
     const kinah = Math.min(claims, SERVER_CLAIM_CAP) * KINAH_PER_CLAIM;
     const nextReset = lastWeeklyReset(Date.now(), weekly.resetWeekday, weekly.resetHour) + 7 * 24 * 3600 * 1000;
 
@@ -600,7 +626,7 @@ export class WeeklyView extends LitElement {
               <div class="tile">
                 <div class="label">Geplant pro Woche</div>
                 <div class="value">${fmtDuration(totalMin)}</div>
-                <div class="note">${planned.length} Charakter(e)</div>
+                <div class="note">${charCount} Charakter(e) plus Kaufen & Herstellen</div>
               </div>
               <div class="tile">
                 <div class="label">Ø pro Tag</div>

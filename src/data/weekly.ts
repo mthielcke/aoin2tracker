@@ -1,9 +1,12 @@
-export type WeeklyRole = 'main' | 'alt';
+/** 'shop': die Karte „Kaufen & Herstellen“ (pro Server bzw. auf dem Main). */
+export type WeeklyRole = 'main' | 'alt' | 'shop';
 
 export interface WeeklyOptions {
   membership: boolean;
   pvp: boolean;
   abyss: boolean;
+  /** Anzahl eingeplanter Twinks – für Aktivitäten, die pro Twink zählen. */
+  alts?: number;
 }
 
 export interface WeeklyActivity {
@@ -19,7 +22,7 @@ export interface WeeklyActivity {
    * 'not-pvp-char': alle passenden Rollen außer dem PvP-Charakter.
    */
   assign?: 'pvp-char' | 'not-pvp-char';
-  requires?: 'pvp' | 'abyss';
+  requires?: 'pvp' | 'abyss' | 'membership';
   unit: string;
   count: (o: WeeklyOptions) => number;
   /** Minuten pro Einheit */
@@ -54,30 +57,6 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
     roles: ['main'],
     unit: 'Tage',
     count: () => 7,
-    minutes: 15,
-  },
-  {
-    id: 'commands',
-    title: 'Command-Scrolls (Befehle)',
-    detail:
-      '12 Scrolls pro Woche beim Händler in der Hauptstadt kaufen. Jede Rolle schaltet eine kleine Mission frei (Journal → Duty → Command) und gibt u. a. Abyss-Punkte. Befehle im eigenen Gebiet sind schnell, Abyss-Befehle wegen PvP umkämpft. Zeit pro Befehl geschätzt.',
-    sources: ['yt-prog-whelps', 'yt-lvl-nobs', 'yt-beginner-nobs'],
-    estimate: true,
-    roles: ['main'],
-    unit: 'Befehle',
-    count: () => 12,
-    minutes: 5,
-  },
-  {
-    id: 'supply-requests',
-    title: 'Supply Requests',
-    detail:
-      'Tägliche und wöchentliche Liefer-Aufträge: Material oder gecraftete Teile abgeben, dafür Abyss-Punkte, Kinah und Katalysatoren. Überzählige Crafts vorher prüfen, statt sie zu zerlegen. Zeit geschätzt.',
-    sources: ['yt-lvl-nobs', 'yt-kinah-aselon', 'yt-craft-crusherx'],
-    estimate: true,
-    roles: ['main'],
-    unit: 'pauschal',
-    count: () => 1,
     minutes: 15,
   },
   {
@@ -142,15 +121,6 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
     minutes: 45,
   },
   {
-    id: 'crafting',
-    title: 'Wöchentliches Handwerk & Transformation',
-    detail: 'Ariel’s Crystals (Ariel’s Trace), Stigma-Upgrades, verkaufbare Consumables.',
-    roles: ['main'],
-    unit: 'pauschal',
-    count: () => 1,
-    minutes: 21,
-  },
-  {
     id: 'arena-main',
     title: 'Arena-PvP (Full PvP)',
     detail: 'Die volle PvP-Runde mit eigenem Gear – spielt der PvP-Charakter (Standard: Main).',
@@ -210,11 +180,133 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
     count: () => 2,
     minutes: 75,
   },
+
+  // ---------- Kaufen & Herstellen (eigene Karte)
+  {
+    id: 'commands',
+    title: 'Command-Scrolls kaufen und erledigen',
+    detail:
+      'Beim Command-Händler in der Hauptstadt: 12 Scrolls pro Woche und Server – Twinks bekommen keine eigenen. Jede Rolle schaltet eine kleine Mission frei (Journal → Duty → Command) und gibt u. a. Abyss-Punkte. Belohnungen nach Bedarf wählen: Enhance Stones, Pet-Kristalle, Abyss-Punkte, Cube-Schlüssel. Nicht erledigte Scrolls lassen sich in die nächste Woche mitnehmen. Die 20 Abyss-Aufträge kaufst du beim Händler im Abyss (siehe Main). Zeit pro Befehl geschätzt.',
+    sources: ['meinmmo-checklist', 'skycoach-checklist', 'yt-gear2200-freshy', 'yt-plan-madsin'],
+    estimate: true,
+    roles: ['shop'],
+    unit: 'Befehle',
+    count: () => 12,
+    minutes: 5,
+  },
+  {
+    id: 'morph-energy',
+    title: 'Substance Morph: Odyle-Energie (Main)',
+    detail:
+      'Substance Morph → Special → Consumables. 4 pro Charakter plus 16 pro Server – auf dem Main also 20 pro Woche. Braucht Odyle (laut Silvias vor allem blaues). Setzt wöchentlich zurück, deshalb vor dem Reset morphen. Odyle sammeln: Crafting-Tab → Gathering & Materialien.',
+    sources: ['meinmmo-checklist', 'skycoach-checklist', 'yt-odyle-mr4k', 'yt-craft-silvias'],
+    estimate: true,
+    roles: ['shop'],
+    unit: 'Morphs',
+    count: () => 20,
+    minutes: 0.5,
+  },
+  {
+    id: 'morph-energy-alts',
+    title: 'Substance Morph: Odyle-Energie (Twinks)',
+    detail: 'Jeder Twink morpht seine eigenen 4 pro Woche – die Energie bleibt auf dem Twink.',
+    sources: ['meinmmo-checklist', 'skycoach-checklist'],
+    estimate: true,
+    roles: ['shop'],
+    unit: 'Morphs',
+    count: (o) => (o.alts ?? 0) * 4,
+    minutes: 0.5,
+  },
+  {
+    id: 'breeze-energy',
+    title: 'Wind Breeze Merchant: Odyle-Energie-Steine',
+    detail:
+      'Shop → Wind Breeze Merchant → Special (nur mit Abo). Je Stein 40 Energie für 100.000 Kinah. Das Wochenlimit nennen die Quellen unterschiedlich (meist 7) – im Spiel nachsehen. Am besten auf dem Main kaufen.',
+    sources: ['sportskeeda-odyle', 'yt-odyle-mr4k', 'yt-plan-madsin'],
+    estimate: true,
+    roles: ['shop'],
+    requires: 'membership',
+    unit: 'Steine',
+    count: () => 7,
+    minutes: 0.5,
+  },
+  {
+    id: 'breeze-tickets',
+    title: 'Wind Breeze Merchant: 21 Daily-Dungeon-Tickets',
+    detail: 'Mit Abo gibt es 21 zusätzliche Daily-Dungeon-Tickets pro Woche – abholen, damit sie nicht verfallen.',
+    sources: ['meinmmo-checklist', 'skycoach-checklist', 'yt-endgame-freshy'],
+    estimate: true,
+    roles: ['shop'],
+    requires: 'membership',
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 1,
+  },
+  {
+    id: 'breeze-soul',
+    title: 'Wind Breeze Merchant: Soul Crystals',
+    detail:
+      'Soul Crystals für Genus Insight (Pets). In KR seit dem Patch vom 16.09. für 500 Kinah mit Limit 30.000 – Global-Werte im Spiel prüfen.',
+    sources: ['aion2t-soulcrystal', 'meinmmo-checklist'],
+    estimate: true,
+    roles: ['shop'],
+    requires: 'membership',
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 1,
+  },
+  {
+    id: 'shop-stigma',
+    title: 'Stigma Shards & Shop-Einkäufe',
+    detail:
+      'Abyss-Shop: Stigma Shards (ca. 10.000 AP). Nightmare-Shop: Stigma Shards, aber 14.000 Marken für die Zikel-Statue zurücklegen. Shugo-Festival-Shop: zuerst Daevanion-Kristalle (GS), dann Stigma Shards.',
+    sources: ['yt-plan-madsin', 'yt-glad-arthars'],
+    estimate: true,
+    roles: ['shop'],
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 10,
+  },
+  {
+    id: 'season-shop',
+    title: 'Saison-Shop prüfen',
+    detail:
+      'Magical Breath (5 pro Server und Season) für garantierte Crafts, Artisan-Steine (10 pro Server), Odyle und Drachen-Zutaten mit den Twinks kaufen und übers Server-Lager schicken. Marken des Mains für die Talisra-Wings aufheben. Mehr im Crafting-Tab.',
+    sources: ['yt-plan-madsin', 'yt-dropcraft-lucky', 'yt-craft-mr4k'],
+    estimate: true,
+    roles: ['shop'],
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 5,
+  },
+  {
+    id: 'crafting',
+    title: 'Wöchentliches Handwerk & Transformation',
+    detail:
+      'Ariel’s Crystals (Ariel’s Trace) und Ariel-Bücher morphen (100-%-Option wählen), Stigma-Upgrades, verkaufbare Consumables craften. Waffen-Crafting: Crafting-Tab → Crafting-Fahrplan.',
+    sources: ['yt-chanter-ultimate', 'yt-craft-crusherx'],
+    roles: ['shop'],
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 21,
+  },
+  {
+    id: 'supply-requests',
+    title: 'Supply Requests abgeben',
+    detail:
+      'Tägliche und wöchentliche Liefer-Aufträge: Material oder gecraftete Teile abgeben, dafür Abyss-Punkte (meist ohne Wochenlimit), Kinah und Katalysatoren. Überzählige Crafts vorher prüfen, statt sie zu zerlegen. Teure Materialien wie Odyle lieber behalten.',
+    sources: ['yt-lvl-nobs', 'yt-kinah-aselon', 'yt-craft-crusherx', 'yt-plan-madsin'],
+    estimate: true,
+    roles: ['shop'],
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 15,
+  },
 ];
 
 export function activitiesFor(role: WeeklyRole, isPvpChar: boolean, o: WeeklyOptions): WeeklyActivity[] {
   return WEEKLY_ACTIVITIES.filter((a) => {
-    if (!a.roles.includes(role) || (a.requires && !o[a.requires])) return false;
+    if (!a.roles.includes(role) || (a.requires && !o[a.requires]) || a.count(o) <= 0) return false;
     if (a.assign === 'pvp-char') return isPvpChar;
     if (a.assign === 'not-pvp-char') return !isPvpChar;
     return true;
