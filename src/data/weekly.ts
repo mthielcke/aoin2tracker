@@ -62,10 +62,11 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
   {
     id: 'nightmare',
     title: 'Nightmare',
-    detail: '2 Einträge pro Tag, max. 14 gespeichert – nicht verfallen lassen. Zeit pro Boss geschätzt.',
-    sources: ['yt-mistakes-lucky'],
+    detail:
+      'Auf jedem Charakter ab Level 45: 2 Tickets pro Tag, max. 14 gespeichert – nicht verfallen lassen. Gerade am Anfang wichtig: Ziel ist der Endboss (Zikel) für die Zikel-Statue (14.000 Marken), dazu Stigma Shards aus dem Nightmare-Shop. Geschaffte Stufen musst du nicht wiederholen. Mit Abo gibt es Instant-Clear-Tickets, auch für Twinks. Zeit pro Boss geschätzt.',
+    sources: ['yt-mistakes-lucky', 'yt-plan-madsin', 'yt-endgame-freshy'],
     estimate: true,
-    roles: ['main'],
+    roles: ['main', 'alt'],
     unit: 'Einträge',
     count: () => 14,
     minutes: 3,
