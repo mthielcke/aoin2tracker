@@ -43,6 +43,37 @@ export function lastWeeklyReset(now: number, weekday: number, hour: number): num
   return d.getTime();
 }
 
+/** Feldboss mit festem Spawn-Rhythmus. `spawnTime` ist ein bekannter Spawn (HH:MM:SS, lokale Zeit). */
+export interface BossTimer {
+  id: string;
+  name: string;
+  spawnTime: string;
+  intervalHours: number;
+  /** Zeitpunkt, an dem der Boss zuletzt als erledigt markiert wurde */
+  killedAt?: number;
+}
+
+export interface BossState {
+  list: BossTimer[];
+  /** Browser-Hinweis 5 Minuten vor dem Spawn */
+  notify: boolean;
+}
+
+const MS_PER_HOUR = 3600 * 1000;
+
+/** Letzter Spawn vor oder gleich `now`. */
+export function lastBossSpawn(boss: Pick<BossTimer, 'spawnTime' | 'intervalHours'>, now: number): number {
+  const [h = 0, m = 0, sec = 0] = boss.spawnTime.split(':').map(Number);
+  const anchor = new Date(now);
+  anchor.setHours(h, m, sec, 0);
+  const interval = Math.max(0.25, boss.intervalHours) * MS_PER_HOUR;
+  const steps = Math.floor((now - anchor.getTime()) / interval);
+  return anchor.getTime() + steps * interval;
+}
+
+export const nextBossSpawn = (boss: Pick<BossTimer, 'spawnTime' | 'intervalHours'>, now: number) =>
+  lastBossSpawn(boss, now) + Math.max(0.25, boss.intervalHours) * MS_PER_HOUR;
+
 export interface Todo {
   id: string;
   text: string;
@@ -57,6 +88,7 @@ export interface AppState {
   activeCharacterId?: string;
   plan: StartPlan;
   weekly: WeeklyState;
+  bosses: BossState;
 }
 
 const STORAGE_KEY = 'aion2-tracker:v1';
@@ -74,12 +106,24 @@ const emptyWeekly = (): WeeklyState => ({
   resetHour: 5,
 });
 
+/** Startliste aus dem Screenshot vom Abend (23:32): Route Gartua → Lagta → Kashapa → Dartan. */
+const emptyBosses = (): BossState => ({
+  notify: false,
+  list: [
+    { id: 'gartua', name: 'Immortal Gartua', spawnTime: '11:17:45', intervalHours: 12 },
+    { id: 'lagta', name: 'High Commander Lagta', spawnTime: '11:22:53', intervalHours: 12 },
+    { id: 'kashapa', name: 'Soul Ruler Kashapa', spawnTime: '05:28:59', intervalHours: 6 },
+    { id: 'dartan', name: 'Silent Dartan', spawnTime: '05:30:56', intervalHours: 6 },
+  ],
+});
+
 const emptyState = (): AppState => ({
   version: 1,
   characters: [],
   todos: [],
   plan: emptyPlan(),
   weekly: emptyWeekly(),
+  bosses: emptyBosses(),
 });
 
 function isAppState(value: unknown): value is AppState {
@@ -92,6 +136,7 @@ const normalize = (s: AppState): AppState => ({
   ...s,
   plan: { ...emptyPlan(), ...s.plan },
   weekly: { ...emptyWeekly(), ...s.weekly },
+  bosses: s.bosses ? { ...emptyBosses(), ...s.bosses } : emptyBosses(),
 });
 
 function load(): AppState {
@@ -213,6 +258,34 @@ class Store extends EventTarget {
       else delete next[key];
       return { ...c, done: next };
     });
+  }
+
+  addBoss(input: Pick<BossTimer, 'name' | 'spawnTime' | 'intervalHours'>) {
+    const boss: BossTimer = { ...input, id: uid() };
+    this.commit({ ...this.state, bosses: { ...this.state.bosses, list: [...this.state.bosses.list, boss] } });
+  }
+
+  updateBoss(id: string, changes: Partial<Omit<BossTimer, 'id'>>) {
+    const list = this.state.bosses.list.map((b) => (b.id === id ? { ...b, ...changes } : b));
+    this.commit({ ...this.state, bosses: { ...this.state.bosses, list } });
+  }
+
+  removeBoss(id: string) {
+    const list = this.state.bosses.list.filter((b) => b.id !== id);
+    this.commit({ ...this.state, bosses: { ...this.state.bosses, list } });
+  }
+
+  moveBoss(id: string, dir: -1 | 1) {
+    const list = [...this.state.bosses.list];
+    const i = list.findIndex((b) => b.id === id);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= list.length) return;
+    [list[i], list[j]] = [list[j], list[i]];
+    this.commit({ ...this.state, bosses: { ...this.state.bosses, list } });
+  }
+
+  setBossNotify(notify: boolean) {
+    this.commit({ ...this.state, bosses: { ...this.state.bosses, notify } });
   }
 
   addTodo(text: string) {
