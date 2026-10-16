@@ -306,7 +306,7 @@ const list: Source[] = [
     title: 'Sportskeeda – Aion 2 Odyle Energy Guide',
     url: 'https://www.sportskeeda.com/mmo/aion-2-odyle-energy-guide-how-get-spend',
     kind: 'web',
-    note: 'Odyle-Energie-Steine: 40 Energie, 100.000 Kinah, 7 pro Woche (Abo)',
+    note: 'Odyle-Energie-Steine à 40 Energie beim Wind Breeze Merchant (Abo)',
   },
   {
     id: 'aion2t-soulcrystal',
