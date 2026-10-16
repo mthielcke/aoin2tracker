@@ -74,12 +74,22 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
   {
     id: 'daily-dungeon',
     title: 'Daily Dungeon',
-    detail: '7 freie Einträge pro Woche, ca. 2–3 Min. pro Run – alle an einem Tag vor dem Reset möglich.',
+    detail: '14 Runs pro Woche, ca. 2–3 Min. pro Run – alle an einem Tag vor dem Reset möglich.',
     sources: ['yt-daily-mr4k'],
     roles: ['main'],
     unit: 'Runs',
-    count: () => 7,
+    count: () => 14,
     minutes: 3,
+  },
+  {
+    id: 'alt-shop-energy',
+    title: 'Wind Breeze Merchant: Odyle-Energie kaufen',
+    detail:
+      'Shop → Wind Breeze Merchant: Jeder Twink kann pro Woche 20 Odyle-Energie kaufen. Die Energie bleibt auf dem Twink – vor dem Reset mitnehmen.',
+    roles: ['alt'],
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 1,
   },
   {
     id: 'shugo',
