@@ -94,6 +94,15 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
     minutes: 1,
   },
   {
+    id: 'abyss-quests-bought',
+    title: 'Abyss-Wochenquests gekauft',
+    detail: 'Die Abyss-Wochenquests beim Händler im Abyss kaufen.',
+    roles: ['main', 'alt'],
+    unit: 'pauschal',
+    count: () => 1,
+    minutes: 1,
+  },
+  {
     id: 'arena-main',
     title: 'Arena-PvP (Full PvP)',
     detail: 'Die volle PvP-Runde mit eigenem Gear – spielt der PvP-Charakter (Standard: Main).',
