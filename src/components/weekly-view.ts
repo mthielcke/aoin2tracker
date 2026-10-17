@@ -420,17 +420,10 @@ export class WeeklyView extends LitElement {
             @sl-change=${(e: Event) => store.updateWeekly({ pvp: (e.target as SlSwitch).checked })}
             >Arena-PvP (PvP-Charakter Full PvP, alle anderen 10v10)</sl-switch
           >
-          <sl-switch
-            size="small"
-            .checked=${weekly.abyss}
-            @sl-change=${(e: Event) => store.updateWeekly({ abyss: (e.target as SlSwitch).checked })}
-            >Abyss-Zeit (Main: Artifact + 20 Wochenquests · PvP-Charakter: 2–3 h Grinden)</sl-switch
-          >
-          <span class="hint">Abyss-Empfehlung aus „Do THIS From Day 1“ (SywoGG) – lohnt sich auch für reine PvE-Spieler.</span>
           <sl-select
             label="PvP-Charakter"
             size="small"
-            help-text="Übernimmt Abyss-Grind und Full-PvP-Arena. Der Main behält Wochenquests und Artifact und spielt dann 10v10."
+            help-text="Spielt die Full-PvP-Arena. Alle anderen Charaktere spielen 10v10."
             .value=${this.pvpTwinkId() ?? ''}
             @sl-change=${(e: Event) => store.updateWeekly({ pvpCharId: ((e.target as SlSelect).value as string) || undefined })}
           >
