@@ -94,9 +94,9 @@ export const WEEKLY_ACTIVITIES: WeeklyActivity[] = [
     minutes: 1,
   },
   {
-    id: 'abyss-quests-bought',
-    title: 'Abyss-Wochenquests gekauft',
-    detail: 'Die Abyss-Wochenquests beim Händler im Abyss kaufen – gelten pro Server, deshalb nur auf dem Main.',
+    id: 'weekly-quests-main',
+    title: 'Wochenquests (Abyss & Hauptstadt)',
+    detail: 'Die Wochenquests beim Händler im Abyss und in der Hauptstadt kaufen – beide gelten pro Server, deshalb nur auf dem Main.',
     roles: ['main'],
     unit: 'pauschal',
     count: () => 1,
