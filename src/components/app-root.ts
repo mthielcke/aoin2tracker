@@ -8,6 +8,7 @@ import './plan-view';
 import './weekly-view';
 import './craft-plan';
 import './boss-timer';
+import './pet-shop';
 import './todo-list';
 import './tips-view';
 import './sources-view';
@@ -148,6 +149,7 @@ export class AppRoot extends LitElement {
           Todos & Tipps${openTodos ? html`<sl-badge pill variant="primary">${openTodos}</sl-badge>` : ''}
         </sl-tab>
         <sl-tab slot="nav" panel="crafting">Crafting</sl-tab>
+        <sl-tab slot="nav" panel="pets">Pets</sl-tab>
         <sl-tab slot="nav" panel="sources">Quellen</sl-tab>
         <sl-tab-panel name="chars"><character-panel></character-panel></sl-tab-panel>
         <sl-tab-panel name="plan"><plan-view></plan-view></sl-tab-panel>
@@ -171,6 +173,7 @@ export class AppRoot extends LitElement {
             stand="Quellen: Guides vom 03.08.–22.09.2026, Stand Global-Client"
           ></tips-view>
         </sl-tab-panel>
+        <sl-tab-panel name="pets"><pet-shop></pet-shop></sl-tab-panel>
         <sl-tab-panel name="sources"><sources-view></sources-view></sl-tab-panel>
       </sl-tab-group>
     `;
