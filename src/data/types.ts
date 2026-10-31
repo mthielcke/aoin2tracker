@@ -28,6 +28,8 @@ export interface ChecklistItem {
   sources?: string[];
   /** Quellen widersprechen sich oder Name ist aus Transkript unsicher */
   uncertain?: boolean;
+  /** Bild-URL, z. B. Pet-Icon */
+  image?: string;
 }
 
 export interface Section {

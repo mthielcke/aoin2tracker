@@ -5,7 +5,7 @@ import { phaseKeys, progress, type ScopedPhase } from '../progress';
 import { StoreController, store } from '../store';
 import { checklistStyles, firstOpenPhaseKey, renderChecklistPhase } from './checklist';
 
-/** Abhakbare Liste der Pets, die man im Shop kauft. Häkchen liegen accountweit in `plan.done`. */
+/** Abhakbare Sammelliste der Händler-Pets (Haken = Stufe 3). Häkchen liegen accountweit in `plan.done`. */
 export class PetShop extends LitElement {
   static properties = {
     onlyOpen: { state: true },
@@ -71,21 +71,21 @@ export class PetShop extends LitElement {
 
     return html`
       <div>
-        <h2>Shop-Pets</h2>
+        <h2>Pets vom Händler</h2>
         <p class="intro">
-          Pets, die du kaufen musst, weil sie nicht als Seele von Monstern droppen. Jedes Pet zählt accountweit für
-          Genus Insight. Swift Lugi gibt es nicht im Shop, sondern über den Daeva Pass (Season 1). Stand der Quellen:
-          08.–18.10.2026, also vor dem Global-Patch vom 28.10. – Shop-Angebote im Spiel gegenprüfen.
+          Pets, die deinen Charakter verbessern, aber nicht als Seele droppen – also beim Black Cloud Merchant kaufen
+          (oder aus Kisten). Special-Pets aus Atelier, Shugo Festival, Tsenka-Händler, Halloween-Shop oder Daeva Pass
+          geben keine Werte und stehen deshalb nicht hier. Stand: EliteGrindLab vom 14.10.2026 (Global-Client).
         </p>
       </div>
 
       <div class="overall">
-        <sl-progress-bar value=${overall.percent} label="Fortschritt feste Shop-Pets"></sl-progress-bar>
-        <strong>${overall.done} / ${overall.total} feste Shop-Pets</strong>
+        <sl-progress-bar value=${overall.percent} label="Pets auf Stufe 3"></sl-progress-bar>
+        <strong>${overall.done} / ${overall.total} Pets auf Stufe 3</strong>
       </div>
 
       <div class="toolbar">
-        <span>Der Fortschritt zählt nur die festen Shops – Event und Black Cloud Merchants sind Bonus.</span>
+        <span>Bilder: EliteGrindLab</span>
         <sl-switch
           size="small"
           .checked=${this.onlyOpen}

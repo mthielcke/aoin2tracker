@@ -75,6 +75,18 @@ export const checklistStyles = css`
   .item-row sl-checkbox {
     flex: 1;
   }
+  .with-image {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sl-spacing-small);
+  }
+  .with-image img {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: var(--sl-border-radius-medium);
+    background: var(--sl-color-neutral-100);
+  }
   li.done sl-checkbox::part(label) {
     color: var(--sl-color-neutral-500);
     text-decoration: line-through;
@@ -125,7 +137,11 @@ function renderItem(item: ChecklistItem, key: string, opts: ChecklistOptions) {
         <sl-checkbox
           .checked=${done}
           @sl-change=${(e: Event) => opts.onToggle(key, (e.target as SlCheckbox).checked)}
-          >${item.text}</sl-checkbox
+          >${item.image
+            ? html`<span class="with-image"
+                ><img src=${item.image} alt="" loading="lazy" referrerpolicy="no-referrer" />${item.text}</span
+              >`
+            : item.text}</sl-checkbox
         >
         ${item.uncertain
           ? html`<sl-tooltip content="Quellen widersprechen sich oder Name stammt aus einem Transkript – im Spiel prüfen.">

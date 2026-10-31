@@ -1,102 +1,103 @@
-import type { Phase } from './types';
+import type { ChecklistItem, Phase } from './types';
 
 export const PET_SCOPE = 'pets';
 
-const PET_SOURCES = ['keengamer-pets', 'roonby-pets', 'expcarry-pets'];
-const MERCHANT_SOURCES = ['keengamer-pets', 'roonby-pets', 'aion2tierlist-pets'];
+const ICON_BASE = 'https://elitegrindlab.com/media/aion-2/icons/';
+
+/** Ein Pet zum Sammeln: Haken = Stufe 3 (Sammlung komplett). */
+const pet = (id: string, name: string, icon: string): ChecklistItem => ({
+  id,
+  text: name,
+  image: ICON_BASE + icon,
+  sources: ['elitegrind-pets'],
+});
 
 export const PET_SHOP_PLAN: Phase[] = [
   {
-    id: 'fixed',
-    title: '1 · Feste Shops',
+    id: 'black-cloud',
+    title: '1 · Black Cloud Merchants: Pets auf Stufe 3',
     description:
-      'Diese Spezial-Pets droppen nicht als Seele von Monstern – du bekommst sie nur über den Shop. Pets zählen accountweit für Genus Insight.',
+      'Diese Pets droppen nicht als Seele von Monstern – du bekommst sie beim Black Cloud Merchant (Shop-Menü, Ware rotiert) oder aus Belohnungskisten. Jedes neue Pet gibt 500 Genus-Insight-EXP, Stufe 2 und 3 je 250. Auf Stufe 3 wirkt der Owned Effect für alle Charaktere im Account, auch ohne das Pet auszurüsten. Haken setzen, wenn das Pet auf Stufe 3 ist.',
     sections: [
       {
-        id: 'atelier',
+        id: 'cogni',
         kind: 'systems',
-        title: 'Atelier-Shop',
+        title: 'Cogni – Stufe 3: HP +30, Krit +2, STR +1',
         items: [
-          { id: 'white-bunny', text: 'White Bunny kaufen', sources: PET_SOURCES },
-          { id: 'chonky-hamster', text: 'Chonky Hamster kaufen', sources: PET_SOURCES },
+          pet('aultrosss-doppelganger', 'Aultross’s Doppelganger', 'pet-Owltros_02.webp'),
+          pet('urugugu-brawler', 'Urugugu Brawler', 'pet-OwlSoldier_09.webp'),
+          pet('sentinel-knash', 'Sentinel K’nash', 'pet-BeritraD_04.webp'),
+          pet('mumu-overseer', 'Mumu Overseer', 'pet-SkurvWar_04.webp'),
+          pet('dratona-tinkerer', 'Dratona Tinkerer', 'pet-Dratona_01_V01.webp'),
+          pet('furious-feruk', 'Furious Feruk', 'pet-Ferk_01.webp'),
         ],
       },
       {
-        id: 'shugo',
+        id: 'fera',
         kind: 'systems',
-        title: 'Shugo Festival',
+        title: 'Fera – Stufe 3: Reittempo +3, Genauigkeit +2, DEX +1',
         items: [
-          {
-            id: 'wandering-lugi',
-            text: 'Wandering Merchant Lugi im Pets-Tauschshop des Shugo Festivals kaufen',
-            detail: 'Bezahlt wird mit der Festival-Währung – Preis im Shop prüfen.',
-            sources: PET_SOURCES,
-          },
+          pet('kernon', 'Kernon', 'pet-Keneir_01.webp'),
+          pet('aberrant-odyle-spider', 'Aberrant Odyle Spider', 'pet-OdSpider_04.webp'),
+          pet('elite-keneire', 'Elite Keneire', 'pet-Keneir_01_V01.webp'),
+          pet('elite-ursus', 'Elite Ursus', 'pet-UrsussElite_01.webp'),
+          pet('grave-rat', 'Grave Rat', 'pet-GraveRat_01.webp'),
+          pet('coradon', 'Coradon', 'pet-Coradon_01.webp'),
+          pet('young-tog', 'Young Tog', 'pet-Tog_01_V01.webp'),
+          pet('ashen-lupyllini', 'Ashen Lupyllini', 'pet-Lufilini_02_CV01.webp'),
+          pet('mutated-insectoid-valka', 'Mutated Insectoid Valka', 'pet-Bug_01.webp'),
+          pet('venomous-insect-sram', 'Venomous Insect Sram', 'pet-Bug_02.webp'),
+          pet('ashen-basilisk', 'Ashen Basilisk', 'pet-Basilisk_01_CV01.webp'),
+          pet('flame-barghest', 'Flame Barghest', 'pet-Balgest_01.webp'),
         ],
       },
       {
-        id: 'tsenka',
+        id: 'natura',
         kind: 'systems',
-        title: 'Tsenka-Händler',
+        title: 'Natura – Stufe 3: Ausdauer +900, Krit-Resistenz +2, AGI +1',
         items: [
-          {
-            id: 'pagati',
-            text: 'Pagati beim Tsenka-Händler kaufen',
-            detail:
-              'Laut Roonby 2 Mio. gebundene Kinah. Kann auch aus der „Advance: Pet Chest“ kommen – vorher prüfen, ob du ihn schon hast.',
-            sources: ['keengamer-pets', 'roonby-pets'],
-          },
+          pet('ultimate-wind-spirit', 'Ultimate Wind Spirit', 'pet-WindEle_04.webp'),
+          pet('ultimate-fire-spirit', 'Ultimate Fire Spirit', 'pet-FireEle_04.webp'),
+          pet('ultimate-water-spirit', 'Ultimate Water Spirit', 'pet-WaterEle_04.webp'),
+          pet('ultimate-earth-spirit', 'Ultimate Earth Spirit', 'pet-EarthEle_04.webp'),
+          pet('dionae', 'Dionae', 'pet-Dionaea_01.webp'),
+          pet('forest-dionae', 'Forest Dionae', 'pet-Dionaea_01_CV01.webp'),
+          pet('dried-up-forest-guardian', 'Dried Up Forest Guardian', 'pet-ForestArc_01_V01.webp'),
+          pet('ancient-spirit', 'Ancient Spirit', 'pet-Gartua_01_V01.webp'),
+          pet('elite-poisonous-spore-fungen', 'Elite Poisonous Spore Fungen', 'pet-ToxFungus_01.webp'),
+        ],
+      },
+      {
+        id: 'varian',
+        kind: 'systems',
+        title: 'Varian – Stufe 3: Sprint-Kosten Reittier +30, Ausweichen +2, CON +1',
+        items: [
+          pet('krao-mutant', 'Krao Mutant', 'pet-KraoElite_01.webp'),
+          pet('krao-test-subject', 'Krao Test Subject', 'pet-KraoWar_01.webp'),
+          pet('krao-seal-guardian', 'Krao Seal Guardian', 'pet-KraoElite_02.webp'),
+          pet('swamp-monster', 'Swamp Monster', 'pet-BigMan_01.webp'),
+          pet('gatekeeper-pinopi', 'Gatekeeper Pinopi', 'pet-PinoBoss_01.webp'),
+          pet('drana-contaminant', 'Drana Contaminant', 'pet-DranaVar_04.webp'),
+          pet('flame-stone-guardian-statue', 'Flame Stone Guardian Statue', 'pet-Gargoyle_01.webp'),
+          pet('elite-soulless-corpse-gnat', 'Elite Soulless Corpse Gnat', 'pet-CorpeSpider_01.webp'),
         ],
       },
     ],
   },
   {
     id: 'event',
-    title: '2 · Event-Shop (Halloween)',
-    description:
-      'Nur eine Quelle nennt diese Pets, und Start- und Enddatum des Events stehen nirgends. Im Spiel prüfen, ob der Shop gerade offen ist.',
+    title: '2 · Event',
     sections: [
       {
         id: 'halloween',
         kind: 'systems',
-        title: 'Saisonaler Halloween-Shop',
-        items: [
-          { id: 'little-ghost', text: 'Little Ghost kaufen', sources: ['expcarry-pets'], uncertain: true },
-          { id: 'pumpkin-carriage', text: 'Pumpkin Carriage kaufen', sources: ['expcarry-pets'], uncertain: true },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'black-cloud',
-    title: '3 · Black Cloud Merchants (optional)',
-    description:
-      'Diese Pets droppen nicht als Seele, kommen aber außer beim Händler auch aus Belohnungskisten. Die Ware der Black Cloud Merchants wechselt – beim Vorbeikommen reinschauen. Hier stehen nur Pets, bei denen sich KeenGamer und AION2 Tierlist einig sind.',
-    sections: [
-      {
-        id: 'merchant',
-        kind: 'systems',
-        title: 'Händler-/Kisten-Pets nach Genus',
+        title: 'Halloween',
         items: [
           {
-            id: 'cogni',
-            text: 'Cogni: Aultross’s Doppelganger, Dratona Tinkerer, Furious Feruk, Mumu Overseer, Sentinel K’nash, Urugugu Brawler',
-            sources: MERCHANT_SOURCES,
-          },
-          {
-            id: 'fera',
-            text: 'Fera: Aberrant Odyle Spider, Ashen Basilisk, Ashen Lupyllini, Coradon, Elite Keneire, Elite Ursus, Flame Barghest, Grave Rat, Kernon, Mutated Insectoid Valka, Venomous Insect Sram, Young Tog',
-            sources: MERCHANT_SOURCES,
-          },
-          {
-            id: 'natura',
-            text: 'Natura: Ancient Spirit, Dionae, Forest Dionae, Dried Up Forest Guardian, Elite Poisonous Spore Fungen, Ultimate Earth/Fire/Water/Wind Spirit',
-            sources: MERCHANT_SOURCES,
-          },
-          {
-            id: 'varian',
-            text: 'Varian: Drana Contaminant, Elite Soulless Corpse Gnat, Flame Stone Guardian Statue, Gatekeeper Pinopi, Krao Mutant, Krao Seal Guardian, Krao Test Subject, Swamp Monster',
-            sources: MERCHANT_SOURCES,
+            id: 'halloween-chest',
+            text: 'Special Halloween Chest öffnen – 10.000 Pet Soul Crystals',
+            detail: 'Nur bis zur Wartung am 03.11.2026. Die Soul Crystals brauchst du für die Genus-Insight-Analysen.',
+            sources: ['elitegrind-pets'],
           },
         ],
       },
